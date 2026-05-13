@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hero Media — We Help the Ambitious Outperform the Average</title>
+  <meta name="description" content="Hero Media is a premium digital marketing agency helping ambitious businesses grow online with measurable results." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=10" />
+
+  <!-- Calendly preconnect + early script load so the widget is ready by the time the user scrolls down -->
+  <link rel="preconnect" href="https://assets.calendly.com" />
+  <link rel="preconnect" href="https://calendly.com" crossorigin />
+  <link rel="dns-prefetch" href="https://assets.calendly.com" />
+  <link rel="preload" href="https://assets.calendly.com/assets/external/widget.js" as="script" />
+  <link rel="preload" href="https://assets.calendly.com/assets/external/widget.css" as="style" />
+  <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+</head>
+<body>
+
+  <!-- Animated background video (Framer-style ambient blue motion) -->
+  <div class="bg-video-wrap" aria-hidden="true">
+    <video class="bg-video" src="assets/bg-animation.mp4" autoplay loop muted playsinline preload="auto"></video>
+    <div class="bg-video-tint"></div>
+  </div>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="#" class="logo">HERO<span>MEDIA</span></a>
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#cases">Cases</a>
+      </nav>
+      <a href="#contact" class="btn btn-primary nav-cta">Let's Grow Your Bottom Line</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ HERO (Silberg-inspired: text + 9:16 video) ============ -->
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <h1>
+          We help the <span class="muted">ambitious outperform</span> the average.
+        </h1>
+        <p class="hero-sub">
+          Conversion-first digital marketing. We craft strategies, build funnels and create content that actually moves the needle — so your brand grows where it matters most: the bottom line.
+        </p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary">Book a Free Discovery Call</a>
+        </div>
+        <a href="https://www.trustpilot.com" target="_blank" rel="noopener" class="trust-badge">
+          <div class="trust-stars">
+            <span class="trust-star"></span>
+            <span class="trust-star"></span>
+            <span class="trust-star"></span>
+            <span class="trust-star"></span>
+            <span class="trust-star"></span>
+          </div>
+          <div class="trust-copy">
+            <div class="trust-rating"><strong>5.0/5.0</strong> <span>from</span></div>
+            <div class="trust-line">+30 E-commerce brands on <span class="trust-brand">★ Trustpilot</span></div>
+          </div>
+        </a>
+      </div>
+
+      <div class="hero-video-wrap">
+        <div class="hero-video-frame">
+          <!-- Replace assets/hero.mp4 with your own 9:16 video -->
+          <video autoplay muted loop playsinline poster="assets/hero-poster.jpg">
+            <source src="assets/hero.mp4" type="video/mp4" />
+          </video>
+          <div class="video-glow"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BRAND MARQUEE ============ -->
+  <section class="brand-marquee-section">
+    <div class="container">
+      <div class="brand-head">
+        <span class="brand-tag-dot"></span>
+        <span>Trusted by ambitious brands across <strong>10+ markets</strong></span>
+      </div>
+    </div>
+    <div class="brand-marquee">
+      <div class="brand-track">
+        <img class="brand-logo" src="assets/logos/Akutflyt.png" alt="Akutflyt" />
+        <img class="brand-logo" src="assets/logos/Bioprai.png" alt="Bioprai" />
+        <img class="brand-logo" src="assets/logos/Bouquet design.png" alt="Bouquet Design" />
+        <img class="brand-logo" src="assets/logos/Clinic360.png" alt="Clinic360" />
+        <img class="brand-logo" src="assets/logos/Customoffice.png" alt="Custom Office" />
+        <img class="brand-logo" src="assets/logos/Delsoux.png" alt="DelsouX" />
+        <img class="brand-logo" src="assets/logos/Fimmi.png" alt="Fimmi" />
+        <img class="brand-logo" src="assets/logos/Hidayah.png" alt="Hidayah" />
+        <img class="brand-logo" src="assets/logos/Magictouch.png" alt="Magic Touch" />
+        <img class="brand-logo" src="assets/logos/Parfumelab.png" alt="ParfumeLab" />
+        <img class="brand-logo" src="assets/logos/SSKIN Copenhagen.png" alt="SSKIN Copenhagen" />
+        <img class="brand-logo" src="assets/logos/Vanilia.png" alt="Vanilia" />
+        <img class="brand-logo" src="assets/logos/VSF.png" alt="Vores Fitness Silkeborg" />
+        <!-- duplicate for seamless loop -->
+        <img class="brand-logo" src="assets/logos/Akutflyt.png" alt="" aria-hidden="true" />
+        <img class="brand-logo" src="assets/logos/Bioprai.png" alt="" aria-hidden="true" />
+        <img class="brand-logo" src="assets/logos/Bouquet design.png" alt="" aria-hidden="true" />
+        <img class="brand-logo" src="assets/logos/Clinic360.png" alt="" aria-hidden="true" />
+        <img class="brand-logo" src="assets/logos/Customoffice.png" alt="" aria-hidden="true" />
+        <img class="brand-logo" src="assets/logos/Delsoux.png" alt="" aria-hidden="true" />
+        <img class="brand-logo" src="assets/logos/Fimmi.png" alt="" aria-hidden="true" />
+        <img class="brand-logo" src="assets/logos/Hidayah.png" alt="" aria-hidden="true" />
+        <img class="brand-logo" src="assets/logos/Magictouch.png" alt="" aria-hidden="true" />
+        <img class="brand-logo" src="assets/logos/Parfumelab.png" alt="" aria-hidden="true" />
+        <img class="brand-logo" src="assets/logos/SSKIN Copenhagen.png" alt="" aria-hidden="true" />
+        <img class="brand-logo" src="assets/logos/Vanilia.png" alt="" aria-hidden="true" />
+        <img class="brand-logo" src="assets/logos/VSF.png" alt="" aria-hidden="true" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="about" id="about">
+    <div class="container about-grid">
+      <div class="about-img">
+        <img src="assets/about.jpg" alt="Hero Media at work" onerror="this.style.background='linear-gradient(135deg,#1a1a2e,#0d0d18)';this.removeAttribute('src');" />
+      </div>
+      <div class="about-text">
+        <span class="section-tag">• About Hero Media</span>
+        <h2>The choice for ambitious businesses to grow online.</h2>
+        <p>
+          We help ambitious businesses grow their online presence with a clear focus on delivering measurable results. Everything we create is designed to move your brand forward.
+        </p>
+        <div class="markets">
+          <div class="markets-head">
+            <span class="markets-dot"></span>
+            <span class="markets-label">Live across <strong>10+ markets</strong></span>
+          </div>
+          <div class="markets-marquee">
+            <div class="markets-track">
+              <span class="flag-chip"><span class="flag">🇩🇰</span>Denmark</span>
+              <span class="flag-chip"><span class="flag">🇳🇴</span>Norway</span>
+              <span class="flag-chip"><span class="flag">🇸🇪</span>Sweden</span>
+              <span class="flag-chip"><span class="flag">🇳🇱</span>Netherlands</span>
+              <span class="flag-chip"><span class="flag">🇹🇷</span>Turkey</span>
+              <span class="flag-chip"><span class="flag">🇦🇪</span>UAE</span>
+              <span class="flag-chip"><span class="flag">🇺🇸</span>USA</span>
+              <span class="flag-chip"><span class="flag">🇫🇮</span>Finland</span>
+              <span class="flag-chip"><span class="flag">🇩🇪</span>Germany</span>
+              <span class="flag-chip"><span class="flag">🇧🇪</span>Belgium</span>
+              <span class="flag-chip"><span class="flag">🇩🇰</span>Denmark</span>
+              <span class="flag-chip"><span class="flag">🇳🇴</span>Norway</span>
+              <span class="flag-chip"><span class="flag">🇸🇪</span>Sweden</span>
+              <span class="flag-chip"><span class="flag">🇳🇱</span>Netherlands</span>
+              <span class="flag-chip"><span class="flag">🇹🇷</span>Turkey</span>
+              <span class="flag-chip"><span class="flag">🇦🇪</span>UAE</span>
+              <span class="flag-chip"><span class="flag">🇺🇸</span>USA</span>
+              <span class="flag-chip"><span class="flag">🇫🇮</span>Finland</span>
+              <span class="flag-chip"><span class="flag">🇩🇪</span>Germany</span>
+              <span class="flag-chip"><span class="flag">🇧🇪</span>Belgium</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT US (Framer-style) ============ -->
+  <section class="about-framer" id="about-framer">
+    <div class="framer-bg-grid"></div>
+    <div class="framer-bg-glow"></div>
+    <div class="container">
+      <h2 class="framer-heading">
+        We help ambitious brands turn ad spend into growth that
+        <span class="framer-rotator">
+          <span class="framer-rotator-word is-active">stands out.</span>
+          <span class="framer-rotator-word">scales fast.</span>
+          <span class="framer-rotator-word">dominates.</span>
+          <span class="framer-rotator-word">converts.</span>
+        </span>
+      </h2>
+
+      <div class="framer-trust">
+        <span class="framer-trust-label">Working with brands in</span>
+        <div class="framer-trust-items">
+          <span class="framer-trust-item">🇩🇰 Denmark</span>
+          <span class="framer-trust-divider"></span>
+          <span class="framer-trust-item">🇸🇪 Sweden</span>
+          <span class="framer-trust-divider"></span>
+          <span class="framer-trust-item">🇳🇴 Norway</span>
+          <span class="framer-trust-divider"></span>
+          <span class="framer-trust-item">🇳🇱 Netherlands</span>
+          <span class="framer-trust-divider"></span>
+          <span class="framer-trust-item">🇺🇸 USA</span>
+          <span class="framer-trust-divider"></span>
+          <span class="framer-trust-item">🇦🇪 UAE</span>
+          <span class="framer-trust-divider"></span>
+          <span class="framer-trust-item">+ 4 more</span>
+        </div>
+      </div>
+
+      <div class="framer-stats">
+        <div class="framer-stat">
+          <div class="framer-num"><span class="framer-count" data-count="1.96" data-suffix="M" data-live="true">0</span></div>
+          <div class="framer-bar"><span></span></div>
+          <div class="framer-label">USD ad spend across 10 international markets</div>
+        </div>
+        <div class="framer-stat">
+          <div class="framer-num"><span class="framer-count" data-count="5" data-suffix="">0</span><span class="framer-plus">+</span></div>
+          <div class="framer-bar"><span></span></div>
+          <div class="framer-label">Years of Experience</div>
+        </div>
+        <div class="framer-stat">
+          <div class="framer-num"><span class="framer-count" data-count="91" data-suffix="K" data-live="true">0</span></div>
+          <div class="framer-bar"><span></span></div>
+          <div class="framer-label">USD monthly ad spend managed worldwide</div>
+        </div>
+      </div>
+
+      <div class="framer-meta">
+        <span class="framer-meta-dot"></span>
+        <span>Updates every <strong>5 minutes</strong></span>
+        <span class="framer-meta-sep"></span>
+        <span>Last synced <strong>1 May 2026</strong></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CASES (compact) ============ -->
+  <section class="cases" id="cases">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">• Results</span>
+        <h2>Selected Cases</h2>
+        <p>A snapshot of what happens when ambition meets execution.</p>
+      </div>
+      <div class="case-grid">
+        <article class="case-card">
+          <div class="case-img" style="background-image:url('assets/case-1.jpg')"></div>
+          <div class="case-body">
+            <h3>Tattoo Fashion Rødovre</h3>
+            <p>Scaled bookings for a premium tattoo studio with funnel optimization and local-targeted ads.</p>
+            <div class="case-metrics">
+              <span>184% More Bookings</span>
+              <span>3.4x Lead Volume</span>
+            </div>
+          </div>
+        </article>
+        <article class="case-card">
+          <div class="case-img" style="background-image:url('assets/case-2.jpg')"></div>
+          <div class="case-body">
+            <h3>Hidayah</h3>
+            <p>Boosted customer engagement with a digital presence and targeted campaigns.</p>
+            <div class="case-metrics">
+              <span>151% Increased Traffic</span>
+              <span>262% Growth in Sales</span>
+            </div>
+          </div>
+        </article>
+        <article class="case-card">
+          <div class="case-img" style="background-image:url('assets/case-3.jpg')"></div>
+          <div class="case-body">
+            <h3>Clinic360</h3>
+            <p>Built a new website and grew their presence through ads tailored to their audience.</p>
+            <div class="case-metrics">
+              <span>57% Website Visitors</span>
+              <span>92% Added Revenue</span>
+            </div>
+          </div>
+        </article>
+        <article class="case-card">
+          <div class="case-img" style="background-image:url('assets/case-4.jpg')"></div>
+          <div class="case-body">
+            <h3>ParfumeLab</h3>
+            <p>Elevated the brand with paid social and conversion-driven creatives, scaling spend profitably.</p>
+            <div class="case-metrics">
+              <span>4.2x ROAS</span>
+              <span>118% Revenue Growth</span>
+            </div>
+          </div>
+        </article>
+        <article class="case-card">
+          <div class="case-img" style="background-image:url('assets/case-5.jpg')"></div>
+          <div class="case-body">
+            <h3>Vores Fitness Silkeborg</h3>
+            <p>Built a member-acquisition engine with lead funnels and retargeting that fills the gym.</p>
+            <div class="case-metrics">
+              <span>240% More Memberships</span>
+              <span>67% Lower CPA</span>
+            </div>
+          </div>
+        </article>
+        <article class="case-card">
+          <div class="case-img" style="background-image:url('assets/case-6.jpg')"></div>
+          <div class="case-body">
+            <h3>DelsouX</h3>
+            <p>Launched a new webshop and scaled it with brand-aligned campaigns and CRO improvements.</p>
+            <div class="case-metrics">
+              <span>3.1x Online Sales</span>
+              <span>+92% Brand Awareness</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW WE WORK (split layout: stages left + sticky image right) ============ -->
+  <section class="process">
+    <div class="container container-narrow process-grid">
+      <div class="process-left">
+        <div class="process-head">
+          <span class="section-tag">• How We Work?</span>
+          <h2>Chosen by Businesses<br />That Value <em>Action Over Words</em>.</h2>
+          <p>Profit isn't an afterthought. It's at the heart of every strategy and built into everything we do.</p>
+        </div>
+        <div class="process-stages">
+          <div class="stage">
+            <div class="stage-head">
+              <div class="stage-icon">💡</div>
+              <span class="stage-tag">Stage 1</span>
+            </div>
+            <h3>Creative Strategy</h3>
+            <p>We define the strategic direction that guides everything we do. Together we uncover your goals, audience, and unique positioning to develop a creative concept that sets the tone for your campaigns.</p>
+          </div>
+          <div class="stage">
+            <div class="stage-head">
+              <div class="stage-icon">⚛</div>
+              <span class="stage-tag">Stage 2</span>
+            </div>
+            <h3>Content</h3>
+            <p>We create the assets that bring your strategy to life. From copywriting to visuals, we craft content designed to engage your audience and communicate your message clearly and effectively.</p>
+          </div>
+          <div class="stage">
+            <div class="stage-head">
+              <div class="stage-icon">🔗</div>
+              <span class="stage-tag">Stage 3</span>
+            </div>
+            <h3>Funnels</h3>
+            <p>We design and build the full campaign engine — mapping out funnels, defining the campaign structure, and setting up ads to guide your audience from first touchpoint to conversion.</p>
+          </div>
+          <div class="stage">
+            <div class="stage-head">
+              <div class="stage-icon">✨</div>
+              <span class="stage-tag">Stage 4</span>
+            </div>
+            <h3>Post Production</h3>
+            <p>We refine and finalize every asset and campaign element, ensuring everything is polished, aligned, and ready to launch. Quality and consistency are at the heart of this final stage.</p>
+          </div>
+        </div>
+      </div>
+      <aside class="process-image">
+        <div class="process-image-inner">
+          <img src="assets/process.jpg" alt="Hero Media at work" onerror="this.style.background='linear-gradient(135deg,#1a1a2e,#0d0d18)';this.removeAttribute('src');" />
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ RESULTS / SOCIAL PROOF ============ -->
+  <section class="results-showcase" id="results">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">• Proven Results</span>
+        <h2>Numbers That <em>Move Businesses</em> Forward.</h2>
+        <p>Real campaigns. Real revenue. Real brands betting on us — and winning.</p>
+      </div>
+
+      <!-- Aggregate stats -->
+      <div class="results-aggregate">
+        <div class="results-stat">
+          <div class="results-stat-row">
+            <span class="results-stat-prefix">€</span>
+            <span class="results-stat-value" data-count="8.2" data-suffix="M+">0</span>
+          </div>
+          <span class="results-stat-label">Revenue Generated</span>
+        </div>
+        <div class="results-stat">
+          <div class="results-stat-row">
+            <span class="results-stat-value" data-count="240" data-suffix="%">0</span>
+          </div>
+          <span class="results-stat-label">Avg Lead Growth</span>
+        </div>
+        <div class="results-stat">
+          <div class="results-stat-row">
+            <span class="results-stat-value" data-count="3.6" data-suffix="x">0</span>
+          </div>
+          <span class="results-stat-label">Avg ROAS</span>
+        </div>
+        <div class="results-stat">
+          <div class="results-stat-row">
+            <span class="results-stat-value" data-count="40" data-suffix="+">0</span>
+          </div>
+          <span class="results-stat-label">Brands Served</span>
+        </div>
+      </div>
+
+      <!-- Result marquee -->
+      <div class="results-marquee" aria-label="Client results">
+        <div class="results-marquee-track">
+          <article class="result-card">
+            <span class="result-brand">Tattoo Fashion Rødovre</span>
+            <span class="result-metric">+184<small>%</small></span>
+            <span class="result-headline">More bookings in 90 days</span>
+            <span class="result-tag">Beauty &amp; Wellness</span>
+          </article>
+          <article class="result-card">
+            <span class="result-brand">Hidayah</span>
+            <span class="result-metric">+262<small>%</small></span>
+            <span class="result-headline">Sales growth post-launch</span>
+            <span class="result-tag">E-commerce</span>
+          </article>
+          <article class="result-card">
+            <span class="result-brand">Clinic360</span>
+            <span class="result-metric">+92<small>%</small></span>
+            <span class="result-headline">Added revenue from paid</span>
+            <span class="result-tag">Healthcare</span>
+          </article>
+          <article class="result-card">
+            <span class="result-brand">ParfumeLab</span>
+            <span class="result-metric">4.2<small>x</small></span>
+            <span class="result-headline">ROAS scaled profitably</span>
+            <span class="result-tag">E-commerce</span>
+          </article>
+          <article class="result-card">
+            <span class="result-brand">Vores Fitness Silkeborg</span>
+            <span class="result-metric">+240<small>%</small></span>
+            <span class="result-headline">More memberships, lower CPA</span>
+            <span class="result-tag">Fitness</span>
+          </article>
+          <article class="result-card">
+            <span class="result-brand">DelsouX</span>
+            <span class="result-metric">3.1<small>x</small></span>
+            <span class="result-headline">Online sales after relaunch</span>
+            <span class="result-tag">E-commerce</span>
+          </article>
+          <!-- Duplicate for seamless loop -->
+          <article class="result-card" aria-hidden="true">
+            <span class="result-brand">Tattoo Fashion Rødovre</span>
+            <span class="result-metric">+184<small>%</small></span>
+            <span class="result-headline">More bookings in 90 days</span>
+            <span class="result-tag">Beauty &amp; Wellness</span>
+          </article>
+          <article class="result-card" aria-hidden="true">
+            <span class="result-brand">Hidayah</span>
+            <span class="result-metric">+262<small>%</small></span>
+            <span class="result-headline">Sales growth post-launch</span>
+            <span class="result-tag">E-commerce</span>
+          </article>
+          <article class="result-card" aria-hidden="true">
+            <span class="result-brand">Clinic360</span>
+            <span class="result-metric">+92<small>%</small></span>
+            <span class="result-headline">Added revenue from paid</span>
+            <span class="result-tag">Healthcare</span>
+          </article>
+          <article class="result-card" aria-hidden="true">
+            <span class="result-brand">ParfumeLab</span>
+            <span class="result-metric">4.2<small>x</small></span>
+            <span class="result-headline">ROAS scaled profitably</span>
+            <span class="result-tag">E-commerce</span>
+          </article>
+          <article class="result-card" aria-hidden="true">
+            <span class="result-brand">Vores Fitness Silkeborg</span>
+            <span class="result-metric">+240<small>%</small></span>
+            <span class="result-headline">More memberships, lower CPA</span>
+            <span class="result-tag">Fitness</span>
+          </article>
+          <article class="result-card" aria-hidden="true">
+            <span class="result-brand">DelsouX</span>
+            <span class="result-metric">3.1<small>x</small></span>
+            <span class="result-headline">Online sales after relaunch</span>
+            <span class="result-tag">E-commerce</span>
+          </article>
+        </div>
+      </div>
+
+      <!-- Featured wins — bento mosaic -->
+      <div class="results-bento">
+        <div class="results-bento-head">
+          <span class="section-tag">• Featured Wins</span>
+          <h3>The Stories Behind <em>The Numbers</em>.</h3>
+        </div>
+
+        <div class="bento-grid">
+          <!-- Hero tile (large) -->
+          <article class="bento-tile bento-hero" style="--tile-img: url('assets/featured-1.jpg');">
+            <div class="bento-tile-bg" aria-hidden="true"></div>
+            <div class="bento-tile-content">
+              <span class="bento-eyebrow">Case 01 · Beauty &amp; Wellness</span>
+              <h4 class="bento-brand">Tattoo Fashion <span>Rødovre</span></h4>
+              <p class="bento-quote">"Bookings tripled in three months. We've never had a marketing partner that delivered this fast."</p>
+              <div class="bento-stats">
+                <div><strong>+184%</strong><span>Bookings</span></div>
+                <div><strong>3.4×</strong><span>Lead Volume</span></div>
+                <div><strong>67%</strong><span>Lower CPA</span></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Metric tile (no image, pure stat focus) -->
+          <article class="bento-tile bento-metric">
+            <div class="bento-metric-glow" aria-hidden="true"></div>
+            <span class="bento-eyebrow">ParfumeLab</span>
+            <span class="bento-metric-big">4.2<small>×</small></span>
+            <span class="bento-metric-sub">Return on Ad Spend</span>
+            <p class="bento-metric-note">Brand-aligned creatives + CRO scaled spend without breaking margin.</p>
+          </article>
+
+          <!-- Image tile (medium) -->
+          <article class="bento-tile bento-image" style="--tile-img: url('assets/featured-2.jpg');">
+            <div class="bento-tile-bg" aria-hidden="true"></div>
+            <div class="bento-tile-content bento-tile-content-overlay">
+              <span class="bento-eyebrow">Vores Fitness Silkeborg</span>
+              <span class="bento-metric-big">+240<small>%</small></span>
+              <span class="bento-metric-sub">More Memberships</span>
+            </div>
+          </article>
+
+          <!-- Quote tile -->
+          <article class="bento-tile bento-quote-tile">
+            <span class="bento-quote-mark" aria-hidden="true">&ldquo;</span>
+            <p>They don't just run ads — they engineer the whole growth machine. Funnels, creative, retargeting, reporting. It just <em>works</em>.</p>
+            <div class="bento-attribution">
+              <div class="bento-avatar" aria-hidden="true"></div>
+              <div>
+                <strong>Founder</strong>
+                <span>Hidayah</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Image tile (wide) -->
+          <article class="bento-tile bento-image bento-wide" style="--tile-img: url('assets/featured-3.jpg');">
+            <div class="bento-tile-bg" aria-hidden="true"></div>
+            <div class="bento-tile-content bento-tile-content-overlay">
+              <span class="bento-eyebrow">Clinic360 · Healthcare</span>
+              <div class="bento-stats bento-stats-row">
+                <div><strong>+92%</strong><span>Added Revenue</span></div>
+                <div><strong>+57%</strong><span>Site Visitors</span></div>
+                <div><strong>2.8×</strong><span>Inbound Leads</span></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Partner logo marquee -->
+      <div class="results-partners">
+        <span class="results-partners-label">Trusted by ambitious brands</span>
+        <div class="results-partners-marquee">
+          <div class="results-partners-track">
+            <img src="assets/logos/Akutflyt.png" alt="Akutflyt" />
+            <img src="assets/logos/Bioprai.png" alt="Bioprai" />
+            <img src="assets/logos/Bouquet design.png" alt="Bouquet Design" />
+            <img src="assets/logos/Clinic360.png" alt="Clinic360" />
+            <img src="assets/logos/Customoffice.png" alt="Custom Office" />
+            <img src="assets/logos/Delsoux.png" alt="DelsouX" />
+            <img src="assets/logos/Fimmi.png" alt="Fimmi" />
+            <img src="assets/logos/Hidayah.png" alt="Hidayah" />
+            <img src="assets/logos/Magictouch.png" alt="Magic Touch" />
+            <img src="assets/logos/Parfumelab.png" alt="ParfumeLab" />
+            <img src="assets/logos/SSKIN Copenhagen.png" alt="SSKIN Copenhagen" />
+            <img src="assets/logos/Vanilia.png" alt="Vanilia" />
+            <img src="assets/logos/VSF.png" alt="Vores Fitness Silkeborg" />
+            <!-- duplicate for seamless loop -->
+            <img src="assets/logos/Akutflyt.png" alt="" aria-hidden="true" />
+            <img src="assets/logos/Bioprai.png" alt="" aria-hidden="true" />
+            <img src="assets/logos/Bouquet design.png" alt="" aria-hidden="true" />
+            <img src="assets/logos/Clinic360.png" alt="" aria-hidden="true" />
+            <img src="assets/logos/Customoffice.png" alt="" aria-hidden="true" />
+            <img src="assets/logos/Delsoux.png" alt="" aria-hidden="true" />
+            <img src="assets/logos/Fimmi.png" alt="" aria-hidden="true" />
+            <img src="assets/logos/Hidayah.png" alt="" aria-hidden="true" />
+            <img src="assets/logos/Magictouch.png" alt="" aria-hidden="true" />
+            <img src="assets/logos/Parfumelab.png" alt="" aria-hidden="true" />
+            <img src="assets/logos/SSKIN Copenhagen.png" alt="" aria-hidden="true" />
+            <img src="assets/logos/Vanilia.png" alt="" aria-hidden="true" />
+            <img src="assets/logos/VSF.png" alt="" aria-hidden="true" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOUNDER LETTER ============ -->
+  <section class="letter">
+    <div class="container letter-grid">
+      <div class="letter-img">
+        <img src="assets/founder.jpg" alt="Sinan Akdag, Founder of Hero Media" onerror="this.style.background='linear-gradient(135deg,#1a1a2e,#0d0d18)';this.removeAttribute('src');" />
+      </div>
+      <div class="letter-text">
+        <span class="section-tag">• A letter from our founder</span>
+        <div class="letter-meta">
+          <p><strong>From:</strong> Sinan Akdag, founder of Hero Media</p>
+          <p><strong>Reply:</strong> What makes us different?</p>
+        </div>
+        <p>If you're wondering why you should even consider working with us, I understand. The digital marketing world is full of bold guarantees, magic formulas, and promises of "5x ROAS" or "adding $10,000 to your business every month." You've probably heard it all before from people who claim to have cracked the code to scaling your business.</p>
+        <p>The truth is, there are no magic formulas. Long-lasting success starts with understanding your market, your business, and your customers, and building a plan that is as clear as it is bold. By focusing on what endures, not what fades, we lay the groundwork for growth that keeps compounding over time.</p>
+        <p>We're here to revolutionize the way businesses work with agencies. That's why we don't see ourselves as just another agency. We see ourselves as your in-house team, your company's right hand for advice, planning, and execution. We work closely with you to become a market leader in your industry.</p>
+        <p>We're not here to chase vanity numbers or promise instant results. Our goal is to create a well-thought-out strategy that ensures you not only grow but also stay strong in your market for years to come.</p>
+        <p>We don't believe in keeping clients bound by chains of long-term contracts. We let the results speak for themselves month after month. That's why many of our clients have stayed with us for years, not because they had to, but because they see the value we bring to their business.</p>
+        <p>Sign up for a meeting and let's see how we can help add value to your business.</p>
+        <p class="signature">Best regards,<br /><strong>Sinan Akdag</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIALS (improved — no images) ============ -->
+  <section class="reviews">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">• Testimonials</span>
+        <h2>Customer Reviews</h2>
+        <p>Hear from our happy clients. See how we've helped them achieve their goals and create lasting impact.</p>
+      </div>
+      <div class="review-grid">
+        <article class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>"Sinan is incredibly kind and helpful. He has a professional and dynamic approach to his work and the technical intelligence to help your business grow and reach your target audience. What truly sets Sinan apart from others is that he invests himself in your business, often using phrases like 'we,' which makes it feel like he is part of your team. We highly recommend Sinan and Hero Media!"</p>
+          <div class="review-meta">
+            <strong>Rebecca Jensen</strong>
+            <span>CEO &amp; Partner · Vores Fitness Silkeborg</span>
+          </div>
+        </article>
+        <article class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>"We have had a great collaboration with Hero Media and Sinan. He is professional, attentive and always brings thoughtful input that has helped us elevate our marketing. You can clearly feel his passion for his work. We highly recommend Hero Media!"</p>
+          <div class="review-meta">
+            <strong>Assad Mohammed</strong>
+            <span>CEO · ParfumeLab</span>
+          </div>
+        </article>
+        <article class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>"Working with Sinan from Hero Media has been a fantastic experience. He is professional, dedicated, and has had a significant impact on our growth. The collaboration has delivered remarkable results, and we look forward to continuing the journey together."</p>
+          <div class="review-meta">
+            <strong>Abdel Benyamin Hussein</strong>
+            <span>CEO · Hidayah</span>
+          </div>
+        </article>
+        <article class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>"Sinan has been an incredible help in planning and developing the ByAlisha webshop. He is not only skilled strategically and technically but also kind, patient and always ready to offer valuable advice when you need it. You truly feel supported and understood. I can highly recommend working with Sinan both as a person and as a professional. Thank you for everything, Sinan!"</p>
+          <div class="review-meta">
+            <strong>Alisha Khatoon</strong>
+            <span>Founder &amp; CEO · ByAlisha</span>
+          </div>
+        </article>
+        <article class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>"Hero Media with Sinan at the helm has worked wonders for DelsouX. They have helped us grow both sales and brand awareness while ensuring our brand expression aligns with our vision. HeroMedia supported us through the development of our new webshop, guiding us on how to make the most of our marketing efforts. If you're looking for a reliable and detail-oriented team that truly feels like a partner, we warmly recommend Sinan and Hero Media!"</p>
+          <div class="review-meta">
+            <strong>Qais Delsouz</strong>
+            <span>CEO &amp; Founder · DelsouX</span>
+          </div>
+        </article>
+        <article class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>"Sinan has been key to Car Mania's success. His expertise in paid social on Facebook, Instagram and TikTok has been outstanding. He quickly helped us find the right videographers and managed all content, which has been crucial in setting us apart from competitors. Hero Media is results-driven and fully committed to our growth. Highly recommended. Thank you, Hero Media!"</p>
+          <div class="review-meta">
+            <strong>Omar Hussein</strong>
+            <span>Founder · Car Mania</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CALENDLY / CONTACT ============ -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">• Let's Talk</span>
+        <h2>Book a Discovery Call</h2>
+        <p>Pick a time that works for you. 30 minutes — no commitment, just a conversation.</p>
+      </div>
+      <!-- USPs above Calendly -->
+      <ul class="contact-usps" aria-label="Why book with us">
+        <li class="contact-usp">
+          <span class="contact-usp-icon">⏱</span>
+          <div>
+            <h4>0 Months Binding</h4>
+            <p>Month-to-month partnership. Cancel anytime — we earn the renewal with results.</p>
+          </div>
+        </li>
+        <li class="contact-usp">
+          <span class="contact-usp-icon">📈</span>
+          <div>
+            <h4>Action Over Words</h4>
+            <p>Profit is built into every campaign. We optimize for revenue, not vanity metrics.</p>
+          </div>
+        </li>
+        <li class="contact-usp">
+          <span class="contact-usp-icon">🎯</span>
+          <div>
+            <h4>Senior Team, Direct</h4>
+            <p>Work hands-on with the strategists who build the playbook. No junior handoffs.</p>
+          </div>
+        </li>
+      </ul>
+
+      <!-- Calendly inline widget — force-loaded on page load (no lazy IntersectionObserver) -->
+      <div id="calendly-embed"
+           class="calendly-inline-widget"
+           style="min-width:320px;height:700px;">
+      </div>
+      <script>
+        (function () {
+          var url = 'https://calendly.com/inkflow-/new-meeting?hide_event_type_details=1&hide_gdpr_banner=1&background_color=0a0a0f&text_color=ffffff&primary_color=ffffff';
+          var parent = document.getElementById('calendly-embed');
+          function init() {
+            if (window.Calendly && parent) {
+              window.Calendly.initInlineWidget({ url: url, parentElement: parent });
+            } else {
+              setTimeout(init, 80);
+            }
+          }
+          init();
+        })();
+      </script>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="logo">HERO<span>MEDIA</span></div>
+        <p>We help the ambitious outperform the average.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Navigation</h5>
+        <a href="#home">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#cases">Cases</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h5>Social</h5>
+        <a href="#" target="_blank" rel="noopener">Facebook</a>
+        <a href="#" target="_blank" rel="noopener">Instagram</a>
+        <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-bottom container">
+      <span>© 2026 Hero Media</span>
+      <span>Made with care in Denmark</span>
+    </div>
+  </footer>
+
+  <script src="script.js?v=10"></script>
+</body>
+</html>
