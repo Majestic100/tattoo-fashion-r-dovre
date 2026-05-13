@@ -694,19 +694,28 @@ button, input, select, textarea {
   border-radius: 8px;
   overflow: hidden;
   position: relative;
+  border: 1px solid var(--border);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.studio-photo,
-.studio-video {
+.studio-img-wrap:hover {
+  border-color: rgba(201, 165, 92, 0.4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.studio-photo {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   display: block;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.studio-img-large .studio-video {
+.studio-video {
+  width: 100%;
   aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
 }
 
 .studio-img-wrap:hover .studio-photo {
