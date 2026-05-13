@@ -294,7 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const duration = 2000;
-          const target = 1929;
+          const target = 2617;
           const start = performance.now();
 
           const step = (now) => {
