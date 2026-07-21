@@ -1,0 +1,1208 @@
+/* ========================================
+   TATTOO FASHION — LANDING PAGE (GHL LEAD FORM)
+   Selvstændigt stylesheet — deler tokens med style.css
+   ======================================== */
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --bg-card: #161616;
+  --text-primary: #ffffff;
+  --text-secondary: #999999;
+  --text-muted: #555555;
+  --accent: #c9a55c;
+  --accent-hover: #dbb978;
+  --border: #222222;
+  --success: #4ade80;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button { font: inherit; color: inherit; }
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* --- FÆLLES TYPOGRAFI --- */
+.lp-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.lp-label::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.lp-title {
+  font-family: 'Bebas Neue', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: clamp(1.9rem, 4.5vw, 3.1rem);
+  line-height: 1.1;
+  margin-bottom: 40px;
+}
+
+.lp-stars {
+  color: var(--accent);
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(201, 165, 92, 0.4);
+}
+
+/* --- KNAPPER --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 15px 34px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  background: var(--accent);
+  color: var(--bg-primary);
+  box-shadow: 0 8px 25px -10px rgba(201, 165, 92, 0.5);
+}
+.btn-primary::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+.btn-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px -10px rgba(201, 165, 92, 0.7);
+}
+.btn-primary:hover::after { left: 100%; }
+
+.btn-outline {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+.btn-outline:hover {
+  background: var(--accent);
+  color: var(--bg-primary);
+}
+
+/* --- HEADER --- */
+.lp-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background 0.4s ease, border-color 0.4s ease;
+}
+.lp-header.scrolled {
+  background: rgba(10, 10, 10, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(201, 165, 92, 0.25);
+}
+
+.lp-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 62px;
+}
+
+.lp-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.35rem;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+.lp-logo-sub {
+  color: var(--accent);
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+}
+
+.lp-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.lp-header-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--accent);
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+.lp-header-phone:hover { color: var(--text-primary); }
+
+.lp-header-cta {
+  padding: 9px 22px;
+  background: var(--accent);
+  color: var(--bg-primary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: 4px;
+  white-space: nowrap;
+  box-shadow: 0 4px 15px -5px rgba(201, 165, 92, 0.5);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+.lp-header-cta:hover {
+  background: var(--accent-hover);
+  box-shadow: 0 6px 20px -5px rgba(201, 165, 92, 0.8);
+}
+
+/* --- HERO + FORMULAR --- */
+.lp-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  padding: 110px 0 72px;
+  overflow: hidden;
+}
+
+.lp-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--bg-primary);
+}
+.lp-hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.lp-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    100deg,
+    rgba(10, 10, 10, 0.88) 0%,
+    rgba(10, 10, 10, 0.7) 55%,
+    rgba(10, 10, 10, 0.85) 100%
+  );
+}
+
+.lp-hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+.lp-hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.lp-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.lp-h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.6rem, 5.5vw, 4.6rem);
+  line-height: 1.05;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 20px;
+}
+
+.lp-hero-sub {
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: #c4c4c4;
+  max-width: 520px;
+  margin-bottom: 24px;
+}
+
+.lp-hero-trust {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: #c4c4c4;
+  margin-bottom: 28px;
+}
+
+.lp-hero-checks {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.lp-hero-checks li {
+  position: relative;
+  padding-left: 30px;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+.lp-hero-checks li::before {
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--bg-primary);
+  background: var(--accent);
+  border-radius: 50%;
+  margin-top: 2px;
+}
+
+/* Formular-kortet */
+.lead-card {
+  position: relative;
+  scroll-margin-top: 84px;
+  background: linear-gradient(180deg, #1a1a1a 0%, #121212 100%);
+  border: 1.5px solid rgba(201, 165, 92, 0.35);
+  border-radius: 16px;
+  padding: 30px 28px 24px;
+  box-shadow: 0 25px 60px -20px rgba(0, 0, 0, 0.7),
+              0 0 0 1px rgba(201, 165, 92, 0.08);
+}
+.lead-card::before {
+  content: "";
+  position: absolute;
+  top: -1.5px;
+  left: 30px;
+  right: 30px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent) 50%, transparent);
+  border-radius: 2px;
+}
+
+.lead-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 14px;
+  background: rgba(201, 165, 92, 0.08);
+  border: 1px solid rgba(201, 165, 92, 0.35);
+  border-radius: 100px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+.lead-badge-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--success);
+  border-radius: 50%;
+  animation: lp-pulse 2s ease-in-out infinite;
+}
+@keyframes lp-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5); }
+  50% { box-shadow: 0 0 0 7px rgba(74, 222, 128, 0); }
+}
+
+.lead-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.lead-sub {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 18px;
+}
+
+/* GHL-formularens plads — embed-scriptet styrer selv højden */
+.ghl-form-wrap {
+  min-height: 460px;
+}
+.ghl-form-wrap iframe {
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  min-height: 460px;
+}
+
+.ghl-placeholder {
+  min-height: 460px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  padding: 32px 24px;
+  border: 1.5px dashed rgba(201, 165, 92, 0.4);
+  border-radius: 8px;
+  color: var(--text-secondary);
+}
+.ghl-placeholder svg { color: var(--accent); }
+.ghl-placeholder strong {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.ghl-placeholder span {
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.lead-microcopy {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* --- STATS --- */
+.lp-stats {
+  padding: 56px 0;
+  background: var(--bg-secondary);
+  border-top: 1px solid rgba(201, 165, 92, 0.15);
+}
+
+.lp-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.lp-stat {
+  padding: 20px 18px;
+  border-left: 2px solid var(--accent);
+  background: linear-gradient(90deg, rgba(201, 165, 92, 0.05) 0%, transparent 100%);
+}
+.lp-stat-number {
+  display: block;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.2rem;
+  line-height: 1.1;
+  margin-bottom: 4px;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.lp-stat-label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+}
+
+/* --- LILLE ELLER STOR --- */
+.lp-paths {
+  padding: 110px 0;
+}
+
+/* Størrelsesskalaen — sidens signatur */
+.size-scale {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  max-width: 720px;
+  margin: -8px 0 48px;
+  padding-top: 14px;
+}
+.size-scale-line {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(201, 165, 92, 0.15), var(--accent) 50%, rgba(201, 165, 92, 0.15));
+  border-radius: 2px;
+}
+.size-tick {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.size-tick::before {
+  content: "";
+  width: 2px;
+  height: 12px;
+  background: var(--accent);
+  margin-top: -5px;
+  margin-bottom: 8px;
+}
+.size-tick span {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+.size-tick:first-child { align-items: flex-start; }
+.size-tick:last-child { align-items: flex-end; }
+
+.lp-paths-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.path-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 36px 32px;
+  background: linear-gradient(180deg, var(--bg-card) 0%, #0f0f0f 100%);
+  border: 1.5px solid #2a2a2a;
+  border-radius: 12px;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+}
+.path-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  box-shadow: 0 20px 50px -20px rgba(201, 165, 92, 0.35);
+}
+
+.path-chip {
+  display: inline-block;
+  padding: 6px 12px;
+  background: rgba(201, 165, 92, 0.1);
+  border: 1px solid rgba(201, 165, 92, 0.35);
+  border-radius: 100px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+
+.path-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+}
+
+.path-text {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.path-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+.path-list li {
+  position: relative;
+  padding-left: 26px;
+  font-size: 0.9rem;
+}
+.path-list li::before {
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.path-cta {
+  margin-top: auto;
+  font-size: 0.78rem;
+  padding: 13px 24px;
+}
+
+/* --- SÅDAN FOREGÅR DET --- */
+.lp-steps {
+  padding: 110px 0;
+  background: var(--bg-secondary);
+  position: relative;
+}
+.lp-steps::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.5;
+}
+
+.lp-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-bottom: 48px;
+}
+
+.lp-step-num {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--accent);
+  border-radius: 50%;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+
+.lp-step h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.lp-step p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.lp-inline-cta {
+  text-align: center;
+}
+
+/* --- GALLERI --- */
+.lp-gallery {
+  padding: 110px 0;
+}
+
+.lp-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.lp-gallery-item {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+.lp-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.lp-gallery-item:hover img {
+  transform: scale(1.04);
+}
+
+/* --- KUNSTNERE --- */
+.lp-artists {
+  padding: 110px 0;
+  background: var(--bg-secondary);
+  position: relative;
+}
+.lp-artists::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.5;
+}
+
+.lp-artists-sub {
+  max-width: 640px;
+  margin: -16px 0 48px;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.lp-artists-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+}
+
+.lp-artist {
+  text-align: center;
+}
+.lp-artist img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 10px;
+  border: 1.5px solid #2a2a2a;
+  margin-bottom: 12px;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+.lp-artist:hover img {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+.lp-artist strong {
+  display: block;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.lp-artist span {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin-top: 2px;
+}
+
+/* --- STUDIET --- */
+.lp-studio {
+  padding: 110px 0;
+}
+
+.lp-studio-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.lp-studio-media {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.lp-studio-media video {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+}
+
+.lp-title-left {
+  margin-bottom: 20px;
+}
+
+.lp-studio-info > p {
+  font-size: 0.98rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+.lp-studio-facts {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.lp-studio-facts li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.9rem;
+}
+.lp-studio-facts svg {
+  flex-shrink: 0;
+  color: var(--accent);
+  margin-top: 3px;
+}
+
+/* --- ANMELDELSER --- */
+.lp-reviews {
+  padding: 110px 0;
+  background: var(--bg-secondary);
+  position: relative;
+}
+.lp-reviews::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.5;
+}
+
+.lp-reviews-hero {
+  text-align: center;
+  margin-bottom: 56px;
+}
+.lp-reviews-number {
+  display: block;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.5rem, 9vw, 6rem);
+  color: var(--accent);
+  line-height: 1;
+  text-shadow: 0 0 40px rgba(201, 165, 92, 0.2);
+}
+.lp-reviews-label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  margin-top: 8px;
+}
+.lp-reviews-stars {
+  font-size: 1.4rem;
+  color: var(--accent);
+  letter-spacing: 4px;
+  margin-top: 10px;
+  text-shadow: 0 0 10px rgba(201, 165, 92, 0.4);
+}
+
+.lp-reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.lp-review {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 30px 28px;
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+.lp-review:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 15px 40px -15px rgba(201, 165, 92, 0.3);
+}
+.lp-review-stars {
+  color: var(--accent);
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+}
+.lp-review p {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  font-style: italic;
+  margin-bottom: 14px;
+}
+.lp-review-author {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+/* --- FAQ --- */
+.lp-faq {
+  padding: 110px 0;
+}
+
+.lp-faq-list {
+  max-width: 780px;
+}
+
+.lp-faq-item {
+  border: 1.5px solid #2a2a2a;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  padding: 4px 24px;
+  background: var(--bg-card);
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+.lp-faq-item:hover {
+  border-color: rgba(201, 165, 92, 0.4);
+}
+.lp-faq-item.open {
+  border-color: var(--accent);
+  background: linear-gradient(180deg, rgba(201, 165, 92, 0.05), transparent);
+}
+
+.lp-faq-q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+.lp-faq-q:hover { color: var(--accent); }
+
+.lp-faq-icon {
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+.lp-faq-item.open .lp-faq-icon {
+  transform: rotate(180deg);
+}
+
+.lp-faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+.lp-faq-item.open .lp-faq-a {
+  max-height: 260px;
+}
+.lp-faq-a p {
+  padding-bottom: 20px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+/* --- AFSLUTTENDE CTA --- */
+.lp-final {
+  padding: 110px 0;
+  text-align: center;
+  background: var(--bg-secondary);
+  position: relative;
+}
+.lp-final::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.5;
+}
+
+.lp-final-title {
+  font-family: 'Bebas Neue', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.lp-final-sub {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+}
+.lp-final-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.lp-final-cta {
+  font-size: 0.95rem;
+  padding: 17px 48px;
+}
+.lp-final-phone {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--accent);
+  transition: color 0.3s;
+}
+.lp-final-phone:hover { color: var(--accent-hover); }
+.lp-final-trust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* --- FOOTER --- */
+.lp-footer {
+  padding: 48px 0;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.lp-footer-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+}
+.lp-footer p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+.lp-footer a { color: var(--accent); }
+.lp-footer-legal {
+  font-size: 0.75rem !important;
+  color: var(--text-muted) !important;
+}
+
+/* --- FLYDENDE ELEMENTER --- */
+.lp-whatsapp {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 900;
+  width: 54px;
+  height: 54px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.lp-whatsapp:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 28px rgba(37, 211, 102, 0.5);
+}
+
+.lp-mobile-cta {
+  display: none;
+}
+
+/* --- SCROLL REVEAL --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
+              transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- RESPONSIVT --- */
+@media (max-width: 1024px) {
+  .lp-hero {
+    min-height: 0;
+    padding: 92px 0 56px;
+  }
+  .lp-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .lp-hero-sub { max-width: none; }
+  .lp-artists-row {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .lp-studio-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+
+@media (max-width: 768px) {
+  .lp-paths,
+  .lp-steps,
+  .lp-gallery,
+  .lp-artists,
+  .lp-studio,
+  .lp-reviews,
+  .lp-faq,
+  .lp-final {
+    padding: 64px 0;
+  }
+  .lp-title { margin-bottom: 28px; }
+
+  .lp-stats { padding: 36px 0; }
+  .lp-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .lp-paths-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .size-scale { margin-bottom: 36px; }
+  .size-tick:nth-child(4) span { display: none; }
+
+  .lp-steps-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .lp-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .lp-gallery-hide-mobile { display: none; }
+
+  .lp-reviews-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .lead-card {
+    padding: 24px 20px 20px;
+  }
+
+  /* Formularen skal så højt op som muligt på mobil —
+     punkterne gentages i stats-sektionen lige under */
+  .lp-hero-checks { display: none; }
+  .lp-hero-trust { margin-bottom: 0; }
+
+  .lp-header-phone span { display: none; }
+  .lp-header-actions { gap: 12px; }
+
+  /* Sticky mobil-CTA */
+  .lp-mobile-cta {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 800;
+    display: block;
+    padding: 16px;
+    background: var(--accent);
+    color: var(--bg-primary);
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+  }
+  .lp-mobile-cta.visible {
+    transform: translateY(0);
+  }
+
+  .lp-whatsapp {
+    bottom: 76px;
+    right: 16px;
+    width: 48px;
+    height: 48px;
+  }
+  .lp-whatsapp svg {
+    width: 22px;
+    height: 22px;
+  }
+  .lp-footer {
+    padding-bottom: 90px;
+  }
+}
+
+@media (max-width: 480px) {
+  .lp-artists-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .lp-logo-sub { display: none; }
+  .lp-logo { font-size: 1.2rem; }
+}
+
+/* --- REDUCERET BEVÆGELSE --- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
