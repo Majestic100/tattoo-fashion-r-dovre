@@ -173,6 +173,19 @@
       inspGrid.appendChild(btn);
     });
     enableHoverPlay(inspGrid);
+
+    // Karrusel-pile (desktop) — ruller ca. ét "vindue" ad gangen
+    var carPrev = document.getElementById('inspCarPrev');
+    var carNext = document.getElementById('inspCarNext');
+    if (carPrev && carNext) {
+      var scrollStep = function () { return Math.max(inspGrid.clientWidth * 0.8, 300); };
+      carPrev.addEventListener('click', function () {
+        inspGrid.scrollBy({ left: -scrollStep(), behavior: 'smooth' });
+      });
+      carNext.addEventListener('click', function () {
+        inspGrid.scrollBy({ left: scrollStep(), behavior: 'smooth' });
+      });
+    }
   }
 
   function openLightbox(i) {

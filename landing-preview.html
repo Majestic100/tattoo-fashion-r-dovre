@@ -690,22 +690,33 @@ button:focus-visible {
   color: var(--text-secondary);
 }
 
-/* Mosaik med faste rækkehøjder = ingen layout-hop ved lazy load.
-   Normale felter fylder 1x2 rækker, featured felter 2x4. */
-.insp-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 150px;
-  grid-auto-flow: dense;
+/* Karrusel: kompakt højde, swipe/scroll-snap, pile på desktop */
+.insp-carousel {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.insp-track {
+  display: flex;
   gap: 14px;
-  margin-bottom: 48px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 4px;
+  margin: -4px;
+}
+.insp-track::-webkit-scrollbar {
+  display: none;
 }
 
 .insp-item {
   position: relative;
   display: block;
-  width: 100%;
-  grid-row: span 2;
+  flex: 0 0 auto;
+  width: 300px;
+  height: 400px;
+  scroll-snap-align: start;
   padding: 0;
   border: 1px solid var(--border);
   border-radius: 10px;
@@ -715,9 +726,38 @@ button:focus-visible {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 .insp-item-large {
-  grid-column: span 2;
-  grid-row: span 4;
+  width: 420px; /* featured = bredere felt */
 }
+
+.insp-car-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 10, 10, 0.75);
+  border: 1px solid rgba(201, 165, 92, 0.5);
+  border-radius: 50%;
+  color: var(--accent);
+  font-size: 1.7rem;
+  line-height: 1;
+  padding-bottom: 4px;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.insp-car-btn:hover {
+  background: var(--accent);
+  color: var(--bg-primary);
+  border-color: var(--accent);
+}
+.insp-car-prev { left: -14px; }
+.insp-car-next { right: -14px; }
 .insp-item:hover {
   border-color: var(--accent);
   box-shadow: 0 15px 40px -18px rgba(201, 165, 92, 0.4);
@@ -1427,26 +1467,6 @@ button:focus-visible {
 }
 
 /* --- FLYDENDE ELEMENTER --- */
-.lp-whatsapp {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 900;
-  width: 54px;
-  height: 54px;
-  background: #25D366;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.lp-whatsapp:hover {
-  transform: scale(1.08);
-  box-shadow: 0 6px 28px rgba(37, 211, 102, 0.5);
-}
-
 .lp-mobile-cta {
   display: none;
 }
@@ -1517,13 +1537,15 @@ button:focus-visible {
     gap: 28px;
   }
 
-  .insp-grid {
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 105px;
-    gap: 8px;
-    margin-bottom: 32px;
+  .insp-carousel { margin-bottom: 28px; }
+  .insp-track { gap: 10px; }
+  .insp-item {
+    width: 220px;
+    height: 290px;
+    border-radius: 8px;
   }
-  .insp-item { border-radius: 8px; }
+  .insp-item-large { width: 290px; }
+  .insp-car-btn { display: none; } /* swipe klarer det på mobil */
   .media-play-badge { top: 8px; right: 8px; width: 28px; height: 28px; }
   .ig-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -1584,16 +1606,6 @@ button:focus-visible {
     transform: translateY(0);
   }
 
-  .lp-whatsapp {
-    bottom: 76px;
-    right: 16px;
-    width: 48px;
-    height: 48px;
-  }
-  .lp-whatsapp svg {
-    width: 22px;
-    height: 22px;
-  }
   .lp-footer {
     padding-bottom: 90px;
   }
@@ -1809,16 +1821,21 @@ button:focus-visible {
     </div>
   </section>
 
-  <!-- INSPIRATION — showcase af tidligere arbejde (billeder OG videoer).
+  <!-- INSPIRATION — karrusel med tidligere arbejde (billeder OG videoer).
        Medierne styres i landing.js i listen INSPIRATION_MEDIA:
        laeg nye filer i images/ og tilfoej en linje i listen — resten sker selv.
-       Saet featured: true paa de medier, der skal fylde et stort felt. -->
+       Saet featured: true paa de medier, der skal have et bredere felt.
+       Swipe paa mobil, pile paa desktop, klik aabner lightbox. -->
   <section class="insp-section">
     <div class="container">
       <p class="lp-label reveal">Inspiration</p>
       <h2 class="lp-title reveal">Bliv inspireret af vores arbejde</h2>
-      <p class="insp-sub reveal">Et udpluk af det, vi har lavet for vores kunder — billeder og video, fra fine linjer til store projekter. Klik for at se tættere på.</p>
-      <div class="insp-grid" id="inspGrid"></div>
+      <p class="insp-sub reveal">Et udpluk af det, vi har lavet for vores kunder — billeder og video, fra fine linjer til store projekter. Swipe dig igennem, og klik for at se tættere på.</p>
+      <div class="insp-carousel reveal">
+        <button type="button" class="insp-car-btn insp-car-prev" id="inspCarPrev" aria-label="Rul tilbage">&#8249;</button>
+        <div class="insp-track" id="inspGrid" aria-label="Galleri over tidligere arbejde"></div>
+        <button type="button" class="insp-car-btn insp-car-next" id="inspCarNext" aria-label="Rul frem">&#8250;</button>
+      </div>
       <div class="lp-inline-cta reveal">
         <a href="#tilbud" class="btn btn-primary">Fået en idé? Send den til os</a>
       </div>
@@ -1999,11 +2016,6 @@ button:focus-visible {
       <p class="lp-footer-legal">CVR: 37231756 &middot; &copy; 2026 Tattoo Fashion. Alle rettigheder forbeholdes.</p>
     </div>
   </footer>
-
-  <!-- FLYDENDE WHATSAPP -->
-  <a href="https://wa.me/4550168630?text=Hej%2C%20jeg%20vil%20gerne%20have%20et%20tilbud%20p%C3%A5%20en%20tatovering" target="_blank" rel="noopener noreferrer" class="lp-whatsapp" aria-label="Kontakt via WhatsApp">
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-  </a>
 
   <!-- STICKY MOBIL-CTA -->
   <a href="#tilbud" class="lp-mobile-cta" id="lpMobileCta">Få et uforpligtende tilbud</a>
@@ -2196,6 +2208,19 @@ button:focus-visible {
       inspGrid.appendChild(btn);
     });
     enableHoverPlay(inspGrid);
+
+    // Karrusel-pile (desktop) — ruller ca. ét "vindue" ad gangen
+    var carPrev = document.getElementById('inspCarPrev');
+    var carNext = document.getElementById('inspCarNext');
+    if (carPrev && carNext) {
+      var scrollStep = function () { return Math.max(inspGrid.clientWidth * 0.8, 300); };
+      carPrev.addEventListener('click', function () {
+        inspGrid.scrollBy({ left: -scrollStep(), behavior: 'smooth' });
+      });
+      carNext.addEventListener('click', function () {
+        inspGrid.scrollBy({ left: scrollStep(), behavior: 'smooth' });
+      });
+    }
   }
 
   function openLightbox(i) {

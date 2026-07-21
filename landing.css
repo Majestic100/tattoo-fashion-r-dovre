@@ -672,22 +672,33 @@ button:focus-visible {
   color: var(--text-secondary);
 }
 
-/* Mosaik med faste rækkehøjder = ingen layout-hop ved lazy load.
-   Normale felter fylder 1x2 rækker, featured felter 2x4. */
-.insp-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 150px;
-  grid-auto-flow: dense;
+/* Karrusel: kompakt højde, swipe/scroll-snap, pile på desktop */
+.insp-carousel {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.insp-track {
+  display: flex;
   gap: 14px;
-  margin-bottom: 48px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 4px;
+  margin: -4px;
+}
+.insp-track::-webkit-scrollbar {
+  display: none;
 }
 
 .insp-item {
   position: relative;
   display: block;
-  width: 100%;
-  grid-row: span 2;
+  flex: 0 0 auto;
+  width: 300px;
+  height: 400px;
+  scroll-snap-align: start;
   padding: 0;
   border: 1px solid var(--border);
   border-radius: 10px;
@@ -697,9 +708,38 @@ button:focus-visible {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 .insp-item-large {
-  grid-column: span 2;
-  grid-row: span 4;
+  width: 420px; /* featured = bredere felt */
 }
+
+.insp-car-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 10, 10, 0.75);
+  border: 1px solid rgba(201, 165, 92, 0.5);
+  border-radius: 50%;
+  color: var(--accent);
+  font-size: 1.7rem;
+  line-height: 1;
+  padding-bottom: 4px;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.insp-car-btn:hover {
+  background: var(--accent);
+  color: var(--bg-primary);
+  border-color: var(--accent);
+}
+.insp-car-prev { left: -14px; }
+.insp-car-next { right: -14px; }
 .insp-item:hover {
   border-color: var(--accent);
   box-shadow: 0 15px 40px -18px rgba(201, 165, 92, 0.4);
@@ -1409,26 +1449,6 @@ button:focus-visible {
 }
 
 /* --- FLYDENDE ELEMENTER --- */
-.lp-whatsapp {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 900;
-  width: 54px;
-  height: 54px;
-  background: #25D366;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.lp-whatsapp:hover {
-  transform: scale(1.08);
-  box-shadow: 0 6px 28px rgba(37, 211, 102, 0.5);
-}
-
 .lp-mobile-cta {
   display: none;
 }
@@ -1499,13 +1519,15 @@ button:focus-visible {
     gap: 28px;
   }
 
-  .insp-grid {
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 105px;
-    gap: 8px;
-    margin-bottom: 32px;
+  .insp-carousel { margin-bottom: 28px; }
+  .insp-track { gap: 10px; }
+  .insp-item {
+    width: 220px;
+    height: 290px;
+    border-radius: 8px;
   }
-  .insp-item { border-radius: 8px; }
+  .insp-item-large { width: 290px; }
+  .insp-car-btn { display: none; } /* swipe klarer det på mobil */
   .media-play-badge { top: 8px; right: 8px; width: 28px; height: 28px; }
   .ig-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -1566,16 +1588,6 @@ button:focus-visible {
     transform: translateY(0);
   }
 
-  .lp-whatsapp {
-    bottom: 76px;
-    right: 16px;
-    width: 48px;
-    height: 48px;
-  }
-  .lp-whatsapp svg {
-    width: 22px;
-    height: 22px;
-  }
   .lp-footer {
     padding-bottom: 90px;
   }
