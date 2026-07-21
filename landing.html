@@ -34,10 +34,9 @@
 
   <!-- HERO + FORMULAR — formularen ligger øverst på siden -->
   <section class="lp-hero">
+    <!-- Letvaegts-hero: foto med langsom Ken Burns-zoom i stedet for video (loadtid) -->
     <div class="lp-hero-bg" aria-hidden="true">
-      <video class="lp-hero-video" autoplay muted loop playsinline preload="auto">
-        <source src="https://res.cloudinary.com/dwn8qgyhv/video/upload/v1776334964/download_c5jjmd.mp4" type="video/mp4">
-      </video>
+      <img class="lp-hero-img" src="images/salon 3.webp" alt="">
     </div>
     <div class="lp-hero-overlay" aria-hidden="true"></div>
     <div class="container">
@@ -190,18 +189,17 @@
     </div>
   </section>
 
-  <!-- GLADE KUNDER — billeder fra studiet -->
-  <section class="lp-gallery">
+  <!-- INSPIRATION — galleri over tidligere arbejde (masonry + lightbox).
+       Billederne styres i landing.js i listen INSPIRATION_IMAGES:
+       laeg nye filer i images/ og tilfoej en linje i listen — resten sker selv. -->
+  <section class="insp-section">
     <div class="container">
-      <p class="lp-label reveal">Direkte fra studiet</p>
-      <h2 class="lp-title reveal">Glade kunder — hver eneste dag</h2>
-      <div class="lp-gallery-grid">
-        <div class="lp-gallery-item reveal"><img src="images/insta-1.jpg" alt="Par med matchende script-tatoveringer hos Tattoo Fashion Rødovre" loading="lazy"></div>
-        <div class="lp-gallery-item reveal" style="--i:1"><img src="images/insta-2.jpg" alt="Mor og datter med matchende små tatoveringer" loading="lazy"></div>
-        <div class="lp-gallery-item reveal" style="--i:2"><img src="images/insta-3.jpg" alt="To glade kunder med fine fineline blomster-tatoveringer" loading="lazy"></div>
-        <div class="lp-gallery-item reveal" style="--i:3"><img src="images/insta-4.jpg" alt="Familie med matchende firkløver-tatoveringer" loading="lazy"></div>
-        <div class="lp-gallery-item lp-gallery-hide-mobile reveal" style="--i:4"><img src="images/insta-5.jpg" alt="Mor og datter med matchende tatoveringer på armene" loading="lazy"></div>
-        <div class="lp-gallery-item lp-gallery-hide-mobile reveal" style="--i:5"><img src="images/insta-6.jpg" alt="Glade kunder med nye tatoveringer hos Tattoo Fashion" loading="lazy"></div>
+      <p class="lp-label reveal">Inspiration</p>
+      <h2 class="lp-title reveal">Bliv inspireret af vores arbejde</h2>
+      <p class="insp-sub reveal">Et udpluk af det, vi har lavet i studiet — fra fine linjer til store projekter. Klik på et billede for at se det tættere på.</p>
+      <div class="insp-grid" id="inspGrid"></div>
+      <div class="lp-inline-cta reveal">
+        <a href="#tilbud" class="btn btn-primary">Fået en idé? Send den til os</a>
       </div>
     </div>
   </section>
@@ -237,11 +235,6 @@
           <img src="images/TattooArtistYuliia-1-300x300.webp" alt="Yuliia — Old School, Fineline & Script" loading="lazy">
           <strong>Yuliia</strong>
           <span>Fineline &amp; Script</span>
-        </div>
-        <div class="lp-artist reveal" style="--i:5">
-          <img src="images/Tattoo-Artist-Adrian-300x300.webp" alt="Adrian — Black & Grey Realism portrætter" loading="lazy">
-          <strong>Adrian</strong>
-          <span>Realism Portraits</span>
         </div>
       </div>
     </div>
@@ -297,190 +290,11 @@
       </div>
     </div>
 
-    <!-- PLADSHOLDERE: erstat titel, tekst, navn og by i kortene nedenfor med de
-         rigtige anmeldelser fra dk.trustpilot.com/review/tattoofashion.dk.
-         Række 1 og række 2 har hver 4 kort — indholdet er duplikeret i den
-         efterfølgende aria-hidden gruppe for den uendelige scroll (husk at
-         opdatere BEGGE grupper i hver række, de skal være identiske). -->
-    <div class="tp-rows reveal">
-      <div class="tp-row" style="--tp-dur: 52s">
-        <div class="tp-track">
-          <div class="tp-group">
-            <article class="tp-card">
-              <div class="tp-card-top"><span class="tp-stars" aria-label="5 ud af 5 stjerner"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote" aria-hidden="true">&#8220;&#8221;</span></div>
-              <h3>Fantastisk oplevelse fra start til slut</h3>
-              <p>Blev taget godt imod, og min tatovør forstod præcis, hvad jeg ville have. Resultatet er bedre, end jeg turde håbe på.</p>
-              <div class="tp-card-foot">
-                <span class="tp-avatar" aria-hidden="true">MJ</span>
-                <div class="tp-card-author"><strong>Mette J.</strong><span>København</span></div>
-                <span class="tp-verified">Verificeret</span>
-              </div>
-            </article>
-            <article class="tp-card">
-              <div class="tp-card-top"><span class="tp-stars" aria-label="5 ud af 5 stjerner"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote" aria-hidden="true">&#8220;&#8221;</span></div>
-              <h3>Professionelle og trygge rammer</h3>
-              <p>Super rent studie og en afslappet stemning. De guidede mig gennem hele forløbet — kan varmt anbefales.</p>
-              <div class="tp-card-foot">
-                <span class="tp-avatar" aria-hidden="true">JP</span>
-                <div class="tp-card-author"><strong>Jonas P.</strong><span>Rødovre</span></div>
-                <span class="tp-verified">Verificeret</span>
-              </div>
-            </article>
-            <article class="tp-card">
-              <div class="tp-card-top"><span class="tp-stars" aria-label="5 ud af 5 stjerner"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote" aria-hidden="true">&#8220;&#8221;</span></div>
-              <h3>Min fineline er perfekt</h3>
-              <p>Fik lavet en lille fineline-tatovering, og detaljerne sidder lige i skabet. Hurtig tid og fair pris.</p>
-              <div class="tp-card-foot">
-                <span class="tp-avatar" aria-hidden="true">CB</span>
-                <div class="tp-card-author"><strong>Camilla B.</strong><span>Glostrup</span></div>
-                <span class="tp-verified">Verificeret</span>
-              </div>
-            </article>
-            <article class="tp-card">
-              <div class="tp-card-top"><span class="tp-stars" aria-label="5 ud af 5 stjerner"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote" aria-hidden="true">&#8220;&#8221;</span></div>
-              <h3>Kom med en idé — gik med et kunstværk</h3>
-              <p>De tegnede designet til mig ud fra et par billeder, jeg havde med. Processen var nem, og resultatet taler for sig selv.</p>
-              <div class="tp-card-foot">
-                <span class="tp-avatar" aria-hidden="true">AV</span>
-                <div class="tp-card-author"><strong>Alexander V.</strong><span>Valby</span></div>
-                <span class="tp-verified">Verificeret</span>
-              </div>
-            </article>
-          </div>
-          <div class="tp-group" aria-hidden="true">
-            <article class="tp-card">
-              <div class="tp-card-top"><span class="tp-stars"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote">&#8220;&#8221;</span></div>
-              <h3>Fantastisk oplevelse fra start til slut</h3>
-              <p>Blev taget godt imod, og min tatovør forstod præcis, hvad jeg ville have. Resultatet er bedre, end jeg turde håbe på.</p>
-              <div class="tp-card-foot">
-                <span class="tp-avatar">MJ</span>
-                <div class="tp-card-author"><strong>Mette J.</strong><span>København</span></div>
-                <span class="tp-verified">Verificeret</span>
-              </div>
-            </article>
-            <article class="tp-card">
-              <div class="tp-card-top"><span class="tp-stars"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote">&#8220;&#8221;</span></div>
-              <h3>Professionelle og trygge rammer</h3>
-              <p>Super rent studie og en afslappet stemning. De guidede mig gennem hele forløbet — kan varmt anbefales.</p>
-              <div class="tp-card-foot">
-                <span class="tp-avatar">JP</span>
-                <div class="tp-card-author"><strong>Jonas P.</strong><span>Rødovre</span></div>
-                <span class="tp-verified">Verificeret</span>
-              </div>
-            </article>
-            <article class="tp-card">
-              <div class="tp-card-top"><span class="tp-stars"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote">&#8220;&#8221;</span></div>
-              <h3>Min fineline er perfekt</h3>
-              <p>Fik lavet en lille fineline-tatovering, og detaljerne sidder lige i skabet. Hurtig tid og fair pris.</p>
-              <div class="tp-card-foot">
-                <span class="tp-avatar">CB</span>
-                <div class="tp-card-author"><strong>Camilla B.</strong><span>Glostrup</span></div>
-                <span class="tp-verified">Verificeret</span>
-              </div>
-            </article>
-            <article class="tp-card">
-              <div class="tp-card-top"><span class="tp-stars"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote">&#8220;&#8221;</span></div>
-              <h3>Kom med en idé — gik med et kunstværk</h3>
-              <p>De tegnede designet til mig ud fra et par billeder, jeg havde med. Processen var nem, og resultatet taler for sig selv.</p>
-              <div class="tp-card-foot">
-                <span class="tp-avatar">AV</span>
-                <div class="tp-card-author"><strong>Alexander V.</strong><span>Valby</span></div>
-                <span class="tp-verified">Verificeret</span>
-              </div>
-            </article>
-          </div>
-        </div>
-      </div>
-
-      <div class="tp-row tp-row-reverse" style="--tp-dur: 44s">
-        <div class="tp-track">
-          <div class="tp-group">
-            <article class="tp-card">
-              <div class="tp-card-top"><span class="tp-stars" aria-label="5 ud af 5 stjerner"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote" aria-hidden="true">&#8220;&#8221;</span></div>
-              <h3>Cover-up der overgik forventningerne</h3>
-              <p>Min gamle tatovering er nu forvandlet til noget, jeg er stolt af at vise frem. Tusind tak!</p>
-              <div class="tp-card-foot">
-                <span class="tp-avatar" aria-hidden="true">SH</span>
-                <div class="tp-card-author"><strong>Sofie H.</strong><span>Hvidovre</span></div>
-                <span class="tp-verified">Verificeret</span>
-              </div>
-            </article>
-            <article class="tp-card">
-              <div class="tp-card-top"><span class="tp-stars" aria-label="5 ud af 5 stjerner"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote" aria-hidden="true">&#8220;&#8221;</span></div>
-              <h3>Stort projekt — styr på hele forløbet</h3>
-              <p>Vi planlagde mit sleeve over flere sessioner, og kommunikationen var i top hele vejen.</p>
-              <div class="tp-card-foot">
-                <span class="tp-avatar" aria-hidden="true">DK</span>
-                <div class="tp-card-author"><strong>Daniel K.</strong><span>Brøndby</span></div>
-                <span class="tp-verified">Verificeret</span>
-              </div>
-            </article>
-            <article class="tp-card">
-              <div class="tp-card-top"><span class="tp-stars" aria-label="5 ud af 5 stjerner"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote" aria-hidden="true">&#8220;&#8221;</span></div>
-              <h3>Tryg som førstegangs-kunde</h3>
-              <p>Følte mig i gode hænder fra første besked til færdigt resultat. Anbefales til alle, der er i tvivl om deres første tatovering.</p>
-              <div class="tp-card-foot">
-                <span class="tp-avatar" aria-hidden="true">EL</span>
-                <div class="tp-card-author"><strong>Emma L.</strong><span>Rødovre</span></div>
-                <span class="tp-verified">Verificeret</span>
-              </div>
-            </article>
-            <article class="tp-card">
-              <div class="tp-card-top"><span class="tp-stars" aria-label="5 ud af 5 stjerner"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote" aria-hidden="true">&#8220;&#8221;</span></div>
-              <h3>Kvalitet til prisen</h3>
-              <p>Fik præcis pris på forhånd, og de holdt, hvad de lovede. Flot arbejde og god stemning i studiet.</p>
-              <div class="tp-card-foot">
-                <span class="tp-avatar" aria-hidden="true">MA</span>
-                <div class="tp-card-author"><strong>Mikkel A.</strong><span>København</span></div>
-                <span class="tp-verified">Verificeret</span>
-              </div>
-            </article>
-          </div>
-          <div class="tp-group" aria-hidden="true">
-            <article class="tp-card">
-              <div class="tp-card-top"><span class="tp-stars"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote">&#8220;&#8221;</span></div>
-              <h3>Cover-up der overgik forventningerne</h3>
-              <p>Min gamle tatovering er nu forvandlet til noget, jeg er stolt af at vise frem. Tusind tak!</p>
-              <div class="tp-card-foot">
-                <span class="tp-avatar">SH</span>
-                <div class="tp-card-author"><strong>Sofie H.</strong><span>Hvidovre</span></div>
-                <span class="tp-verified">Verificeret</span>
-              </div>
-            </article>
-            <article class="tp-card">
-              <div class="tp-card-top"><span class="tp-stars"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote">&#8220;&#8221;</span></div>
-              <h3>Stort projekt — styr på hele forløbet</h3>
-              <p>Vi planlagde mit sleeve over flere sessioner, og kommunikationen var i top hele vejen.</p>
-              <div class="tp-card-foot">
-                <span class="tp-avatar">DK</span>
-                <div class="tp-card-author"><strong>Daniel K.</strong><span>Brøndby</span></div>
-                <span class="tp-verified">Verificeret</span>
-              </div>
-            </article>
-            <article class="tp-card">
-              <div class="tp-card-top"><span class="tp-stars"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote">&#8220;&#8221;</span></div>
-              <h3>Tryg som førstegangs-kunde</h3>
-              <p>Følte mig i gode hænder fra første besked til færdigt resultat. Anbefales til alle, der er i tvivl om deres første tatovering.</p>
-              <div class="tp-card-foot">
-                <span class="tp-avatar">EL</span>
-                <div class="tp-card-author"><strong>Emma L.</strong><span>Rødovre</span></div>
-                <span class="tp-verified">Verificeret</span>
-              </div>
-            </article>
-            <article class="tp-card">
-              <div class="tp-card-top"><span class="tp-stars"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote">&#8220;&#8221;</span></div>
-              <h3>Kvalitet til prisen</h3>
-              <p>Fik præcis pris på forhånd, og de holdt, hvad de lovede. Flot arbejde og god stemning i studiet.</p>
-              <div class="tp-card-foot">
-                <span class="tp-avatar">MA</span>
-                <div class="tp-card-author"><strong>Mikkel A.</strong><span>København</span></div>
-                <span class="tp-verified">Verificeret</span>
-              </div>
-            </article>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- PLADSHOLDERE: de 30 anmeldelser ligger i landing.js i listen TP_REVIEWS —
+         erstat titel/tekst/navn/by dér med de rigtige anmeldelser fra
+         dk.trustpilot.com/review/tattoofashion.dk. Begge raekker (15 + 15)
+         renderes automatisk, inkl. dubletterne til den uendelige scroll. -->
+    <div class="tp-rows reveal" id="tpRows"></div>
   </section>
 
   <!-- FAQ -->
@@ -557,6 +371,15 @@
 
   <!-- STICKY MOBIL-CTA -->
   <a href="#tilbud" class="lp-mobile-cta" id="lpMobileCta">Få et uforpligtende tilbud</a>
+
+  <!-- LIGHTBOX til inspirations-galleriet -->
+  <div class="insp-lightbox" id="inspLightbox" role="dialog" aria-modal="true" aria-label="Billedvisning" hidden>
+    <button class="insp-lb-close" id="inspLbClose" aria-label="Luk">&times;</button>
+    <button class="insp-lb-nav insp-lb-prev" id="inspLbPrev" aria-label="Forrige billede">&#8249;</button>
+    <img class="insp-lb-img" id="inspLbImg" src="" alt="">
+    <button class="insp-lb-nav insp-lb-next" id="inspLbNext" aria-label="N&aelig;ste billede">&#8250;</button>
+    <span class="insp-lb-counter" id="inspLbCounter"></span>
+  </div>
 
   <script src="landing.js"></script>
 </body>

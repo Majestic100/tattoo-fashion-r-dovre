@@ -232,15 +232,19 @@ button:focus-visible {
   z-index: 0;
   background: var(--bg-primary);
 }
-.lp-hero-video {
+.lp-hero-img {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: translate(-50%, -50%);
   pointer-events: none;
+  animation: lp-kenburns 26s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@keyframes lp-kenburns {
+  from { transform: scale(1); }
+  to { transform: scale(1.09); }
 }
 
 .lp-hero-overlay {
@@ -655,31 +659,136 @@ button:focus-visible {
   text-align: center;
 }
 
-/* --- GALLERI --- */
-.lp-gallery {
+/* --- INSPIRATION — MASONRY-GALLERI --- */
+.insp-section {
   padding: 110px 0;
 }
 
-.lp-gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+.insp-sub {
+  max-width: 620px;
+  margin: -16px 0 40px;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
 }
 
-.lp-gallery-item {
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-  border-radius: 8px;
-  border: 1px solid var(--border);
+.insp-grid {
+  columns: 3;
+  column-gap: 14px;
+  margin-bottom: 48px;
 }
-.lp-gallery-item img {
+
+.insp-item {
+  position: relative;
+  display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  margin-bottom: 14px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--bg-card);
+  cursor: zoom-in;
+  break-inside: avoid;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.insp-item:hover {
+  border-color: var(--accent);
+  box-shadow: 0 15px 40px -18px rgba(201, 165, 92, 0.4);
+}
+.insp-item img {
+  width: 100%;
+  display: block;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.lp-gallery-item:hover img {
+.insp-item:hover img {
   transform: scale(1.04);
+}
+
+.insp-item-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0) 40%, rgba(10, 10, 10, 0.55) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.insp-item:hover .insp-item-overlay,
+.insp-item:focus-visible .insp-item-overlay {
+  opacity: 1;
+}
+
+/* Lightbox */
+.insp-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(5, 5, 5, 0.94);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 56px 72px;
+}
+.insp-lightbox[hidden] {
+  display: none;
+}
+.insp-lb-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
+}
+.insp-lb-close,
+.insp-lb-nav {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+.insp-lb-close:hover,
+.insp-lb-nav:hover {
+  background: rgba(201, 165, 92, 0.25);
+  border-color: var(--accent);
+}
+.insp-lb-close {
+  top: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  font-size: 1.6rem;
+  line-height: 1;
+}
+.insp-lb-nav {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  font-size: 1.8rem;
+  line-height: 1;
+  padding-bottom: 4px;
+}
+.insp-lb-prev { left: 16px; }
+.insp-lb-next { right: 16px; }
+.insp-lb-counter {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.08em;
 }
 
 /* --- KUNSTNERE --- */
@@ -710,7 +819,7 @@ button:focus-visible {
 
 .lp-artists-row {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 20px;
 }
 
@@ -1249,7 +1358,7 @@ button:focus-visible {
 @media (max-width: 768px) {
   .lp-paths,
   .lp-steps,
-  .lp-gallery,
+  .insp-section,
   .lp-artists,
   .lp-studio,
   .tp-section,
@@ -1277,11 +1386,16 @@ button:focus-visible {
     gap: 28px;
   }
 
-  .lp-gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+  .insp-grid {
+    columns: 2;
+    column-gap: 8px;
+    margin-bottom: 32px;
   }
-  .lp-gallery-hide-mobile { display: none; }
+  .insp-item { margin-bottom: 8px; border-radius: 8px; }
+  .insp-lightbox { padding: 64px 12px; }
+  .insp-lb-nav { width: 42px; height: 42px; }
+  .insp-lb-prev { left: 8px; }
+  .insp-lb-next { right: 8px; }
 
   .tp-header { margin-bottom: 36px; }
   .tp-stats { gap: 10px 28px; }
@@ -1304,22 +1418,27 @@ button:focus-visible {
   .lp-header-phone span { display: none; }
   .lp-header-actions { gap: 12px; }
 
-  /* Sticky mobil-CTA */
+  /* Sticky mobil-CTA — fast højde og ingen linjeskift, så den ikke bliver for høj */
   .lp-mobile-cta {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     z-index: 800;
-    display: block;
-    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+    padding: 0 12px;
     background: var(--accent);
     color: var(--bg-primary);
     text-align: center;
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.82rem;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    overflow: hidden;
     transform: translateY(100%);
     transition: transform 0.4s ease;
   }
