@@ -1907,10 +1907,9 @@ button:focus-visible {
       </div>
     </div>
 
-    <!-- PLADSHOLDERE: de 30 anmeldelser ligger i landing.js i listen TP_REVIEWS —
-         erstat titel/tekst/navn/by dér med de rigtige anmeldelser fra
-         dk.trustpilot.com/review/tattoofashion.dk. Begge raekker (15 + 15)
-         renderes automatisk, inkl. dubletterne til den uendelige scroll. -->
+    <!-- Anmeldelserne (aegte Trustpilot-anmeldelser) ligger i landing.js i
+         listen TP_REVIEWS. Begge raekker renderes automatisk, inkl.
+         dubletterne til den uendelige scroll. -->
     <div class="tp-rows reveal" id="tpRows"></div>
   </section>
 
@@ -2022,43 +2021,28 @@ button:focus-visible {
   'use strict';
 
   /* ==========================================================
-     TRUSTPILOT-ANMELDELSER — PLADSHOLDERE
-     Erstat titel/tekst/navn/by med de rigtige anmeldelser fra
+     TRUSTPILOT-ANMELDELSER — ægte anmeldelser fra
      dk.trustpilot.com/review/tattoofashion.dk.
-     De første 15 vises i øverste række, de sidste 15 i nederste.
-     Tilføj/fjern frit — rækkerne renderes automatisk.
+     Første halvdel vises i øverste række, resten i nederste.
+     Tilføj/fjern frit — rækkerne fylder sig selv op.
+     Format: { title, text, name } (city er valgfri)
      ========================================================== */
   var TP_REVIEWS = [
-    { title: 'Fantastisk oplevelse fra start til slut', text: 'Blev taget godt imod, og min tatovør forstod præcis, hvad jeg ville have. Resultatet er bedre, end jeg turde håbe på.', name: 'Mette J.', city: 'København' },
-    { title: 'Professionelle og trygge rammer', text: 'Super rent studie og en afslappet stemning. De guidede mig gennem hele forløbet — kan varmt anbefales.', name: 'Jonas P.', city: 'Rødovre' },
-    { title: 'Min fineline er perfekt', text: 'Fik lavet en lille fineline-tatovering, og detaljerne sidder lige i skabet. Hurtig tid og fair pris.', name: 'Camilla B.', city: 'Glostrup' },
-    { title: 'Kom med en idé — gik med et kunstværk', text: 'De tegnede designet til mig ud fra et par billeder, jeg havde med. Processen var nem, og resultatet taler for sig selv.', name: 'Alexander V.', city: 'Valby' },
-    { title: 'Portræt med vanvittige detaljer', text: 'Fik lavet et portræt af min far — ligheden er slående. Tusind tak for det fine arbejde.', name: 'Thomas R.', city: 'Herlev' },
-    { title: 'Matchende tatoveringer med min søster', text: 'Sjov og tryg oplevelse — vi er begge vilde med resultatet.', name: 'Louise M.', city: 'Ballerup' },
-    { title: 'Lyttede til alle mine ønsker', text: 'Ændrede skitsen flere gange uden brok — det endte helt perfekt.', name: 'Nadia S.', city: 'Vanløse' },
-    { title: 'Hurtig tid og topservice', text: 'Skrev mandag og sad i stolen torsdag. Nemmere bliver det ikke.', name: 'Frederik N.', city: 'Taastrup' },
-    { title: 'Smukt script — præcis som håbet', text: 'Min håndskrift-tatovering er så fin og skarp. Kunne ikke være mere tilfreds.', name: 'Ida W.', city: 'Frederiksberg' },
-    { title: 'Professionel rådgivning om placering', text: 'God og ærlig snak om størrelse og placering, inden vi gik i gang.', name: 'Kasper D.', city: 'Albertslund' },
-    { title: 'Min tredje tatovering her', text: 'Kommer altid tilbage — kvaliteten er i top hver eneste gang.', name: 'Julie F.', city: 'Rødovre' },
-    { title: 'Realism i verdensklasse', text: 'Skyggerne og detaljerne i min løve er helt vanvittige. Folk spørger, hvor jeg har fået den lavet.', name: 'Martin O.', city: 'København' },
-    { title: 'Afslappet stemning og dygtige folk', text: 'Man føler sig velkommen fra det øjeblik, man træder ind ad døren.', name: 'Cecilie T.', city: 'Islev' },
-    { title: 'De reddede min gamle tatovering', text: 'Troede den var håbløs — efter cover-uppen er den min favorit.', name: 'Rasmus B.', city: 'Glostrup' },
-    { title: 'Fin lille ankeltatovering', text: 'Hurtigt, nemt og næsten smertefrit. Anbefales!', name: 'Anna G.', city: 'Vanløse' },
-    { title: 'God opfølgning efter besøget', text: 'Fik klare instruktioner til helingen — alt helede perfekt.', name: 'Simon E.', city: 'Hvidovre' },
-    { title: 'Blomstermotiv med fine detaljer', text: 'Min peon-tatovering er så elegant. Præcis den lethed, jeg ønskede mig.', name: 'Maria C.', city: 'Frederiksberg' },
-    { title: 'Prisen holdt — ingen overraskelser', text: 'Fik et estimat på forhånd, og det holdt hele vejen igennem.', name: 'Oliver H.', city: 'Brønshøj' },
-    { title: 'Perfekt til første gang', text: 'De forklarede alt undervejs, og jeg var helt rolig i stolen.', name: 'Laura K.', city: 'Rødovre' },
-    { title: 'Mit sleeve blev bedre end skitsen', text: 'Vi byggede videre på designet undervejs — kunstneren tænkte med hele vejen.', name: 'Nikolaj S.', city: 'Valby' },
-    { title: 'Skøn oplevelse med veninderne', text: 'Vi fik matchende motiver — god stemning og flot arbejde.', name: 'Trine P.', city: 'Ballerup' },
-    { title: 'Detaljerne gør forskellen', text: 'Selv de tyndeste linjer sidder knivskarpt. Imponerende håndværk.', name: 'Andreas M.', city: 'Herlev' },
-    { title: 'Hygiejne i verdensklasse', text: 'Alt blev pakket sterilt ud foran mig — det gav stor tryghed.', name: 'Sara N.', city: 'København' },
-    { title: 'Mindetatovering med stor betydning', text: 'De behandlede mit ønske med respekt og omsorg. Tak.', name: 'Henrik J.', city: 'Taastrup' },
-    { title: 'Kom igen med hele familien', text: 'Først mig, så min kone og vores søn — alle er vildt tilfredse.', name: 'Michael W.', city: 'Albertslund' },
-    { title: 'Cover-up der overgik forventningerne', text: 'Min gamle tatovering er forvandlet til noget, jeg er stolt af at vise frem.', name: 'Sofie H.', city: 'Hvidovre' },
-    { title: 'Stort projekt — styr på hele forløbet', text: 'Vi planlagde mit sleeve over flere sessioner, og kommunikationen var i top hele vejen.', name: 'Daniel K.', city: 'Brøndby' },
-    { title: 'Tryg som førstegangs-kunde', text: 'Følte mig i gode hænder fra første besked til færdigt resultat.', name: 'Emma L.', city: 'Rødovre' },
-    { title: 'Kvalitet til prisen', text: 'Fik præcis pris på forhånd, og de holdt, hvad de lovede. Flot arbejde og god stemning.', name: 'Mikkel A.', city: 'København' },
-    { title: 'Anbefaler til alle', text: 'Bedste studie i København — punktum.', name: 'Katrine V.', city: 'Frederiksberg' }
+    { title: 'Professionelle og trygge rammer', text: 'Nemme at kommunikere med og dygtige tatovører.', name: 'Naja Holmgaard Pedersen' },
+    { title: 'Amazing service', text: 'Amazing service, and a beautiful tattoo. Very precise line work.', name: 'Sophia Hesselberg' },
+    { title: 'Super dygtige og seriøse', text: 'Rødovre. Super dygtige og seriøse, kan helt sikkert anbefale dem.', name: 'Henrik' },
+    { title: 'Vanvittig dygtige', text: 'Vanvittig dygtige, søde og humoristiske. Kommer helt sikkert igen for mere!', name: 'Daniella Steinstø' },
+    { title: 'Very friendly people', text: 'Very friendly people, awesome service, always coming back for more!', name: 'Pietro Fatebene' },
+    { title: 'Virkelig venlige mennesker', text: 'Virkelig venlige mennesker. Passer godt på en, selv hvis man bliver dårlig.', name: 'Katrine TH' },
+    { title: 'Great service', text: 'Great service, and the artist did an amazing job and mirrored my vision perfectly!', name: 'Liam Bak' },
+    { title: 'Ren og professionel', text: 'Nice, clean and professional service and very good advice regarding size and placement.', name: 'Rune Christensen' },
+    { title: 'Very nice staff', text: 'Very nice staff, good at keeping things clean. And they make sure that you’re okay!', name: 'Victoria Rasnis' },
+    { title: 'The experience was so good', text: 'The experience was so good. I’m so happy with the results and will definitely come back!', name: 'Sofia Rosa Andersen' },
+    { title: 'God service og flot resultat', text: 'God service og super flot resultat. Fik lavet en overarm. Ikke sidste gang jeg kommer.', name: 'Brian Albertsen' },
+    { title: 'Rigtig sød og imødekommende', text: 'Rigtig flot tatovering. God service, masser af plads, rent og pænt.', name: 'Mia Andersen' },
+    { title: 'Top service', text: 'Min tatovør forstod virkelig hvad jeg ønskede og tog sig god tid til at tegne den direkte på mig.', name: 'Carina Jessen' },
+    { title: 'Elsker det her sted', text: 'Trygge omgivelser, super mennesker, og ikke mindst virkelig dygtige kunstnere. Glæder mig til at komme igen.', name: 'Sir Frederik' },
+    { title: 'Rart og trygt', text: 'Det var min første tatovering, så jeg var meget nervøs, men stedet var rart og roligt. Vil 100% anbefale!', name: 'Christensen Kira' }
   ];
 
   /* ==========================================================
@@ -2112,7 +2096,8 @@ button:focus-visible {
       '<p>' + escapeHtml(r.text) + '</p>' +
       '<div class="tp-card-foot">' +
       '<span class="tp-avatar" aria-hidden="true">' + escapeHtml(initials(r.name)) + '</span>' +
-      '<div class="tp-card-author"><strong>' + escapeHtml(r.name) + '</strong><span>' + escapeHtml(r.city) + '</span></div>' +
+      '<div class="tp-card-author"><strong>' + escapeHtml(r.name) + '</strong>' +
+      (r.city ? '<span>' + escapeHtml(r.city) + '</span>' : '') + '</div>' +
       '<span class="tp-verified">Verificeret</span>' +
       '</div></article>';
   }
