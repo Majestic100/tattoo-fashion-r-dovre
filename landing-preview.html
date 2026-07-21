@@ -691,8 +691,9 @@ button:focus-visible {
 }
 
 .insp-grid {
-  columns: 3;
-  column-gap: 14px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
   margin-bottom: 48px;
 }
 
@@ -700,14 +701,13 @@ button:focus-visible {
   position: relative;
   display: block;
   width: 100%;
-  margin-bottom: 14px;
+  aspect-ratio: 4 / 5; /* fast format = ingen layout-hop ved lazy load */
   padding: 0;
   border: 1px solid var(--border);
   border-radius: 10px;
   overflow: hidden;
   background: var(--bg-card);
   cursor: zoom-in;
-  break-inside: avoid;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 .insp-item:hover {
@@ -716,6 +716,8 @@ button:focus-visible {
 }
 .insp-item img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -1405,11 +1407,11 @@ button:focus-visible {
   }
 
   .insp-grid {
-    columns: 2;
-    column-gap: 8px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
     margin-bottom: 32px;
   }
-  .insp-item { margin-bottom: 8px; border-radius: 8px; }
+  .insp-item { border-radius: 8px; }
   .insp-lightbox { padding: 64px 12px; }
   .insp-lb-nav { width: 42px; height: 42px; }
   .insp-lb-prev { left: 8px; }
@@ -1973,17 +1975,23 @@ button:focus-visible {
       { reviews: TP_REVIEWS.slice(0, half), reverse: false },
       { reviews: TP_REVIEWS.slice(half), reverse: true }
     ];
+    var CARD_WIDTH = 380; // ca. kortbredde inkl. mellemrum
+    var screenWidth = Math.max(window.innerWidth, window.screen ? window.screen.width : 0, 1440);
     rows.forEach(function (row) {
       if (!row.reviews.length) return;
       var cards = row.reviews.map(tpCardHtml).join('');
+      // Sporet skal altid være bredere end skærmen, ellers opstår der
+      // tomrum i loopet — gentag kortsættet indtil det fylder rigeligt
+      var copies = Math.max(1, Math.ceil((screenWidth * 1.3) / (row.reviews.length * CARD_WIDTH)));
+      var group = new Array(copies + 1).join(cards);
       var rowEl = document.createElement('div');
       rowEl.className = 'tp-row' + (row.reverse ? ' tp-row-reverse' : '');
       // ~13s pr. kort giver samme fart uanset antal anmeldelser
-      rowEl.style.setProperty('--tp-dur', Math.round(row.reviews.length * 13) + 's');
+      rowEl.style.setProperty('--tp-dur', Math.round(row.reviews.length * copies * 13) + 's');
       rowEl.innerHTML =
         '<div class="tp-track">' +
-        '<div class="tp-group">' + cards + '</div>' +
-        '<div class="tp-group" aria-hidden="true">' + cards + '</div>' +
+        '<div class="tp-group">' + group + '</div>' +
+        '<div class="tp-group" aria-hidden="true">' + group + '</div>' +
         '</div>';
       tpRows.appendChild(rowEl);
     });

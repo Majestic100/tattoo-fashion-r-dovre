@@ -673,8 +673,9 @@ button:focus-visible {
 }
 
 .insp-grid {
-  columns: 3;
-  column-gap: 14px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
   margin-bottom: 48px;
 }
 
@@ -682,14 +683,13 @@ button:focus-visible {
   position: relative;
   display: block;
   width: 100%;
-  margin-bottom: 14px;
+  aspect-ratio: 4 / 5; /* fast format = ingen layout-hop ved lazy load */
   padding: 0;
   border: 1px solid var(--border);
   border-radius: 10px;
   overflow: hidden;
   background: var(--bg-card);
   cursor: zoom-in;
-  break-inside: avoid;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 .insp-item:hover {
@@ -698,6 +698,8 @@ button:focus-visible {
 }
 .insp-item img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -1387,11 +1389,11 @@ button:focus-visible {
   }
 
   .insp-grid {
-    columns: 2;
-    column-gap: 8px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
     margin-bottom: 32px;
   }
-  .insp-item { margin-bottom: 8px; border-radius: 8px; }
+  .insp-item { border-radius: 8px; }
   .insp-lightbox { padding: 64px 12px; }
   .insp-lb-nav { width: 42px; height: 42px; }
   .insp-lb-prev { left: 8px; }

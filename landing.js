@@ -89,17 +89,23 @@
       { reviews: TP_REVIEWS.slice(0, half), reverse: false },
       { reviews: TP_REVIEWS.slice(half), reverse: true }
     ];
+    var CARD_WIDTH = 380; // ca. kortbredde inkl. mellemrum
+    var screenWidth = Math.max(window.innerWidth, window.screen ? window.screen.width : 0, 1440);
     rows.forEach(function (row) {
       if (!row.reviews.length) return;
       var cards = row.reviews.map(tpCardHtml).join('');
+      // Sporet skal altid være bredere end skærmen, ellers opstår der
+      // tomrum i loopet — gentag kortsættet indtil det fylder rigeligt
+      var copies = Math.max(1, Math.ceil((screenWidth * 1.3) / (row.reviews.length * CARD_WIDTH)));
+      var group = new Array(copies + 1).join(cards);
       var rowEl = document.createElement('div');
       rowEl.className = 'tp-row' + (row.reverse ? ' tp-row-reverse' : '');
       // ~13s pr. kort giver samme fart uanset antal anmeldelser
-      rowEl.style.setProperty('--tp-dur', Math.round(row.reviews.length * 13) + 's');
+      rowEl.style.setProperty('--tp-dur', Math.round(row.reviews.length * copies * 13) + 's');
       rowEl.innerHTML =
         '<div class="tp-track">' +
-        '<div class="tp-group">' + cards + '</div>' +
-        '<div class="tp-group" aria-hidden="true">' + cards + '</div>' +
+        '<div class="tp-group">' + group + '</div>' +
+        '<div class="tp-group" aria-hidden="true">' + group + '</div>' +
         '</div>';
       tpRows.appendChild(rowEl);
     });
