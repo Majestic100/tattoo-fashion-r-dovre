@@ -160,32 +160,53 @@
   var lastFocus = null;
 
   if (inspGrid && INSPIRATION_MEDIA.length) {
-    INSPIRATION_MEDIA.forEach(function (item, i) {
-      var btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'insp-item' + (item.featured ? ' insp-item-large' : '');
-      btn.setAttribute('aria-label', (item.type === 'video' ? 'Afspil video: ' : 'Vis billede: ') + item.alt);
-      btn.innerHTML = mediaHtml(item) +
+    var galTile = function (item, idx, inDuplicate) {
+      return '<button type="button" class="insp-item' + (item.featured ? ' insp-item-large' : '') + '"' +
+        ' data-idx="' + idx + '"' +
+        (inDuplicate ? ' tabindex="-1"' : '') +
+        ' aria-label="' + escapeHtml((item.type === 'video' ? 'Afspil video: ' : 'Vis billede: ') + item.alt) + '">' +
+        mediaHtml(item) +
         '<span class="insp-item-overlay" aria-hidden="true">' +
         '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg>' +
-        '</span>';
-      btn.addEventListener('click', function () { openLightbox(i); });
-      inspGrid.appendChild(btn);
+        '</span></button>';
+    };
+
+    // To rækker i hver sin retning — fyldes op til skærmbredden ligesom
+    // anmeldelses-marqueen, så der aldrig opstår tomrum
+    var GAL_ITEM_WIDTH = 240;
+    var galScreen = Math.max(window.innerWidth, window.screen ? window.screen.width : 0, 1440);
+    var galHalf = Math.ceil(INSPIRATION_MEDIA.length / 2);
+    var galRows = [
+      { items: INSPIRATION_MEDIA.slice(0, galHalf), start: 0, reverse: false },
+      { items: INSPIRATION_MEDIA.slice(galHalf), start: galHalf, reverse: true }
+    ];
+    galRows.forEach(function (row) {
+      if (!row.items.length) return;
+      var copies = Math.max(1, Math.ceil((galScreen * 1.3) / (row.items.length * GAL_ITEM_WIDTH)));
+      var groupHtml = '';
+      var dupHtml = '';
+      for (var c = 0; c < copies; c++) {
+        row.items.forEach(function (item, j) {
+          groupHtml += galTile(item, row.start + j, false);
+          dupHtml += galTile(item, row.start + j, true);
+        });
+      }
+      var rowEl = document.createElement('div');
+      rowEl.className = 'gal-row' + (row.reverse ? ' gal-row-reverse' : '');
+      // ~8s pr. felt giver en rolig glidning uanset antal medier
+      rowEl.style.setProperty('--gal-dur', Math.round(row.items.length * copies * 8) + 's');
+      rowEl.innerHTML =
+        '<div class="gal-track">' +
+        '<div class="gal-group">' + groupHtml + '</div>' +
+        '<div class="gal-group" aria-hidden="true">' + dupHtml + '</div>' +
+        '</div>';
+      inspGrid.appendChild(rowEl);
+    });
+    inspGrid.addEventListener('click', function (e) {
+      var btn = e.target.closest('.insp-item');
+      if (btn) openLightbox(parseInt(btn.getAttribute('data-idx'), 10));
     });
     enableHoverPlay(inspGrid);
-
-    // Karrusel-pile (desktop) — ruller ca. ét "vindue" ad gangen
-    var carPrev = document.getElementById('inspCarPrev');
-    var carNext = document.getElementById('inspCarNext');
-    if (carPrev && carNext) {
-      var scrollStep = function () { return Math.max(inspGrid.clientWidth * 0.8, 300); };
-      carPrev.addEventListener('click', function () {
-        inspGrid.scrollBy({ left: -scrollStep(), behavior: 'smooth' });
-      });
-      carNext.addEventListener('click', function () {
-        inspGrid.scrollBy({ left: scrollStep(), behavior: 'smooth' });
-      });
-    }
   }
 
   function openLightbox(i) {

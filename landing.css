@@ -672,33 +672,44 @@ button:focus-visible {
   color: var(--text-secondary);
 }
 
-/* Karrusel: kompakt højde, swipe/scroll-snap, pile på desktop */
-.insp-carousel {
-  position: relative;
+/* To automatisk glidende rækker — samme marquee-princip som anmeldelserne */
+.gal-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
   margin-bottom: 40px;
 }
 
-.insp-track {
+.gal-row {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+.gal-track {
+  display: flex;
+  width: max-content;
+  animation: tp-scroll var(--gal-dur, 60s) linear infinite;
+}
+.gal-row-reverse .gal-track {
+  animation-direction: reverse;
+}
+.gal-row:hover .gal-track {
+  animation-play-state: paused;
+}
+
+.gal-group {
   display: flex;
   gap: 14px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  padding: 4px;
-  margin: -4px;
-}
-.insp-track::-webkit-scrollbar {
-  display: none;
+  padding: 0 7px;
 }
 
 .insp-item {
   position: relative;
   display: block;
   flex: 0 0 auto;
-  width: 300px;
-  height: 400px;
-  scroll-snap-align: start;
+  width: 210px;
+  height: 280px;
   padding: 0;
   border: 1px solid var(--border);
   border-radius: 10px;
@@ -708,38 +719,8 @@ button:focus-visible {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 .insp-item-large {
-  width: 420px; /* featured = bredere felt */
+  width: 300px; /* featured = bredere felt */
 }
-
-.insp-car-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
-  width: 46px;
-  height: 46px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(10, 10, 10, 0.75);
-  border: 1px solid rgba(201, 165, 92, 0.5);
-  border-radius: 50%;
-  color: var(--accent);
-  font-size: 1.7rem;
-  line-height: 1;
-  padding-bottom: 4px;
-  cursor: pointer;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
-}
-.insp-car-btn:hover {
-  background: var(--accent);
-  color: var(--bg-primary);
-  border-color: var(--accent);
-}
-.insp-car-prev { left: -14px; }
-.insp-car-next { right: -14px; }
 .insp-item:hover {
   border-color: var(--accent);
   box-shadow: 0 15px 40px -18px rgba(201, 165, 92, 0.4);
@@ -1519,15 +1500,14 @@ button:focus-visible {
     gap: 28px;
   }
 
-  .insp-carousel { margin-bottom: 28px; }
-  .insp-track { gap: 10px; }
+  .gal-rows { gap: 10px; margin-bottom: 28px; }
+  .gal-group { gap: 10px; padding: 0 5px; }
   .insp-item {
-    width: 220px;
-    height: 290px;
+    width: 132px;
+    height: 176px;
     border-radius: 8px;
   }
-  .insp-item-large { width: 290px; }
-  .insp-car-btn { display: none; } /* swipe klarer det på mobil */
+  .insp-item-large { width: 176px; }
   .media-play-badge { top: 8px; right: 8px; width: 28px; height: 28px; }
   .ig-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -1614,17 +1594,20 @@ button:focus-visible {
     opacity: 1;
     transform: none;
   }
-  /* Marqueen står stille — rækkerne kan i stedet scrolles manuelt */
-  .tp-track {
+  /* Marqueerne står stille — rækkerne kan i stedet scrolles manuelt */
+  .tp-track,
+  .gal-track {
     animation: none;
     width: auto;
   }
-  .tp-row {
+  .tp-row,
+  .gal-row {
     overflow-x: auto;
     -webkit-mask-image: none;
     mask-image: none;
   }
-  .tp-group[aria-hidden="true"] {
+  .tp-group[aria-hidden="true"],
+  .gal-group[aria-hidden="true"] {
     display: none;
   }
 }

@@ -189,21 +189,19 @@
     </div>
   </section>
 
-  <!-- INSPIRATION — karrusel med tidligere arbejde (billeder OG videoer).
-       Medierne styres i landing.js i listen INSPIRATION_MEDIA:
-       laeg nye filer i images/ og tilfoej en linje i listen — resten sker selv.
-       Saet featured: true paa de medier, der skal have et bredere felt.
-       Swipe paa mobil, pile paa desktop, klik aabner lightbox. -->
+  <!-- INSPIRATION — to automatisk glidende raekker med tidligere arbejde
+       (billeder OG videoer). Medierne styres i landing.js i listen
+       INSPIRATION_MEDIA: laeg nye filer i images/ og tilfoej en linje i
+       listen — raekkerne fordeler og fylder sig selv. featured: true giver
+       et bredere felt. Klik aabner lightbox; hover pauser baandet. -->
   <section class="insp-section">
     <div class="container">
       <p class="lp-label reveal">Inspiration</p>
       <h2 class="lp-title reveal">Bliv inspireret af vores arbejde</h2>
-      <p class="insp-sub reveal">Et udpluk af det, vi har lavet for vores kunder — billeder og video, fra fine linjer til store projekter. Swipe dig igennem, og klik for at se tættere på.</p>
-      <div class="insp-carousel reveal">
-        <button type="button" class="insp-car-btn insp-car-prev" id="inspCarPrev" aria-label="Rul tilbage">&#8249;</button>
-        <div class="insp-track" id="inspGrid" aria-label="Galleri over tidligere arbejde"></div>
-        <button type="button" class="insp-car-btn insp-car-next" id="inspCarNext" aria-label="Rul frem">&#8250;</button>
-      </div>
+      <p class="insp-sub reveal">Et udpluk af det, vi har lavet for vores kunder — billeder og video, fra fine linjer til store projekter. Klik for at se tættere på.</p>
+    </div>
+    <div class="gal-rows reveal" id="inspGrid"></div>
+    <div class="container">
       <div class="lp-inline-cta reveal">
         <a href="#tilbud" class="btn btn-primary">Fået en idé? Send den til os</a>
       </div>

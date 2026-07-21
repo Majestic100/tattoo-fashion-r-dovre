@@ -690,33 +690,44 @@ button:focus-visible {
   color: var(--text-secondary);
 }
 
-/* Karrusel: kompakt højde, swipe/scroll-snap, pile på desktop */
-.insp-carousel {
-  position: relative;
+/* To automatisk glidende rækker — samme marquee-princip som anmeldelserne */
+.gal-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
   margin-bottom: 40px;
 }
 
-.insp-track {
+.gal-row {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+.gal-track {
+  display: flex;
+  width: max-content;
+  animation: tp-scroll var(--gal-dur, 60s) linear infinite;
+}
+.gal-row-reverse .gal-track {
+  animation-direction: reverse;
+}
+.gal-row:hover .gal-track {
+  animation-play-state: paused;
+}
+
+.gal-group {
   display: flex;
   gap: 14px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  padding: 4px;
-  margin: -4px;
-}
-.insp-track::-webkit-scrollbar {
-  display: none;
+  padding: 0 7px;
 }
 
 .insp-item {
   position: relative;
   display: block;
   flex: 0 0 auto;
-  width: 300px;
-  height: 400px;
-  scroll-snap-align: start;
+  width: 210px;
+  height: 280px;
   padding: 0;
   border: 1px solid var(--border);
   border-radius: 10px;
@@ -726,38 +737,8 @@ button:focus-visible {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 .insp-item-large {
-  width: 420px; /* featured = bredere felt */
+  width: 300px; /* featured = bredere felt */
 }
-
-.insp-car-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
-  width: 46px;
-  height: 46px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(10, 10, 10, 0.75);
-  border: 1px solid rgba(201, 165, 92, 0.5);
-  border-radius: 50%;
-  color: var(--accent);
-  font-size: 1.7rem;
-  line-height: 1;
-  padding-bottom: 4px;
-  cursor: pointer;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
-}
-.insp-car-btn:hover {
-  background: var(--accent);
-  color: var(--bg-primary);
-  border-color: var(--accent);
-}
-.insp-car-prev { left: -14px; }
-.insp-car-next { right: -14px; }
 .insp-item:hover {
   border-color: var(--accent);
   box-shadow: 0 15px 40px -18px rgba(201, 165, 92, 0.4);
@@ -1537,15 +1518,14 @@ button:focus-visible {
     gap: 28px;
   }
 
-  .insp-carousel { margin-bottom: 28px; }
-  .insp-track { gap: 10px; }
+  .gal-rows { gap: 10px; margin-bottom: 28px; }
+  .gal-group { gap: 10px; padding: 0 5px; }
   .insp-item {
-    width: 220px;
-    height: 290px;
+    width: 132px;
+    height: 176px;
     border-radius: 8px;
   }
-  .insp-item-large { width: 290px; }
-  .insp-car-btn { display: none; } /* swipe klarer det på mobil */
+  .insp-item-large { width: 176px; }
   .media-play-badge { top: 8px; right: 8px; width: 28px; height: 28px; }
   .ig-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -1632,17 +1612,20 @@ button:focus-visible {
     opacity: 1;
     transform: none;
   }
-  /* Marqueen står stille — rækkerne kan i stedet scrolles manuelt */
-  .tp-track {
+  /* Marqueerne står stille — rækkerne kan i stedet scrolles manuelt */
+  .tp-track,
+  .gal-track {
     animation: none;
     width: auto;
   }
-  .tp-row {
+  .tp-row,
+  .gal-row {
     overflow-x: auto;
     -webkit-mask-image: none;
     mask-image: none;
   }
-  .tp-group[aria-hidden="true"] {
+  .tp-group[aria-hidden="true"],
+  .gal-group[aria-hidden="true"] {
     display: none;
   }
 }
@@ -1821,21 +1804,19 @@ button:focus-visible {
     </div>
   </section>
 
-  <!-- INSPIRATION — karrusel med tidligere arbejde (billeder OG videoer).
-       Medierne styres i landing.js i listen INSPIRATION_MEDIA:
-       laeg nye filer i images/ og tilfoej en linje i listen — resten sker selv.
-       Saet featured: true paa de medier, der skal have et bredere felt.
-       Swipe paa mobil, pile paa desktop, klik aabner lightbox. -->
+  <!-- INSPIRATION — to automatisk glidende raekker med tidligere arbejde
+       (billeder OG videoer). Medierne styres i landing.js i listen
+       INSPIRATION_MEDIA: laeg nye filer i images/ og tilfoej en linje i
+       listen — raekkerne fordeler og fylder sig selv. featured: true giver
+       et bredere felt. Klik aabner lightbox; hover pauser baandet. -->
   <section class="insp-section">
     <div class="container">
       <p class="lp-label reveal">Inspiration</p>
       <h2 class="lp-title reveal">Bliv inspireret af vores arbejde</h2>
-      <p class="insp-sub reveal">Et udpluk af det, vi har lavet for vores kunder — billeder og video, fra fine linjer til store projekter. Swipe dig igennem, og klik for at se tættere på.</p>
-      <div class="insp-carousel reveal">
-        <button type="button" class="insp-car-btn insp-car-prev" id="inspCarPrev" aria-label="Rul tilbage">&#8249;</button>
-        <div class="insp-track" id="inspGrid" aria-label="Galleri over tidligere arbejde"></div>
-        <button type="button" class="insp-car-btn insp-car-next" id="inspCarNext" aria-label="Rul frem">&#8250;</button>
-      </div>
+      <p class="insp-sub reveal">Et udpluk af det, vi har lavet for vores kunder — billeder og video, fra fine linjer til store projekter. Klik for at se tættere på.</p>
+    </div>
+    <div class="gal-rows reveal" id="inspGrid"></div>
+    <div class="container">
       <div class="lp-inline-cta reveal">
         <a href="#tilbud" class="btn btn-primary">Fået en idé? Send den til os</a>
       </div>
@@ -2195,32 +2176,53 @@ button:focus-visible {
   var lastFocus = null;
 
   if (inspGrid && INSPIRATION_MEDIA.length) {
-    INSPIRATION_MEDIA.forEach(function (item, i) {
-      var btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'insp-item' + (item.featured ? ' insp-item-large' : '');
-      btn.setAttribute('aria-label', (item.type === 'video' ? 'Afspil video: ' : 'Vis billede: ') + item.alt);
-      btn.innerHTML = mediaHtml(item) +
+    var galTile = function (item, idx, inDuplicate) {
+      return '<button type="button" class="insp-item' + (item.featured ? ' insp-item-large' : '') + '"' +
+        ' data-idx="' + idx + '"' +
+        (inDuplicate ? ' tabindex="-1"' : '') +
+        ' aria-label="' + escapeHtml((item.type === 'video' ? 'Afspil video: ' : 'Vis billede: ') + item.alt) + '">' +
+        mediaHtml(item) +
         '<span class="insp-item-overlay" aria-hidden="true">' +
         '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg>' +
-        '</span>';
-      btn.addEventListener('click', function () { openLightbox(i); });
-      inspGrid.appendChild(btn);
+        '</span></button>';
+    };
+
+    // To rækker i hver sin retning — fyldes op til skærmbredden ligesom
+    // anmeldelses-marqueen, så der aldrig opstår tomrum
+    var GAL_ITEM_WIDTH = 240;
+    var galScreen = Math.max(window.innerWidth, window.screen ? window.screen.width : 0, 1440);
+    var galHalf = Math.ceil(INSPIRATION_MEDIA.length / 2);
+    var galRows = [
+      { items: INSPIRATION_MEDIA.slice(0, galHalf), start: 0, reverse: false },
+      { items: INSPIRATION_MEDIA.slice(galHalf), start: galHalf, reverse: true }
+    ];
+    galRows.forEach(function (row) {
+      if (!row.items.length) return;
+      var copies = Math.max(1, Math.ceil((galScreen * 1.3) / (row.items.length * GAL_ITEM_WIDTH)));
+      var groupHtml = '';
+      var dupHtml = '';
+      for (var c = 0; c < copies; c++) {
+        row.items.forEach(function (item, j) {
+          groupHtml += galTile(item, row.start + j, false);
+          dupHtml += galTile(item, row.start + j, true);
+        });
+      }
+      var rowEl = document.createElement('div');
+      rowEl.className = 'gal-row' + (row.reverse ? ' gal-row-reverse' : '');
+      // ~8s pr. felt giver en rolig glidning uanset antal medier
+      rowEl.style.setProperty('--gal-dur', Math.round(row.items.length * copies * 8) + 's');
+      rowEl.innerHTML =
+        '<div class="gal-track">' +
+        '<div class="gal-group">' + groupHtml + '</div>' +
+        '<div class="gal-group" aria-hidden="true">' + dupHtml + '</div>' +
+        '</div>';
+      inspGrid.appendChild(rowEl);
+    });
+    inspGrid.addEventListener('click', function (e) {
+      var btn = e.target.closest('.insp-item');
+      if (btn) openLightbox(parseInt(btn.getAttribute('data-idx'), 10));
     });
     enableHoverPlay(inspGrid);
-
-    // Karrusel-pile (desktop) — ruller ca. ét "vindue" ad gangen
-    var carPrev = document.getElementById('inspCarPrev');
-    var carNext = document.getElementById('inspCarNext');
-    if (carPrev && carNext) {
-      var scrollStep = function () { return Math.max(inspGrid.clientWidth * 0.8, 300); };
-      carPrev.addEventListener('click', function () {
-        inspGrid.scrollBy({ left: -scrollStep(), behavior: 'smooth' });
-      });
-      carNext.addEventListener('click', function () {
-        inspGrid.scrollBy({ left: scrollStep(), behavior: 'smooth' });
-      });
-    }
   }
 
   function openLightbox(i) {
