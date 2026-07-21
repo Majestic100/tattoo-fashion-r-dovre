@@ -820,13 +820,14 @@ button:focus-visible {
   margin-top: 3px;
 }
 
-/* --- ANMELDELSER --- */
-.lp-reviews {
+/* --- ANMELDELSER — TRUSTPILOT-MARQUEE --- */
+.tp-section {
   padding: 110px 0;
   background: var(--bg-secondary);
   position: relative;
+  overflow: hidden;
 }
-.lp-reviews::before {
+.tp-section::before {
   content: "";
   position: absolute;
   top: 0;
@@ -838,70 +839,223 @@ button:focus-visible {
   opacity: 0.5;
 }
 
-.lp-reviews-hero {
+.tp-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
   margin-bottom: 56px;
 }
-.lp-reviews-number {
-  display: block;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(3.5rem, 9vw, 6rem);
-  color: var(--accent);
+
+.tp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 18px;
+  background: #ffffff;
+  border-radius: 100px;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 30px -12px rgba(0, 0, 0, 0.6);
+}
+.tp-badge strong {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #191919;
+}
+.tp-badge-stars {
+  display: inline-flex;
+  gap: 2px;
+}
+.tp-badge-stars span {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #00b67a;
+  color: #ffffff;
+  font-size: 0.7rem;
   line-height: 1;
-  text-shadow: 0 0 40px rgba(201, 165, 92, 0.2);
 }
-.lp-reviews-label {
-  display: block;
-  font-size: 0.95rem;
-  font-weight: 500;
+
+.tp-title {
+  font-family: 'Bebas Neue', sans-serif;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-secondary);
-  margin-top: 8px;
+  letter-spacing: 0.04em;
+  font-size: clamp(2rem, 4.8vw, 3.4rem);
+  line-height: 1.1;
+  margin-bottom: 14px;
+  max-width: 720px;
 }
-.lp-reviews-stars {
-  font-size: 1.4rem;
+.tp-score {
   color: var(--accent);
-  letter-spacing: 4px;
-  margin-top: 10px;
-  text-shadow: 0 0 10px rgba(201, 165, 92, 0.4);
+  text-shadow: 0 0 30px rgba(201, 165, 92, 0.3);
 }
 
-.lp-reviews-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.tp-sub {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 560px;
+  margin-bottom: 32px;
+}
+
+.tp-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px 48px;
+}
+.tp-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.tp-stat strong {
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 400;
+  font-size: 1.7rem;
+  color: var(--accent);
+}
+.tp-stat span {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+/* Marquee-rækker */
+.tp-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.tp-row {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+
+.tp-track {
+  display: flex;
+  width: max-content;
+  animation: tp-scroll var(--tp-dur, 50s) linear infinite;
+}
+.tp-row-reverse .tp-track {
+  animation-direction: reverse;
+}
+.tp-row:hover .tp-track {
+  animation-play-state: paused;
+}
+@keyframes tp-scroll {
+  to { transform: translateX(-50%); }
+}
+
+.tp-group {
+  display: flex;
+  align-items: stretch;
   gap: 20px;
+  padding: 0 10px;
 }
 
-.lp-review {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 30px 28px;
-  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+/* Kort — hvide med Trustpilot-grønne stjerner */
+.tp-card {
+  display: flex;
+  flex-direction: column;
+  width: 360px;
+  flex-shrink: 0;
+  padding: 24px 24px 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 12px 35px -18px rgba(0, 0, 0, 0.55);
 }
-.lp-review:hover {
-  transform: translateY(-4px);
-  border-color: var(--accent);
-  box-shadow: 0 15px 40px -15px rgba(201, 165, 92, 0.3);
-}
-.lp-review-stars {
-  color: var(--accent);
-  font-size: 0.85rem;
-  letter-spacing: 2px;
+
+.tp-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
   margin-bottom: 14px;
 }
-.lp-review p {
-  color: var(--text-secondary);
-  font-size: 0.92rem;
-  line-height: 1.7;
-  font-style: italic;
-  margin-bottom: 14px;
+.tp-stars {
+  display: inline-flex;
+  gap: 3px;
 }
-.lp-review-author {
+.tp-stars i {
+  font-style: normal;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #00b67a;
+  color: #ffffff;
+  font-size: 0.75rem;
+  line-height: 1;
+}
+.tp-quote {
+  font-family: Georgia, serif;
+  font-size: 1.9rem;
+  line-height: 0.6;
+  color: rgba(201, 165, 92, 0.55);
+}
+
+.tp-card h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #141414;
+  margin-bottom: 8px;
+}
+.tp-card > p {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: #4a4a4a;
+  margin-bottom: 18px;
+}
+
+.tp-card-foot {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+}
+.tp-avatar {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3ead8;
+  color: #8a6d2f;
+  border-radius: 50%;
   font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--text-muted);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+.tp-card-author {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.tp-card-author strong {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #141414;
+}
+.tp-card-author span {
+  font-size: 0.76rem;
+  color: #767676;
+}
+.tp-verified {
+  margin-left: auto;
+  padding: 5px 10px;
+  background: rgba(0, 182, 122, 0.12);
+  color: #00875c;
+  border-radius: 100px;
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
 }
 
 /* --- FAQ --- */
@@ -1116,7 +1270,7 @@ button:focus-visible {
   .lp-gallery,
   .lp-artists,
   .lp-studio,
-  .lp-reviews,
+  .tp-section,
   .lp-faq,
   .lp-final {
     padding: 64px 0;
@@ -1147,10 +1301,14 @@ button:focus-visible {
   }
   .lp-gallery-hide-mobile { display: none; }
 
-  .lp-reviews-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
+  .tp-header { margin-bottom: 36px; }
+  .tp-stats { gap: 10px 28px; }
+  .tp-card {
+    width: 300px;
+    padding: 20px 20px 16px;
   }
+  .tp-group { gap: 14px; padding: 0 7px; }
+  .tp-rows { gap: 16px; }
 
   .lead-card {
     padding: 24px 20px 20px;
@@ -1222,6 +1380,19 @@ button:focus-visible {
   .reveal {
     opacity: 1;
     transform: none;
+  }
+  /* Marqueen står stille — rækkerne kan i stedet scrolles manuelt */
+  .tp-track {
+    animation: none;
+    width: auto;
+  }
+  .tp-row {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .tp-group[aria-hidden="true"] {
+    display: none;
   }
 }
 
@@ -1481,29 +1652,209 @@ button:focus-visible {
     </div>
   </section>
 
-  <!-- ANMELDELSER -->
-  <section class="lp-reviews">
+  <!-- ANMELDELSER — Trustpilot, 2 scrollende rækker -->
+  <section class="tp-section">
     <div class="container">
-      <div class="lp-reviews-hero reveal">
-        <span class="lp-reviews-number">2.617+</span>
-        <span class="lp-reviews-label">5-stjernede Google anmeldelser</span>
-        <div class="lp-reviews-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="tp-header">
+        <div class="tp-badge reveal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#00b67a" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.2 5.8 20.9l1.6-7L2 9.2l7.1-.6z"/></svg>
+          <strong>Trustpilot</strong>
+          <span class="tp-badge-stars" aria-hidden="true">
+            <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+          </span>
+        </div>
+        <!-- BEKRÆFT TAL: rating og antal er hentet via søgeresultater — tjek dem mod dk.trustpilot.com/review/tattoofashion.dk -->
+        <h2 class="tp-title reveal">Kunderne har talt: <span class="tp-score">4,8 ud af 5</span> stjerner</h2>
+        <p class="tp-sub reveal">Ærlige ord fra rigtige kunder — fra første fineline til sidste session på et sleeve.</p>
+        <div class="tp-stats reveal">
+          <div class="tp-stat"><strong>4,8/5</strong><span>Gennemsnit på Trustpilot</span></div>
+          <div class="tp-stat"><strong>200+</strong><span>Anmeldelser på Trustpilot</span></div>
+          <div class="tp-stat"><strong>2.617+</strong><span>5-stjernede på Google</span></div>
+        </div>
       </div>
-      <div class="lp-reviews-grid">
-        <div class="lp-review reveal">
-          <div class="lp-review-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p>"Kæmpe tak til Ioana for min flotte ankeltatovering! Hun arbejder meget professionelt og med stor præcision. Jeg følte mig i gode hænder fra start til slut."</p>
-          <span class="lp-review-author">— Marianne H.</span>
+    </div>
+
+    <!-- PLADSHOLDERE: erstat titel, tekst, navn og by i kortene nedenfor med de
+         rigtige anmeldelser fra dk.trustpilot.com/review/tattoofashion.dk.
+         Række 1 og række 2 har hver 4 kort — indholdet er duplikeret i den
+         efterfølgende aria-hidden gruppe for den uendelige scroll (husk at
+         opdatere BEGGE grupper i hver række, de skal være identiske). -->
+    <div class="tp-rows reveal">
+      <div class="tp-row" style="--tp-dur: 52s">
+        <div class="tp-track">
+          <div class="tp-group">
+            <article class="tp-card">
+              <div class="tp-card-top"><span class="tp-stars" aria-label="5 ud af 5 stjerner"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote" aria-hidden="true">&#8220;&#8221;</span></div>
+              <h3>Fantastisk oplevelse fra start til slut</h3>
+              <p>Blev taget godt imod, og min tatovør forstod præcis, hvad jeg ville have. Resultatet er bedre, end jeg turde håbe på.</p>
+              <div class="tp-card-foot">
+                <span class="tp-avatar" aria-hidden="true">MJ</span>
+                <div class="tp-card-author"><strong>Mette J.</strong><span>København</span></div>
+                <span class="tp-verified">Verificeret</span>
+              </div>
+            </article>
+            <article class="tp-card">
+              <div class="tp-card-top"><span class="tp-stars" aria-label="5 ud af 5 stjerner"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote" aria-hidden="true">&#8220;&#8221;</span></div>
+              <h3>Professionelle og trygge rammer</h3>
+              <p>Super rent studie og en afslappet stemning. De guidede mig gennem hele forløbet — kan varmt anbefales.</p>
+              <div class="tp-card-foot">
+                <span class="tp-avatar" aria-hidden="true">JP</span>
+                <div class="tp-card-author"><strong>Jonas P.</strong><span>Rødovre</span></div>
+                <span class="tp-verified">Verificeret</span>
+              </div>
+            </article>
+            <article class="tp-card">
+              <div class="tp-card-top"><span class="tp-stars" aria-label="5 ud af 5 stjerner"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote" aria-hidden="true">&#8220;&#8221;</span></div>
+              <h3>Min fineline er perfekt</h3>
+              <p>Fik lavet en lille fineline-tatovering, og detaljerne sidder lige i skabet. Hurtig tid og fair pris.</p>
+              <div class="tp-card-foot">
+                <span class="tp-avatar" aria-hidden="true">CB</span>
+                <div class="tp-card-author"><strong>Camilla B.</strong><span>Glostrup</span></div>
+                <span class="tp-verified">Verificeret</span>
+              </div>
+            </article>
+            <article class="tp-card">
+              <div class="tp-card-top"><span class="tp-stars" aria-label="5 ud af 5 stjerner"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote" aria-hidden="true">&#8220;&#8221;</span></div>
+              <h3>Kom med en idé — gik med et kunstværk</h3>
+              <p>De tegnede designet til mig ud fra et par billeder, jeg havde med. Processen var nem, og resultatet taler for sig selv.</p>
+              <div class="tp-card-foot">
+                <span class="tp-avatar" aria-hidden="true">AV</span>
+                <div class="tp-card-author"><strong>Alexander V.</strong><span>Valby</span></div>
+                <span class="tp-verified">Verificeret</span>
+              </div>
+            </article>
+          </div>
+          <div class="tp-group" aria-hidden="true">
+            <article class="tp-card">
+              <div class="tp-card-top"><span class="tp-stars"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote">&#8220;&#8221;</span></div>
+              <h3>Fantastisk oplevelse fra start til slut</h3>
+              <p>Blev taget godt imod, og min tatovør forstod præcis, hvad jeg ville have. Resultatet er bedre, end jeg turde håbe på.</p>
+              <div class="tp-card-foot">
+                <span class="tp-avatar">MJ</span>
+                <div class="tp-card-author"><strong>Mette J.</strong><span>København</span></div>
+                <span class="tp-verified">Verificeret</span>
+              </div>
+            </article>
+            <article class="tp-card">
+              <div class="tp-card-top"><span class="tp-stars"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote">&#8220;&#8221;</span></div>
+              <h3>Professionelle og trygge rammer</h3>
+              <p>Super rent studie og en afslappet stemning. De guidede mig gennem hele forløbet — kan varmt anbefales.</p>
+              <div class="tp-card-foot">
+                <span class="tp-avatar">JP</span>
+                <div class="tp-card-author"><strong>Jonas P.</strong><span>Rødovre</span></div>
+                <span class="tp-verified">Verificeret</span>
+              </div>
+            </article>
+            <article class="tp-card">
+              <div class="tp-card-top"><span class="tp-stars"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote">&#8220;&#8221;</span></div>
+              <h3>Min fineline er perfekt</h3>
+              <p>Fik lavet en lille fineline-tatovering, og detaljerne sidder lige i skabet. Hurtig tid og fair pris.</p>
+              <div class="tp-card-foot">
+                <span class="tp-avatar">CB</span>
+                <div class="tp-card-author"><strong>Camilla B.</strong><span>Glostrup</span></div>
+                <span class="tp-verified">Verificeret</span>
+              </div>
+            </article>
+            <article class="tp-card">
+              <div class="tp-card-top"><span class="tp-stars"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote">&#8220;&#8221;</span></div>
+              <h3>Kom med en idé — gik med et kunstværk</h3>
+              <p>De tegnede designet til mig ud fra et par billeder, jeg havde med. Processen var nem, og resultatet taler for sig selv.</p>
+              <div class="tp-card-foot">
+                <span class="tp-avatar">AV</span>
+                <div class="tp-card-author"><strong>Alexander V.</strong><span>Valby</span></div>
+                <span class="tp-verified">Verificeret</span>
+              </div>
+            </article>
+          </div>
         </div>
-        <div class="lp-review reveal" style="--i:1">
-          <div class="lp-review-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p>"Perfekt oplevelse, super dygtig artist og god kundeservice — jeg kommer helt sikkert igen!!"</p>
-          <span class="lp-review-author">— Mikael K.</span>
-        </div>
-        <div class="lp-review reveal" style="--i:2">
-          <div class="lp-review-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p>"Extremely happy for the work he did. Experienced and patient. You can tell when somebody puts love and passion in his work."</p>
-          <span class="lp-review-author">— Maria A.</span>
+      </div>
+
+      <div class="tp-row tp-row-reverse" style="--tp-dur: 44s">
+        <div class="tp-track">
+          <div class="tp-group">
+            <article class="tp-card">
+              <div class="tp-card-top"><span class="tp-stars" aria-label="5 ud af 5 stjerner"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote" aria-hidden="true">&#8220;&#8221;</span></div>
+              <h3>Cover-up der overgik forventningerne</h3>
+              <p>Min gamle tatovering er nu forvandlet til noget, jeg er stolt af at vise frem. Tusind tak!</p>
+              <div class="tp-card-foot">
+                <span class="tp-avatar" aria-hidden="true">SH</span>
+                <div class="tp-card-author"><strong>Sofie H.</strong><span>Hvidovre</span></div>
+                <span class="tp-verified">Verificeret</span>
+              </div>
+            </article>
+            <article class="tp-card">
+              <div class="tp-card-top"><span class="tp-stars" aria-label="5 ud af 5 stjerner"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote" aria-hidden="true">&#8220;&#8221;</span></div>
+              <h3>Stort projekt — styr på hele forløbet</h3>
+              <p>Vi planlagde mit sleeve over flere sessioner, og kommunikationen var i top hele vejen.</p>
+              <div class="tp-card-foot">
+                <span class="tp-avatar" aria-hidden="true">DK</span>
+                <div class="tp-card-author"><strong>Daniel K.</strong><span>Brøndby</span></div>
+                <span class="tp-verified">Verificeret</span>
+              </div>
+            </article>
+            <article class="tp-card">
+              <div class="tp-card-top"><span class="tp-stars" aria-label="5 ud af 5 stjerner"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote" aria-hidden="true">&#8220;&#8221;</span></div>
+              <h3>Tryg som førstegangs-kunde</h3>
+              <p>Følte mig i gode hænder fra første besked til færdigt resultat. Anbefales til alle, der er i tvivl om deres første tatovering.</p>
+              <div class="tp-card-foot">
+                <span class="tp-avatar" aria-hidden="true">EL</span>
+                <div class="tp-card-author"><strong>Emma L.</strong><span>Rødovre</span></div>
+                <span class="tp-verified">Verificeret</span>
+              </div>
+            </article>
+            <article class="tp-card">
+              <div class="tp-card-top"><span class="tp-stars" aria-label="5 ud af 5 stjerner"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote" aria-hidden="true">&#8220;&#8221;</span></div>
+              <h3>Kvalitet til prisen</h3>
+              <p>Fik præcis pris på forhånd, og de holdt, hvad de lovede. Flot arbejde og god stemning i studiet.</p>
+              <div class="tp-card-foot">
+                <span class="tp-avatar" aria-hidden="true">MA</span>
+                <div class="tp-card-author"><strong>Mikkel A.</strong><span>København</span></div>
+                <span class="tp-verified">Verificeret</span>
+              </div>
+            </article>
+          </div>
+          <div class="tp-group" aria-hidden="true">
+            <article class="tp-card">
+              <div class="tp-card-top"><span class="tp-stars"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote">&#8220;&#8221;</span></div>
+              <h3>Cover-up der overgik forventningerne</h3>
+              <p>Min gamle tatovering er nu forvandlet til noget, jeg er stolt af at vise frem. Tusind tak!</p>
+              <div class="tp-card-foot">
+                <span class="tp-avatar">SH</span>
+                <div class="tp-card-author"><strong>Sofie H.</strong><span>Hvidovre</span></div>
+                <span class="tp-verified">Verificeret</span>
+              </div>
+            </article>
+            <article class="tp-card">
+              <div class="tp-card-top"><span class="tp-stars"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote">&#8220;&#8221;</span></div>
+              <h3>Stort projekt — styr på hele forløbet</h3>
+              <p>Vi planlagde mit sleeve over flere sessioner, og kommunikationen var i top hele vejen.</p>
+              <div class="tp-card-foot">
+                <span class="tp-avatar">DK</span>
+                <div class="tp-card-author"><strong>Daniel K.</strong><span>Brøndby</span></div>
+                <span class="tp-verified">Verificeret</span>
+              </div>
+            </article>
+            <article class="tp-card">
+              <div class="tp-card-top"><span class="tp-stars"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote">&#8220;&#8221;</span></div>
+              <h3>Tryg som førstegangs-kunde</h3>
+              <p>Følte mig i gode hænder fra første besked til færdigt resultat. Anbefales til alle, der er i tvivl om deres første tatovering.</p>
+              <div class="tp-card-foot">
+                <span class="tp-avatar">EL</span>
+                <div class="tp-card-author"><strong>Emma L.</strong><span>Rødovre</span></div>
+                <span class="tp-verified">Verificeret</span>
+              </div>
+            </article>
+            <article class="tp-card">
+              <div class="tp-card-top"><span class="tp-stars"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span><span class="tp-quote">&#8220;&#8221;</span></div>
+              <h3>Kvalitet til prisen</h3>
+              <p>Fik præcis pris på forhånd, og de holdt, hvad de lovede. Flot arbejde og god stemning i studiet.</p>
+              <div class="tp-card-foot">
+                <span class="tp-avatar">MA</span>
+                <div class="tp-card-author"><strong>Mikkel A.</strong><span>København</span></div>
+                <span class="tp-verified">Verificeret</span>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
     </div>
