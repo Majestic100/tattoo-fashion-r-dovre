@@ -46,17 +46,36 @@
   ];
 
   /* ==========================================================
-     INSPIRATIONS-GALLERI
-     Læg nye billeder i images/ og tilføj en linje her — galleriet
-     og lightboxen opdaterer sig selv.
+     INSPIRATIONS-SHOWCASE — billeder OG videoer
+     Læg nye filer i images/ og tilføj en linje her — mosaikken og
+     lightboxen opdaterer sig selv.
+       Billede: { src: 'images/fil.jpg', alt: 'Beskrivelse' }
+       Video:   { src: 'images/fil.mp4', type: 'video', alt: 'Beskrivelse' }
+       Stort felt i mosaikken: tilføj featured: true
      ========================================================== */
-  var INSPIRATION_IMAGES = [
-    { src: 'images/insta-1.jpg', alt: 'Matchende script-tatoveringer på overarmene' },
+  var INSPIRATION_MEDIA = [
+    { src: 'images/insta-1.jpg', alt: 'Matchende script-tatoveringer på overarmene', featured: true },
     { src: 'images/insta-2.jpg', alt: 'Små matchende motiver på underarmene' },
     { src: 'images/insta-3.jpg', alt: 'Fine fineline blomster-tatoveringer' },
+    { src: 'images/studio-video.mp4', type: 'video', alt: 'Rundtur i studiet på Roskildevej', featured: true },
     { src: 'images/insta-4.jpg', alt: 'Matchende firkløver-tatoveringer til hele familien' },
     { src: 'images/insta-5.jpg', alt: 'Matchende tatoveringer på armene — mor og datter' },
     { src: 'images/insta-6.jpg', alt: 'Sommerfugle og elefant-motiver' }
+  ];
+
+  /* ==========================================================
+     INSTAGRAM-SEKTION (bunden af siden)
+     Samme format som ovenfor — hvert felt linker til profilen.
+     Sæt url på et enkelt felt for at linke direkte til et opslag.
+     ========================================================== */
+  var INSTAGRAM_PROFILE = 'https://www.instagram.com/tattoofashion';
+  var INSTAGRAM_ITEMS = [
+    { src: 'images/insta-1.jpg', alt: 'Instagram-opslag: matchende script-tatoveringer' },
+    { src: 'images/insta-2.jpg', alt: 'Instagram-opslag: små matchende motiver' },
+    { src: 'images/insta-3.jpg', alt: 'Instagram-opslag: fineline blomster' },
+    { src: 'images/insta-4.jpg', alt: 'Instagram-opslag: firkløver-tatoveringer' },
+    { src: 'images/insta-5.jpg', alt: 'Instagram-opslag: mor og datter' },
+    { src: 'images/insta-6.jpg', alt: 'Instagram-opslag: sommerfugle og elefanter' }
   ];
 
   function escapeHtml(s) {
@@ -111,28 +130,49 @@
     });
   }
 
-  // --- Inspirations-galleri + lightbox ---
+  // --- Fælles medie-markup (billede eller video-tile) ---
+  function mediaHtml(item) {
+    if (item.type === 'video') {
+      return '<video src="' + escapeHtml(item.src) + '" muted playsinline loop preload="metadata" aria-label="' + escapeHtml(item.alt) + '"></video>' +
+        '<span class="media-play-badge" aria-hidden="true">' +
+        '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>' +
+        '</span>';
+    }
+    return '<img src="' + escapeHtml(item.src) + '" alt="' + escapeHtml(item.alt) + '" loading="lazy" decoding="async">';
+  }
+
+  // Videoer i grids afspiller lydløst ved hover
+  function enableHoverPlay(container) {
+    container.querySelectorAll('video').forEach(function (v) {
+      var tile = v.closest('.insp-item, .ig-item') || v;
+      tile.addEventListener('mouseenter', function () { v.play().catch(function () {}); });
+      tile.addEventListener('mouseleave', function () { v.pause(); });
+    });
+  }
+
+  // --- Inspirations-showcase + lightbox ---
   var inspGrid = document.getElementById('inspGrid');
   var lightbox = document.getElementById('inspLightbox');
   var lbImg = document.getElementById('inspLbImg');
+  var lbVideo = document.getElementById('inspLbVideo');
   var lbCounter = document.getElementById('inspLbCounter');
   var lbIndex = 0;
   var lastFocus = null;
 
-  if (inspGrid && INSPIRATION_IMAGES.length) {
-    INSPIRATION_IMAGES.forEach(function (img, i) {
+  if (inspGrid && INSPIRATION_MEDIA.length) {
+    INSPIRATION_MEDIA.forEach(function (item, i) {
       var btn = document.createElement('button');
       btn.type = 'button';
-      btn.className = 'insp-item';
-      btn.setAttribute('aria-label', 'Vis billede: ' + img.alt);
-      btn.innerHTML =
-        '<img src="' + escapeHtml(img.src) + '" alt="' + escapeHtml(img.alt) + '" loading="lazy" decoding="async">' +
+      btn.className = 'insp-item' + (item.featured ? ' insp-item-large' : '');
+      btn.setAttribute('aria-label', (item.type === 'video' ? 'Afspil video: ' : 'Vis billede: ') + item.alt);
+      btn.innerHTML = mediaHtml(item) +
         '<span class="insp-item-overlay" aria-hidden="true">' +
         '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg>' +
         '</span>';
       btn.addEventListener('click', function () { openLightbox(i); });
       inspGrid.appendChild(btn);
     });
+    enableHoverPlay(inspGrid);
   }
 
   function openLightbox(i) {
@@ -148,19 +188,52 @@
   function closeLightbox() {
     lightbox.hidden = true;
     document.body.style.overflow = '';
+    lbVideo.pause();
+    lbVideo.removeAttribute('src');
     if (lastFocus) lastFocus.focus();
   }
 
   function stepLightbox(dir) {
-    lbIndex = (lbIndex + dir + INSPIRATION_IMAGES.length) % INSPIRATION_IMAGES.length;
+    lbIndex = (lbIndex + dir + INSPIRATION_MEDIA.length) % INSPIRATION_MEDIA.length;
     updateLightbox();
   }
 
   function updateLightbox() {
-    var img = INSPIRATION_IMAGES[lbIndex];
-    lbImg.src = img.src;
-    lbImg.alt = img.alt;
-    lbCounter.textContent = (lbIndex + 1) + ' / ' + INSPIRATION_IMAGES.length;
+    var item = INSPIRATION_MEDIA[lbIndex];
+    var isVideo = item.type === 'video';
+    lbVideo.pause();
+    if (isVideo) {
+      lbImg.hidden = true;
+      lbVideo.hidden = false;
+      lbVideo.src = item.src;
+      lbVideo.play().catch(function () {});
+    } else {
+      lbVideo.removeAttribute('src');
+      lbVideo.hidden = true;
+      lbImg.hidden = false;
+      lbImg.src = item.src;
+      lbImg.alt = item.alt;
+    }
+    lbCounter.textContent = (lbIndex + 1) + ' / ' + INSPIRATION_MEDIA.length;
+  }
+
+  // --- Instagram-grid ---
+  var igGrid = document.getElementById('igGrid');
+  if (igGrid && INSTAGRAM_ITEMS.length) {
+    INSTAGRAM_ITEMS.forEach(function (item) {
+      var a = document.createElement('a');
+      a.className = 'ig-item';
+      a.href = item.url || INSTAGRAM_PROFILE;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      a.setAttribute('aria-label', item.alt + ' — åbner Instagram');
+      a.innerHTML = mediaHtml(item) +
+        '<span class="ig-item-overlay" aria-hidden="true">' +
+        '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>' +
+        '</span>';
+      igGrid.appendChild(a);
+    });
+    enableHoverPlay(igGrid);
   }
 
   if (lightbox) {

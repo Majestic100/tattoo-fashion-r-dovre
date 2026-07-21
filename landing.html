@@ -189,14 +189,15 @@
     </div>
   </section>
 
-  <!-- INSPIRATION — galleri over tidligere arbejde (masonry + lightbox).
-       Billederne styres i landing.js i listen INSPIRATION_IMAGES:
-       laeg nye filer i images/ og tilfoej en linje i listen — resten sker selv. -->
+  <!-- INSPIRATION — showcase af tidligere arbejde (billeder OG videoer).
+       Medierne styres i landing.js i listen INSPIRATION_MEDIA:
+       laeg nye filer i images/ og tilfoej en linje i listen — resten sker selv.
+       Saet featured: true paa de medier, der skal fylde et stort felt. -->
   <section class="insp-section">
     <div class="container">
       <p class="lp-label reveal">Inspiration</p>
       <h2 class="lp-title reveal">Bliv inspireret af vores arbejde</h2>
-      <p class="insp-sub reveal">Et udpluk af det, vi har lavet i studiet — fra fine linjer til store projekter. Klik på et billede for at se det tættere på.</p>
+      <p class="insp-sub reveal">Et udpluk af det, vi har lavet for vores kunder — billeder og video, fra fine linjer til store projekter. Klik for at se tættere på.</p>
       <div class="insp-grid" id="inspGrid"></div>
       <div class="lp-inline-cta reveal">
         <a href="#tilbud" class="btn btn-primary">Fået en idé? Send den til os</a>
@@ -355,6 +356,23 @@
     </div>
   </section>
 
+  <!-- INSTAGRAM — billeder/videoer med link til profilen.
+       Medierne styres i landing.js i listen INSTAGRAM_ITEMS. -->
+  <section class="ig-section">
+    <div class="container">
+      <p class="lp-label reveal">Instagram</p>
+      <h2 class="lp-title reveal">Følg med på @tattoofashion</h2>
+      <p class="ig-sub reveal">Nye designs, videoer og glimt fra hverdagen i studiet.</p>
+      <div class="ig-grid" id="igGrid"></div>
+      <div class="lp-inline-cta reveal">
+        <a href="https://www.instagram.com/tattoofashion" target="_blank" rel="noopener noreferrer" class="btn btn-outline ig-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          Følg os på Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER — minimal -->
   <footer class="lp-footer">
     <div class="container">
@@ -377,6 +395,7 @@
     <button class="insp-lb-close" id="inspLbClose" aria-label="Luk">&times;</button>
     <button class="insp-lb-nav insp-lb-prev" id="inspLbPrev" aria-label="Forrige billede">&#8249;</button>
     <img class="insp-lb-img" id="inspLbImg" src="" alt="">
+    <video class="insp-lb-video" id="inspLbVideo" controls playsinline hidden></video>
     <button class="insp-lb-nav insp-lb-next" id="inspLbNext" aria-label="N&aelig;ste billede">&#8250;</button>
     <span class="insp-lb-counter" id="inspLbCounter"></span>
   </div>

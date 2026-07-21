@@ -672,9 +672,13 @@ button:focus-visible {
   color: var(--text-secondary);
 }
 
+/* Mosaik med faste rækkehøjder = ingen layout-hop ved lazy load.
+   Normale felter fylder 1x2 rækker, featured felter 2x4. */
 .insp-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 150px;
+  grid-auto-flow: dense;
   gap: 14px;
   margin-bottom: 48px;
 }
@@ -683,7 +687,7 @@ button:focus-visible {
   position: relative;
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 5; /* fast format = ingen layout-hop ved lazy load */
+  grid-row: span 2;
   padding: 0;
   border: 1px solid var(--border);
   border-radius: 10px;
@@ -692,19 +696,47 @@ button:focus-visible {
   cursor: zoom-in;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
+.insp-item-large {
+  grid-column: span 2;
+  grid-row: span 4;
+}
 .insp-item:hover {
   border-color: var(--accent);
   box-shadow: 0 15px 40px -18px rgba(201, 165, 92, 0.4);
 }
-.insp-item img {
+.insp-item img,
+.insp-item video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.insp-item:hover img {
+.insp-item:hover img,
+.insp-item:hover video {
   transform: scale(1.04);
+}
+
+/* Play-badge på video-felter */
+.media-play-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 10, 10, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  color: #ffffff;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+.media-play-badge svg {
+  margin-left: 2px;
 }
 
 .insp-item-overlay {
@@ -739,12 +771,17 @@ button:focus-visible {
 .insp-lightbox[hidden] {
   display: none;
 }
-.insp-lb-img {
+.insp-lb-img,
+.insp-lb-video {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
   border-radius: 8px;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
+}
+.insp-lb-img[hidden],
+.insp-lb-video[hidden] {
+  display: none;
 }
 .insp-lb-close,
 .insp-lb-nav {
@@ -1275,6 +1312,79 @@ button:focus-visible {
   color: var(--text-secondary);
 }
 
+/* --- INSTAGRAM --- */
+.ig-section {
+  padding: 110px 0;
+  position: relative;
+}
+.ig-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.5;
+}
+
+.ig-sub {
+  max-width: 620px;
+  margin: -16px 0 40px;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.ig-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.ig-item {
+  position: relative;
+  display: block;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+}
+.ig-item img,
+.ig-item video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ig-item:hover img,
+.ig-item:hover video {
+  transform: scale(1.06);
+}
+
+.ig-item-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(201, 165, 92, 0.35);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.ig-item:hover .ig-item-overlay,
+.ig-item:focus-visible .ig-item-overlay {
+  opacity: 1;
+}
+
+.ig-btn {
+  gap: 10px;
+}
+
 /* --- FOOTER --- */
 .lp-footer {
   padding: 48px 0;
@@ -1365,7 +1475,8 @@ button:focus-visible {
   .lp-studio,
   .tp-section,
   .lp-faq,
-  .lp-final {
+  .lp-final,
+  .ig-section {
     padding: 64px 0;
   }
   .lp-title { margin-bottom: 28px; }
@@ -1390,10 +1501,17 @@ button:focus-visible {
 
   .insp-grid {
     grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 105px;
     gap: 8px;
     margin-bottom: 32px;
   }
   .insp-item { border-radius: 8px; }
+  .media-play-badge { top: 8px; right: 8px; width: 28px; height: 28px; }
+  .ig-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-bottom: 28px;
+  }
   .insp-lightbox { padding: 64px 12px; }
   .insp-lb-nav { width: 42px; height: 42px; }
   .insp-lb-prev { left: 8px; }
