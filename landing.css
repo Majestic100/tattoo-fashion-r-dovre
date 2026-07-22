@@ -984,31 +984,36 @@ button:focus-visible {
 
 .lp-artists-row {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
 .lp-artist {
-  text-align: center;
+  background: var(--bg-card);
+  border: 1.5px solid #362e25;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.lp-artist:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px -18px rgba(201, 165, 92, 0.35);
 }
 .lp-artist img {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   object-position: center top;
-  border-radius: 10px;
-  border: 1.5px solid #362e25;
-  margin-bottom: 12px;
-  transition: border-color 0.3s ease, transform 0.3s ease;
+  display: block;
 }
-.lp-artist:hover img {
-  border-color: var(--accent);
-  transform: translateY(-4px);
+.lp-artist-info {
+  padding: 16px 18px 18px;
 }
 .lp-artist strong {
   display: block;
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -1021,6 +1026,12 @@ button:focus-visible {
   letter-spacing: 0.06em;
   color: var(--accent);
   margin-top: 2px;
+}
+.lp-artist p {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
 }
 
 /* --- STUDIET --- */
@@ -1617,8 +1628,7 @@ button:focus-visible {
   }
   .lp-hero-sub { max-width: none; }
   .lp-artists-row {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    grid-template-columns: repeat(2, 1fr);
   }
   .lp-studio-grid {
     grid-template-columns: 1fr;
@@ -1664,6 +1674,26 @@ button:focus-visible {
     grid-template-columns: 1fr;
     gap: 28px;
   }
+
+  /* Kunstnerne bliver en swipebar række, så sektionen holder sig kompakt */
+  .lp-artists-row {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 4px;
+    margin: -4px;
+  }
+  .lp-artists-row::-webkit-scrollbar { display: none; }
+  .lp-artist {
+    flex: 0 0 auto;
+    width: 240px;
+    scroll-snap-align: start;
+  }
+  .lp-artist-info { padding: 12px 14px 14px; }
+  .lp-artist p { font-size: 0.8rem; }
 
   .gal-rows { gap: 10px; margin-bottom: 28px; }
   .gal-group { gap: 10px; padding: 0 5px; }
@@ -1745,10 +1775,6 @@ button:focus-visible {
 }
 
 @media (max-width: 480px) {
-  .lp-artists-row {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
   .lp-logo-sub { display: none; }
   .lp-logo { font-size: 1.2rem; }
 }
