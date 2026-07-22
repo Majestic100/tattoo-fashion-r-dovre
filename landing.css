@@ -294,6 +294,74 @@ button:focus-visible {
   margin-bottom: 20px;
 }
 
+/* Tilbuds-boksen — kampagnens hovedbudskab */
+.lp-offer {
+  position: relative;
+  display: inline-block;
+  padding: 20px 24px 16px;
+  margin: 6px 0 26px;
+  background: linear-gradient(135deg, rgba(201, 165, 92, 0.16), rgba(201, 165, 92, 0.04));
+  border: 1.5px solid var(--accent);
+  border-radius: 12px;
+  animation: lp-offer-glow 3s ease-in-out infinite;
+}
+@keyframes lp-offer-glow {
+  0%, 100% { box-shadow: 0 10px 40px -12px rgba(201, 165, 92, 0.35); }
+  50% { box-shadow: 0 10px 50px -8px rgba(201, 165, 92, 0.65); }
+}
+
+.lp-offer-badge {
+  position: absolute;
+  top: -13px;
+  left: 18px;
+  padding: 4px 14px;
+  background: var(--accent);
+  color: var(--bg-primary);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.lp-offer-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px 16px;
+  flex-wrap: wrap;
+}
+.lp-offer-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  line-height: 1;
+  color: var(--accent);
+  text-shadow: 0 0 30px rgba(201, 165, 92, 0.35);
+}
+.lp-offer-unit {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-primary);
+}
+.lp-offer-old {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+}
+.lp-offer-old s {
+  color: var(--text-muted);
+}
+
+.lp-offer-note {
+  margin-top: 8px;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+.lp-offer-note strong {
+  color: var(--accent);
+}
+
 .lp-hero-sub {
   font-size: 1.02rem;
   line-height: 1.75;
@@ -394,6 +462,24 @@ button:focus-visible {
   letter-spacing: 0.04em;
   line-height: 1.1;
   margin-bottom: 8px;
+}
+
+.lead-offer {
+  display: inline-block;
+  padding: 7px 14px;
+  margin-bottom: 12px;
+  background: rgba(201, 165, 92, 0.1);
+  border: 1px solid rgba(201, 165, 92, 0.4);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+.lead-offer strong {
+  color: var(--accent);
+  font-size: 1.05rem;
+}
+.lead-offer s {
+  color: var(--text-muted);
 }
 
 .lead-sub {
