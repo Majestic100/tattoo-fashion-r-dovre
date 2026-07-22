@@ -699,6 +699,9 @@ button:focus-visible {
   color: var(--accent);
   font-weight: 700;
 }
+.path-list s {
+  color: var(--text-muted);
+}
 
 .path-cta {
   margin-top: auto;
@@ -1457,6 +1460,9 @@ button:focus-visible {
   font-size: 1rem;
   color: var(--text-secondary);
   margin-bottom: 32px;
+}
+.lp-final-sub strong {
+  color: var(--accent);
 }
 .lp-final-actions {
   display: flex;
