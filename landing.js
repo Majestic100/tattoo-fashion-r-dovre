@@ -53,7 +53,7 @@
      Samme format som ovenfor — hvert felt linker til profilen.
      Sæt url på et enkelt felt for at linke direkte til et opslag.
      ========================================================== */
-  var INSTAGRAM_PROFILE = 'https://www.instagram.com/tattoofashion';
+  var INSTAGRAM_PROFILE = 'https://www.instagram.com/tattoo_fashion_roedovre/';
   var INSTAGRAM_ITEMS = [
     { src: 'images/insta-1.jpg', alt: 'Instagram-opslag: matchende script-tatoveringer' },
     { src: 'images/insta-2.jpg', alt: 'Instagram-opslag: små matchende motiver' },

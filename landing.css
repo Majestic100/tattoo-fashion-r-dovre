@@ -310,6 +310,38 @@ button:focus-visible {
   50% { box-shadow: 0 10px 50px -8px rgba(201, 165, 92, 0.65); }
 }
 
+/* Glans-strejf der fejer hen over tilbuddet — som lys over poleret guld.
+   Egen wrapper med overflow:hidden, så badgen ovenover ikke klippes */
+.lp-offer-shine {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  pointer-events: none;
+}
+.lp-offer-shine::before {
+  content: "";
+  position: absolute;
+  top: -60%;
+  bottom: -60%;
+  left: 0;
+  width: 45%;
+  background: linear-gradient(
+    105deg,
+    transparent 15%,
+    rgba(255, 244, 214, 0.16) 40%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 244, 214, 0.16) 60%,
+    transparent 85%
+  );
+  transform: translateX(-260%) skewX(-18deg);
+  animation: lp-offer-shine 4.5s ease-in-out infinite;
+}
+@keyframes lp-offer-shine {
+  0% { transform: translateX(-260%) skewX(-18deg); }
+  55%, 100% { transform: translateX(460%) skewX(-18deg); }
+}
+
 .lp-offer-badge {
   position: absolute;
   top: -13px;
