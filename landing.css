@@ -396,40 +396,17 @@ button:focus-visible {
   margin-bottom: 18px;
 }
 
-/* GHL-formularens plads — embed-scriptet styrer selv højden */
+/* GHL-formularens plads — embed-scriptet styrer selv højden.
+   min-height ligger tæt på formularens reelle højde (976px), så
+   siden ikke hopper, mens scriptet loader */
 .ghl-form-wrap {
-  min-height: 460px;
+  min-height: 700px;
 }
 .ghl-form-wrap iframe {
   width: 100%;
   border: none;
   border-radius: 8px;
-  min-height: 460px;
-}
-
-.ghl-placeholder {
-  min-height: 460px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  text-align: center;
-  padding: 32px 24px;
-  border: 1.5px dashed rgba(201, 165, 92, 0.4);
-  border-radius: 8px;
-  color: var(--text-secondary);
-}
-.ghl-placeholder svg { color: var(--accent); }
-.ghl-placeholder strong {
-  font-size: 0.95rem;
-  color: var(--text-primary);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-.ghl-placeholder span {
-  font-size: 0.82rem;
-  line-height: 1.6;
+  min-height: 700px;
 }
 
 .lead-microcopy {
