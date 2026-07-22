@@ -977,6 +977,56 @@ button:focus-visible {
   margin-top: 3px;
 }
 
+/* --- FIND OS — ADRESSE OG KORT --- */
+.lp-map-section {
+  padding: 110px 0;
+  position: relative;
+}
+.lp-map-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.5;
+}
+
+.lp-map-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.lp-map-info > p {
+  font-size: 0.98rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 18px;
+}
+.lp-map-info > p:last-child {
+  margin-bottom: 0;
+}
+.lp-map-address strong {
+  color: var(--text-primary);
+}
+
+.lp-map-wrap {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+}
+.lp-map-wrap iframe {
+  width: 100%;
+  height: 420px;
+  border: 0;
+  display: block;
+}
+
 /* --- ANMELDELSER — TRUSTPILOT-MARQUEE --- */
 .tp-section {
   padding: 110px 0;
@@ -1480,12 +1530,19 @@ button:focus-visible {
   .insp-section,
   .lp-artists,
   .lp-studio,
+  .lp-map-section,
   .tp-section,
   .lp-faq,
   .lp-final,
   .ig-section {
     padding: 64px 0;
   }
+
+  .lp-map-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .lp-map-wrap iframe { height: 300px; }
   .lp-title { margin-bottom: 28px; }
 
   .lp-stats { padding: 36px 0; }
@@ -1870,6 +1927,31 @@ button:focus-visible {
               Mandag — Lørdag, 10:00 — 18:00 &middot; Kun efter aftale
             </li>
           </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIND OS — adresse og kort -->
+  <section class="lp-map-section">
+    <div class="container">
+      <div class="lp-map-grid">
+        <div class="lp-map-info reveal">
+          <p class="lp-label">Find os</p>
+          <h2 class="lp-title lp-title-left">Her kan du finde os</h2>
+          <p>Vi holder til i et professionelt studie på Roskildevej i Rødovre, hvor vi tager imod alle vores kunder.</p>
+          <p class="lp-map-address">Vores adresse er: <strong>Roskildevej 284, 2610 Rødovre</strong></p>
+          <p>Når du booker din konsultation, sender vi dig også praktisk info om parkering og alt det, du skal vide, inden du kigger forbi.</p>
+          <p>Vi glæder os til at byde dig velkommen i studiet.</p>
+        </div>
+        <div class="lp-map-wrap reveal" style="--i:1">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2250.5!2d12.4534!3d55.6712!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTXCsDQwJzE2LjMiTiAxMsKwMjcnMTIuMiJF!5e0!3m2!1sda!2sdk!4v1"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Kort over Tattoo Fashion — Roskildevej 284, 2610 Rødovre"
+          ></iframe>
         </div>
       </div>
     </div>
