@@ -168,14 +168,16 @@ button:focus-visible {
   height: 62px;
 }
 
-.lp-logo-link {
-  display: inline-flex;
-  align-items: center;
+.lp-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.35rem;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
 }
-.lp-logo-img {
-  height: 52px;
-  width: auto;
-  display: block;
+.lp-logo-sub {
+  color: var(--accent);
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
 }
 
 .lp-header-actions {
@@ -1392,10 +1394,11 @@ button:focus-visible {
   text-align: center;
   border-top: 1px solid var(--border);
 }
-.lp-footer-logo-img {
-  width: 130px;
-  height: auto;
-  margin: 0 auto 16px;
+.lp-footer-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
 }
 .lp-footer p {
   font-size: 0.85rem;
@@ -1511,8 +1514,6 @@ button:focus-visible {
     padding: 24px 20px 20px;
   }
 
-  .lp-logo-img { height: 42px; }
-
   /* Formularen skal så højt op som muligt på mobil —
      punkterne gentages i stats-sektionen lige under */
   .lp-hero-checks { display: none; }
@@ -1559,7 +1560,8 @@ button:focus-visible {
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
   }
-  .lp-logo-img { height: 38px; }
+  .lp-logo-sub { display: none; }
+  .lp-logo { font-size: 1.2rem; }
 }
 
 /* --- REDUCERET BEVÆGELSE --- */
