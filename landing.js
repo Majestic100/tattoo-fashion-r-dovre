@@ -271,10 +271,19 @@
     });
   }
 
-  // --- Header: mørk baggrund når der scrolles ---
+  // --- Header: mørk baggrund ved scroll + skjul ved rul ned (mobil) ---
   var header = document.getElementById('lpHeader');
+  var lastScrollY = window.scrollY;
   var onScroll = function () {
-    header.classList.toggle('scrolled', window.scrollY > 24);
+    var y = window.scrollY;
+    header.classList.toggle('scrolled', y > 24);
+    // Skjul først et stykke nede på siden; vis straks ved rul op
+    if (y > lastScrollY + 6 && y > 280) {
+      header.classList.add('lp-header-hidden');
+    } else if (y < lastScrollY - 6 || y <= 280) {
+      header.classList.remove('lp-header-hidden');
+    }
+    lastScrollY = y;
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();

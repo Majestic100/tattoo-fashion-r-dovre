@@ -151,7 +151,7 @@ button:focus-visible {
   z-index: 1000;
   background: transparent;
   border-bottom: 1px solid transparent;
-  transition: background 0.4s ease, border-color 0.4s ease;
+  transition: background 0.4s ease, border-color 0.4s ease, transform 0.3s ease;
 }
 .lp-header.scrolled {
   background: rgba(21, 18, 16, 0.96);
@@ -1698,6 +1698,12 @@ button:focus-visible {
 
   .lp-header-phone span { display: none; }
   .lp-header-actions { gap: 12px; }
+
+  /* På mobil gemmer headeren sig, når man ruller ned (bund-CTA'en
+     overtager) — og glider frem igen, når man ruller op */
+  .lp-header.lp-header-hidden {
+    transform: translateY(-100%);
+  }
 
   /* Sticky mobil-CTA — fast højde og ingen linjeskift, så den ikke bliver for høj */
   .lp-mobile-cta {
