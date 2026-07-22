@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
 <title>Preview — Tattoo Fashion landingpage</title>
 <style>
 @font-face {
@@ -282,10 +288,15 @@ button:focus-visible {
   z-index: 2;
 }
 
+/* Hero får lidt ekstra bredde, og formular-kolonnen er den brede */
+.lp-hero .container {
+  max-width: 1280px;
+}
+
 .lp-hero-grid {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 56px;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 48px;
   align-items: center;
 }
 
@@ -416,40 +427,17 @@ button:focus-visible {
   margin-bottom: 18px;
 }
 
-/* GHL-formularens plads — embed-scriptet styrer selv højden */
+/* GHL-formularens plads — embed-scriptet styrer selv højden.
+   min-height ligger tæt på formularens reelle højde (976px), så
+   siden ikke hopper, mens scriptet loader */
 .ghl-form-wrap {
-  min-height: 460px;
+  min-height: 700px;
 }
 .ghl-form-wrap iframe {
   width: 100%;
   border: none;
   border-radius: 8px;
-  min-height: 460px;
-}
-
-.ghl-placeholder {
-  min-height: 460px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  text-align: center;
-  padding: 32px 24px;
-  border: 1.5px dashed rgba(201, 165, 92, 0.4);
-  border-radius: 8px;
-  color: var(--text-secondary);
-}
-.ghl-placeholder svg { color: var(--accent); }
-.ghl-placeholder strong {
-  font-size: 0.95rem;
-  color: var(--text-primary);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-.ghl-placeholder span {
-  font-size: 0.82rem;
-  line-height: 1.6;
+  min-height: 700px;
 }
 
 .lead-microcopy {
@@ -989,6 +977,56 @@ button:focus-visible {
   margin-top: 3px;
 }
 
+/* --- FIND OS — ADRESSE OG KORT --- */
+.lp-map-section {
+  padding: 110px 0;
+  position: relative;
+}
+.lp-map-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.5;
+}
+
+.lp-map-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.lp-map-info > p {
+  font-size: 0.98rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 18px;
+}
+.lp-map-info > p:last-child {
+  margin-bottom: 0;
+}
+.lp-map-address strong {
+  color: var(--text-primary);
+}
+
+.lp-map-wrap {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+}
+.lp-map-wrap iframe {
+  width: 100%;
+  height: 420px;
+  border: 0;
+  display: block;
+}
+
 /* --- ANMELDELSER — TRUSTPILOT-MARQUEE --- */
 .tp-section {
   padding: 110px 0;
@@ -1492,12 +1530,19 @@ button:focus-visible {
   .insp-section,
   .lp-artists,
   .lp-studio,
+  .lp-map-section,
   .tp-section,
   .lp-faq,
   .lp-final,
   .ig-section {
     padding: 64px 0;
   }
+
+  .lp-map-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .lp-map-wrap iframe { height: 300px; }
   .lp-title { margin-bottom: 28px; }
 
   .lp-stats { padding: 36px 0; }
@@ -1631,6 +1676,8 @@ button:focus-visible {
 }
 
 </style>
+</head>
+<body>
 
 
   <!-- HEADER — minimal, ingen navigation (én vej: formularen) -->
@@ -1680,27 +1727,27 @@ button:focus-visible {
           <h2 class="lead-title">Få et uforpligtende tilbud</h2>
           <p class="lead-sub">Fortæl os om din idé — vi matcher dig med den rigtige kunstner og vender tilbage inden for 48 timer.</p>
 
+          <!-- GHL-formular — form_embed.js styrer selv iframens hoejde -->
           <div class="ghl-form-wrap" id="ghlFormMount">
-            <!-- ==================================================
-                 GHL-FORMULAR INDSÆTTES HER
-                 1) Slet <div class="ghl-placeholder">...</div> nedenfor
-                 2) Indsæt embed-koden fra GoHighLevel
-                    (Sites → Forms → Integrate → Embed), fx:
-
-                 <iframe src="https://api.leadconnectorhq.com/widget/form/DIT_FORM_ID"
-                   style="width:100%;border:none;border-radius:8px"
-                   id="inline-DIT_FORM_ID"
-                   title="Tattoo Fashion — Tilbudsformular"></iframe>
-                 <script src="https://link.msgsndr.com/js/form_embed.js"></script>
-
-                 Scriptet sørger selv for at iframen får den rigtige højde.
-                 ================================================== -->
-            <div class="ghl-placeholder">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h10M7 13h10M7 17h6"/></svg>
-              <strong>GHL-formular indsættes her</strong>
-              <span>Erstat denne boks med jeres GoHighLevel embed-kode<br>(Sites &rarr; Forms &rarr; Integrate &rarr; Embed)<br><br><em>Preview-note: GHL-formularen og videoerne (hero + studie) vises f&oslash;rst p&aring; den rigtige side.</em></span>
-            </div>
+            <iframe
+              src="https://billeder.dkinkcopenhagen.com/widget/form/XTGrZcQzT4zy5WU14Z93"
+              style="width:100%;height:100%;border:none;border-radius:10px"
+              id="inline-XTGrZcQzT4zy5WU14Z93"
+              data-layout="{'id':'INLINE'}"
+              data-trigger-type="alwaysShow"
+              data-trigger-value=""
+              data-activation-type="alwaysActivated"
+              data-activation-value=""
+              data-deactivation-type="neverDeactivate"
+              data-deactivation-value=""
+              data-form-name="TATTOO FASHION I FORM - DANISH "
+              data-height="976"
+              data-layout-iframe-id="inline-XTGrZcQzT4zy5WU14Z93"
+              data-form-id="XTGrZcQzT4zy5WU14Z93"
+              title="TATTOO FASHION I FORM - DANISH "
+            ></iframe>
           </div>
+          <script src="https://billeder.dkinkcopenhagen.com/js/form_embed.js"></script>
 
           <p class="lead-microcopy">100% uforpligtende — du binder dig ikke til noget.</p>
         </div>
@@ -1880,6 +1927,31 @@ button:focus-visible {
               Mandag — Lørdag, 10:00 — 18:00 &middot; Kun efter aftale
             </li>
           </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIND OS — adresse og kort -->
+  <section class="lp-map-section">
+    <div class="container">
+      <div class="lp-map-grid">
+        <div class="lp-map-info reveal">
+          <p class="lp-label">Find os</p>
+          <h2 class="lp-title lp-title-left">Her kan du finde os</h2>
+          <p>Vi holder til i et professionelt studie på Roskildevej i Rødovre, hvor vi tager imod alle vores kunder.</p>
+          <p class="lp-map-address">Vores adresse er: <strong>Roskildevej 284, 2610 Rødovre</strong></p>
+          <p>Når du booker din konsultation, sender vi dig også praktisk info om parkering og alt det, du skal vide, inden du kigger forbi.</p>
+          <p>Vi glæder os til at byde dig velkommen i studiet.</p>
+        </div>
+        <div class="lp-map-wrap reveal" style="--i:1">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2250.5!2d12.4534!3d55.6712!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTXCsDQwJzE2LjMiTiAxMsKwMjcnMTIuMiJF!5e0!3m2!1sda!2sdk!4v1"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Kort over Tattoo Fashion — Roskildevej 284, 2610 Rødovre"
+          ></iframe>
         </div>
       </div>
     </div>
@@ -2352,3 +2424,5 @@ button:focus-visible {
 })();
 
 </script>
+</body>
+</html>
