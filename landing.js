@@ -175,30 +175,35 @@
         '</span></button>';
     };
 
-    // To rækker i hver sin retning — fyldes op til skærmbredden ligesom
-    // anmeldelses-marqueen, så der aldrig opstår tomrum
+    // Hver række viser ALLE felter (i hver sin rækkefølge og retning), så en
+    // fuld skærmbredde fyldes med unikt arbejde, før noget gentages. Det
+    // undgår, at de samme videoer står side om side på brede skærme.
     var GAL_ITEM_WIDTH = 240;
     var galScreen = Math.max(window.innerWidth, window.screen ? window.screen.width : 0, 1440);
-    var galHalf = Math.ceil(INSPIRATION_MEDIA.length / 2);
+    var galCells = INSPIRATION_MEDIA.map(function (item, i) { return { item: item, idx: i }; });
+    var galMid = Math.floor(galCells.length / 2);
     var galRows = [
-      { items: INSPIRATION_MEDIA.slice(0, galHalf), start: 0, reverse: false },
-      { items: INSPIRATION_MEDIA.slice(galHalf), start: galHalf, reverse: true }
+      { cells: galCells, reverse: false },
+      // Række 2: samme felter, men roteret et halvt sæt og modsat retning
+      { cells: galCells.slice(galMid).concat(galCells.slice(0, galMid)), reverse: true }
     ];
     galRows.forEach(function (row) {
-      if (!row.items.length) return;
-      var copies = Math.max(1, Math.ceil((galScreen * 1.3) / (row.items.length * GAL_ITEM_WIDTH)));
+      if (!row.cells.length) return;
+      // Kun så mange kopier at ét spor er bredere end skærmen (undgår tomrum).
+      // Med alle felter i rækken bliver det typisk 1 kopi = ingen nabo-gentagelser.
+      var copies = Math.max(1, Math.ceil((galScreen * 1.15) / (row.cells.length * GAL_ITEM_WIDTH)));
       var groupHtml = '';
       var dupHtml = '';
       for (var c = 0; c < copies; c++) {
-        row.items.forEach(function (item, j) {
-          groupHtml += galTile(item, row.start + j, false);
-          dupHtml += galTile(item, row.start + j, true);
+        row.cells.forEach(function (cell) {
+          groupHtml += galTile(cell.item, cell.idx, false);
+          dupHtml += galTile(cell.item, cell.idx, true);
         });
       }
       var rowEl = document.createElement('div');
       rowEl.className = 'gal-row' + (row.reverse ? ' gal-row-reverse' : '');
       // ~8s pr. felt giver en rolig glidning uanset antal medier
-      rowEl.style.setProperty('--gal-dur', Math.round(row.items.length * copies * 8) + 's');
+      rowEl.style.setProperty('--gal-dur', Math.round(row.cells.length * copies * 8) + 's');
       rowEl.innerHTML =
         '<div class="gal-track">' +
         '<div class="gal-group">' + groupHtml + '</div>' +
