@@ -271,6 +271,24 @@
     });
   }
 
+  // --- Størrelsesguide: indlæs + afspil videoerne først når de er i syne ---
+  var sizeVideos = document.querySelectorAll('.size-media video[data-src]');
+  if (sizeVideos.length && 'IntersectionObserver' in window) {
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var sizeObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var v = e.target;
+        if (e.isIntersecting) {
+          if (!v.src) v.src = v.getAttribute('data-src'); // hentes først her (loadtid)
+          if (!reduceMotion) v.play().catch(function () {});
+        } else if (!v.paused) {
+          v.pause();
+        }
+      });
+    }, { threshold: 0.35 });
+    sizeVideos.forEach(function (v) { sizeObs.observe(v); });
+  }
+
   // --- Header: mørk baggrund ved scroll + skjul ved rul ned (mobil) ---
   var header = document.getElementById('lpHeader');
   var lastScrollY = window.scrollY;
