@@ -117,9 +117,12 @@
   }
 
   // --- Fælles medie-markup (billede eller video-tile) ---
+  // Videoer bruger data-src + poster, så de først hentes når de er i syne,
+  // og viser et stillbillede indtil da (også på mobil).
   function mediaHtml(item) {
     if (item.type === 'video') {
-      return '<video src="' + escapeHtml(item.src) + '" muted playsinline loop preload="metadata" aria-label="' + escapeHtml(item.alt) + '"></video>' +
+      var poster = item.src.replace(/\.mp4$/, '-poster.jpg');
+      return '<video data-src="' + escapeHtml(item.src) + '" poster="' + escapeHtml(poster) + '" muted playsinline loop preload="none" aria-label="' + escapeHtml(item.alt) + '"></video>' +
         '<span class="media-play-badge" aria-hidden="true">' +
         '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>' +
         '</span>';
@@ -127,13 +130,25 @@
     return '<img src="' + escapeHtml(item.src) + '" alt="' + escapeHtml(item.alt) + '" loading="lazy" decoding="async">';
   }
 
-  // Videoer i grids afspiller lydløst ved hover
-  function enableHoverPlay(container) {
-    container.querySelectorAll('video').forEach(function (v) {
-      var tile = v.closest('.insp-item, .ig-item') || v;
-      tile.addEventListener('mouseenter', function () { v.play().catch(function () {}); });
-      tile.addEventListener('mouseleave', function () { v.pause(); });
-    });
+  // Videoer i grids/marquee afspiller lydløst når de er i syne — også på
+  // mobil, hvor der ikke er hover. Kun synlige videoer hentes og spiller.
+  function enableAutoplayInView(container) {
+    var vids = container.querySelectorAll('video[data-src]');
+    if (!vids.length) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!('IntersectionObserver' in window)) return;
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var v = e.target;
+        if (e.isIntersecting) {
+          if (!v.src) v.src = v.getAttribute('data-src');
+          if (!reduce) v.play().catch(function () {});
+        } else if (!v.paused) {
+          v.pause();
+        }
+      });
+    }, { threshold: 0.4 });
+    vids.forEach(function (v) { obs.observe(v); });
   }
 
   // --- Inspirations-showcase + lightbox ---
@@ -192,7 +207,7 @@
       var btn = e.target.closest('.insp-item');
       if (btn) openLightbox(parseInt(btn.getAttribute('data-idx'), 10));
     });
-    enableHoverPlay(inspGrid);
+    enableAutoplayInView(inspGrid);
   }
 
   function openLightbox(i) {
@@ -253,7 +268,7 @@
         '</span>';
       igGrid.appendChild(a);
     });
-    enableHoverPlay(igGrid);
+    enableAutoplayInView(igGrid);
   }
 
   if (lightbox) {
