@@ -39,13 +39,13 @@
        Stort felt i mosaikken: tilføj featured: true
      ========================================================== */
   var INSPIRATION_MEDIA = [
-    { src: 'images/insta-1.jpg', alt: 'Matchende script-tatoveringer på overarmene', featured: true },
-    { src: 'images/insta-2.jpg', alt: 'Små matchende motiver på underarmene' },
-    { src: 'images/insta-3.jpg', alt: 'Fine fineline blomster-tatoveringer' },
-    { src: 'images/studio-video.mp4', type: 'video', alt: 'Rundtur i studiet på Roskildevej', featured: true },
-    { src: 'images/insta-4.jpg', alt: 'Matchende firkløver-tatoveringer til hele familien' },
-    { src: 'images/insta-5.jpg', alt: 'Matchende tatoveringer på armene, mor og datter' },
-    { src: 'images/insta-6.jpg', alt: 'Sommerfugle og elefant-motiver' }
+    { src: 'images/work-ksenia-snake.jpg', alt: 'Slange og pæoner i black and grey, rygstykke' },
+    { src: 'images/work-graesk.mp4', type: 'video', alt: 'Græsk-inspireret tatovering' },
+    { src: 'images/work-oldschool-gangster.jpg', alt: 'Old School Gangster portrætter i black and grey realism', featured: true },
+    { src: 'images/work-disney-ben.mp4', type: 'video', alt: 'Disney-projekt på hele benet' },
+    { src: 'images/work-pamela-leopard.jpg', alt: 'Leopard og liljer, fineline sleeve' },
+    { src: 'images/work-rygprojekt.mp4', type: 'video', alt: 'Fuldt rygprojekt i black and grey', featured: true },
+    { src: 'images/work-mini.mp4', type: 'video', alt: 'Mini-tatoveringer med fine detaljer' }
   ];
 
   /* ==========================================================
