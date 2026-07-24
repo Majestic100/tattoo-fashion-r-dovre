@@ -1836,13 +1836,16 @@ button:focus-visible {
     padding: 64px 0;
   }
 
-  /* Størrelsesguide bliver en swipebar række på mobil */
+  /* Størrelsesguide bliver en swipebar række på mobil.
+     touch-action: pan-x = rækken reagerer KUN på vandret swipe, så den
+     står helt stille, når man scroller lodret op/ned på siden */
   .size-guide-grid {
     display: flex;
     gap: 14px;
     overflow-x: auto;
     scroll-snap-type: x proximity;
     overscroll-behavior-x: contain;
+    touch-action: pan-x;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     padding: 4px;
@@ -1881,14 +1884,15 @@ button:focus-visible {
   }
 
   /* Kunstnerne bliver en swipebar række, så sektionen holder sig kompakt.
-     'proximity' + overscroll-contain gør, at rækken ikke kaprer den
-     lodrette scroll (ellers hopper siden, når man ruller forbi) */
+     touch-action: pan-x = rækken står stille ved lodret scroll og
+     reagerer kun på vandret swipe */
   .lp-artists-row {
     display: flex;
     gap: 12px;
     overflow-x: auto;
     scroll-snap-type: x proximity;
     overscroll-behavior-x: contain;
+    touch-action: pan-x;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     padding: 4px;
