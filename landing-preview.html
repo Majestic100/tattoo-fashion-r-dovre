@@ -313,7 +313,9 @@ button:focus-visible {
 
 .lp-h1 {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2.6rem, 5.5vw, 4.6rem);
+  /* Loftet er sat, så overskriften holder to linjer i den smalle
+     hero-kolonne ved siden af formularen (536px på store skærme) */
+  font-size: clamp(2.6rem, 5.5vw, 3.4rem);
   line-height: 1.05;
   text-transform: uppercase;
   letter-spacing: 0.02em;
@@ -393,6 +395,12 @@ button:focus-visible {
   display: flex;
   align-items: baseline;
   gap: 10px;
+}
+/* Desktop: normalpris og rabat står side om side med prisen */
+.lp-offer-secondary {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 .lp-offer-price {
   font-family: 'Bebas Neue', sans-serif;
@@ -1943,21 +1951,51 @@ button:focus-visible {
 
   /* På mobil trækkes formularen så højt op som muligt:
      eyebrow'en fjernes (headeren siger allerede brandnavnet), og
-     USP-punkterne flyttes ned UNDER formular-kortet, så kortets
-     overskrift og pris er synlig over folden.
+     USP-punkterne flyttes ned UNDER formular-kortet.
      display: contents gør hero-teksten til direkte flex-børn, så
      rækkefølgen kan styres med order. */
   .lp-hero-copy { display: contents; }
   .lp-hero-grid {
     display: flex;
     flex-direction: column;
+    gap: 22px;
   }
   .lp-eyebrow { display: none; }
-  .lp-h1 { order: 1; }
-  .lp-offer { order: 2; }
-  .lp-hero-trustpilot { order: 3; margin-bottom: 4px; }
+  /* Skalerer med skærmbredden, så overskriften altid holder to rene
+     linjer (ellers står "pris" alene på linje tre på smalle telefoner) */
+  .lp-h1 { order: 1; margin-bottom: 0; font-size: min(2.3rem, 9.1vw); }
+  .lp-offer { order: 2; margin: 0; }
+  .lp-hero-trustpilot { order: 3; margin: 0; }
   .lead-card { order: 4; }
   .lp-hero-checks { order: 5; margin-bottom: 4px; }
+
+  /* Tilbudsboksen ryddes op: prisen står alene øverst, og
+     normalpris + rabat deler en rolig linje nedenunder */
+  .lp-offer { padding: 22px 20px 18px; }
+  .lp-offer-price-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .lp-offer-price { font-size: 2.9rem; }
+  .lp-offer-secondary {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .lp-offer-was {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 7px;
+  }
+  .lp-offer-was-price { font-size: 1.35rem; }
+  .lp-offer-note {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(201, 165, 92, 0.25);
+    font-size: 0.82rem;
+  }
 
   .lp-header-phone span { display: none; }
   .lp-header-actions { gap: 12px; }
@@ -2067,7 +2105,7 @@ button:focus-visible {
       <div class="lp-hero-grid">
         <div class="lp-hero-copy">
           <p class="lp-eyebrow">Tattoo Fashion Rødovre</p>
-          <h1 class="lp-h1">Dit store projekt<br>til Københavns bedste pris</h1>
+          <h1 class="lp-h1">Sleeves &amp; rygstykker<br>til Københavns bedste pris</h1>
 
           <!-- TILBUD — kampagnens hovedbudskab, besparelsen fremhævet -->
           <div class="lp-offer">
@@ -2078,13 +2116,15 @@ button:focus-visible {
                 <span class="lp-offer-price">3.900 kr.</span>
                 <span class="lp-offer-unit">pr. session</span>
               </div>
-              <div class="lp-offer-was">
-                <span class="lp-offer-was-label">Normalpris</span>
-                <s class="lp-offer-was-price">6.000 kr.</s>
+              <div class="lp-offer-secondary">
+                <div class="lp-offer-was">
+                  <span class="lp-offer-was-label">Normalpris</span>
+                  <s class="lp-offer-was-price">6.000 kr.</s>
+                </div>
+                <span class="lp-offer-save">Spar 35%</span>
               </div>
-              <span class="lp-offer-save">Spar 35%</span>
             </div>
-            <p class="lp-offer-note">Heldags-session. Sleeves, rygstykker, ben og cover-ups.</p>
+            <p class="lp-offer-note">Fuld dag i stolen &middot; Fast pris pr. session</p>
           </div>
 
           <!-- Trustpilot-rating (skarp SVG): den ene anmeldelses-USP i hero -->
