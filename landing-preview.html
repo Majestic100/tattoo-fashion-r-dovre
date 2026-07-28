@@ -450,14 +450,6 @@ button:focus-visible {
   letter-spacing: 0.06em;
 }
 
-.lp-offer-note {
-  margin-top: 8px;
-  font-size: 0.88rem;
-  color: var(--text-secondary);
-}
-.lp-offer-note strong {
-  color: var(--accent);
-}
 
 .lp-hero-sub {
   font-size: 1.02rem;
@@ -467,51 +459,6 @@ button:focus-visible {
   margin-bottom: 24px;
 }
 
-/* Trustpilot-rating i hero (skarp SVG) */
-.lp-hero-trustpilot {
-  display: inline-flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px 12px;
-  margin-bottom: 26px;
-}
-.tp-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 1.1rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--text-primary);
-}
-.tp-brand-star {
-  width: 22px;
-  height: 22px;
-  flex-shrink: 0;
-}
-.tp-brand-star path { fill: #00b67a; }
-.tp-rating {
-  display: inline-flex;
-  gap: 4px;
-}
-.tp-tile {
-  width: 27px;
-  height: 27px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #00b67a;
-}
-.tp-tile svg {
-  width: 17px;
-  height: 17px;
-}
-.tp-tile path { fill: #ffffff; }
-.lp-tp-count {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--text-primary);
-}
 
 .lp-hero-checks {
   list-style: none;
@@ -1903,7 +1850,6 @@ button:focus-visible {
      linjer (ellers står "pris" alene på linje tre på smalle telefoner) */
   .lp-h1 { order: 1; margin-bottom: 0; font-size: min(2.3rem, 9.1vw); }
   .lp-offer { order: 2; margin: 0; }
-  .lp-hero-trustpilot { order: 3; margin: 0; }
   .lead-card { order: 4; }
   .lp-hero-checks { order: 5; margin-bottom: 4px; }
 
@@ -1928,12 +1874,6 @@ button:focus-visible {
     gap: 7px;
   }
   .lp-offer-was-price { font-size: 1.35rem; }
-  .lp-offer-note {
-    margin-top: 14px;
-    padding-top: 12px;
-    border-top: 1px solid rgba(201, 165, 92, 0.25);
-    font-size: 0.82rem;
-  }
 
   .lp-header-phone span { display: none; }
   .lp-header-actions { gap: 12px; }
@@ -2062,24 +2002,8 @@ button:focus-visible {
                 <span class="lp-offer-save">Spar 35%</span>
               </div>
             </div>
-            <p class="lp-offer-note">Book én session, eller flere hvis dit motiv kræver det.</p>
           </div>
 
-          <!-- Trustpilot-rating (skarp SVG): den ene anmeldelses-USP i hero -->
-          <a class="lp-hero-trustpilot" href="https://dk.trustpilot.com/review/tattoofashion.dk" target="_blank" rel="noopener noreferrer" aria-label="2.800+ anmeldelser på Trustpilot og Google">
-            <span class="tp-brand">
-              <svg class="tp-brand-star" viewBox="0 0 51 48" aria-hidden="true"><path d="M25.5 0l6.3 16.3H51L36 26.4 41.7 42.7 25.5 32.6 9.3 42.7 15 26.4 0 16.3h19.2z"/></svg>
-              Trustpilot
-            </span>
-            <span class="tp-rating" aria-hidden="true">
-              <span class="tp-tile"><svg viewBox="0 0 51 48"><path d="M25.5 0l6.3 16.3H51L36 26.4 41.7 42.7 25.5 32.6 9.3 42.7 15 26.4 0 16.3h19.2z"/></svg></span>
-              <span class="tp-tile"><svg viewBox="0 0 51 48"><path d="M25.5 0l6.3 16.3H51L36 26.4 41.7 42.7 25.5 32.6 9.3 42.7 15 26.4 0 16.3h19.2z"/></svg></span>
-              <span class="tp-tile"><svg viewBox="0 0 51 48"><path d="M25.5 0l6.3 16.3H51L36 26.4 41.7 42.7 25.5 32.6 9.3 42.7 15 26.4 0 16.3h19.2z"/></svg></span>
-              <span class="tp-tile"><svg viewBox="0 0 51 48"><path d="M25.5 0l6.3 16.3H51L36 26.4 41.7 42.7 25.5 32.6 9.3 42.7 15 26.4 0 16.3h19.2z"/></svg></span>
-              <span class="tp-tile"><svg viewBox="0 0 51 48"><path d="M25.5 0l6.3 16.3H51L36 26.4 41.7 42.7 25.5 32.6 9.3 42.7 15 26.4 0 16.3h19.2z"/></svg></span>
-            </span>
-            <span class="lp-tp-count">2.800+ anmeldelser</span>
-          </a>
 
           <ul class="lp-hero-checks">
             <li>Svar inden for 1 dag</li>
