@@ -1917,11 +1917,23 @@ button:focus-visible {
     padding: 24px 20px 20px;
   }
 
-  /* På mobil fjernes den lange brødtekst (støj) — de korte USP-punkter
-     og Trustpilot-badgen bærer budskabet i stedet */
-  .lp-hero-sub { display: none; }
-  .lp-hero-trustpilot { margin-bottom: 18px; }
-  .lp-hero-checks { margin-bottom: 4px; }
+  /* På mobil trækkes formularen så højt op som muligt:
+     eyebrow'en fjernes (headeren siger allerede brandnavnet), og
+     USP-punkterne flyttes ned UNDER formular-kortet, så kortets
+     overskrift og pris er synlig over folden.
+     display: contents gør hero-teksten til direkte flex-børn, så
+     rækkefølgen kan styres med order. */
+  .lp-hero-copy { display: contents; }
+  .lp-hero-grid {
+    display: flex;
+    flex-direction: column;
+  }
+  .lp-eyebrow { display: none; }
+  .lp-h1 { order: 1; }
+  .lp-offer { order: 2; }
+  .lp-hero-trustpilot { order: 3; margin-bottom: 4px; }
+  .lead-card { order: 4; }
+  .lp-hero-checks { order: 5; margin-bottom: 4px; }
 
   .lp-header-phone span { display: none; }
   .lp-header-actions { gap: 12px; }
