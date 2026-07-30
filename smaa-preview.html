@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Preview &mdash; Små tatoveringer i Rødovre | Tattoo Fashion</title>
+<title>Preview &mdash; Små tatoveringer fra 400 kr. i Rødovre | Tattoo Fashion</title>
 <style>
 @font-face {
   font-family: 'Bebas Neue';
@@ -1957,6 +1957,148 @@ button:focus-visible {
   }
 }
 
+
+/* ==========================================================
+   PRISER — kun brugt på smaa.html (små tatoveringer).
+   Egne klassenavne, så sessions-siden (landing.html) er
+   upåvirket: den refererer ingen af dem.
+   ========================================================== */
+.lp-prices {
+  padding: 84px 0;
+  background: var(--bg-secondary);
+}
+
+.price-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding-top: 12px; /* plads til "Bedste pris"-flaget, der stikker op */
+  margin-bottom: 26px;
+}
+
+.price-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 26px 22px 24px;
+  background: var(--bg-card);
+  border: 1.5px solid #362e25;
+  border-radius: 14px;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+}
+.price-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  box-shadow: 0 20px 50px -20px rgba(201, 165, 92, 0.35);
+}
+
+.price-card-what {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+}
+.price-card-amount {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.9rem;
+  line-height: 1;
+  color: var(--accent);
+}
+.price-card-note {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+.price-card-save {
+  margin-top: 6px;
+  padding: 4px 12px;
+  border: 1px solid rgba(201, 165, 92, 0.45);
+  border-radius: 100px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent-hover);
+}
+
+/* Pakketilbuddet træder frem som det bedste køb */
+.price-card-best {
+  border-color: var(--accent);
+  background: linear-gradient(160deg, rgba(201, 165, 92, 0.16), var(--bg-card) 60%);
+}
+.price-card-best .price-card-amount {
+  text-shadow: 0 0 34px rgba(201, 165, 92, 0.5);
+}
+.price-card-best .price-card-save {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg-primary);
+}
+.price-card-flag {
+  position: absolute;
+  top: -12px;
+  left: 18px;
+  padding: 4px 13px;
+  background: var(--accent);
+  color: var(--bg-primary);
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.price-foot {
+  max-width: 760px;
+  margin: 0 auto 30px;
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+/* Tilbudsboksens størrelsesmål: samme plads som normalprisen på
+   sessions-siden, men uden overstregning */
+.lp-offer-size {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.55rem;
+  line-height: 1.3;
+  color: #ddd7d0;
+}
+
+/* Variant til små tatoveringer: prisenheden er længere end sessions-sidens
+   "pr. session", så målet står på én linje, og prisen får sin egen linje
+   på mobil i stedet for at knække midt i "400 kr." */
+.lp-offer-sm .lp-offer-was {
+  flex-direction: row;
+  align-items: baseline;
+  gap: 7px;
+}
+
+@media (max-width: 980px) {
+  .price-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .lp-prices { padding: 60px 0; }
+  .price-grid { gap: 12px; }
+  .price-card { padding: 22px 16px 20px; }
+  .price-card-amount { font-size: 2.3rem; }
+  .price-foot { text-align: left; }
+  .lp-offer-size { font-size: 1.35rem; }
+  .lp-offer-sm .lp-offer-price-main {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}
+
+@media (max-width: 430px) {
+  .price-grid { grid-template-columns: 1fr; }
+}
+
 </style>
 </head>
 <body>
@@ -1988,33 +2130,25 @@ button:focus-visible {
           <p class="lp-eyebrow">Tattoo Fashion Rødovre</p>
           <h1 class="lp-h1">Den lille tatovering<br>du har gået og tænkt på</h1>
 
-          <!-- ============================================================
-               TILBUD — INDSÆT PRISER HER
-               Blokken er identisk med sessions-sidens tilbudsboks. Fjern
-               kommentartegnene og udfyld de fire felter, så er den live:
-                 lp-offer-price      = tilbudsprisen
-                 lp-offer-unit       = hvad prisen gælder (fx "pr. motiv")
-                 lp-offer-was-price  = normalprisen
-                 lp-offer-save       = besparelsen
-               Husk også prisen i FAQ'en og i den afsluttende CTA.
-          <div class="lp-offer">
+          <!-- TILBUD — indgangsprisen står stort, pakketilbuddet som krogen.
+               Hele prisstigen ligger i sektionen "Priser" længere nede. -->
+          <div class="lp-offer lp-offer-sm">
             <span class="lp-offer-shine" aria-hidden="true"></span>
             <span class="lp-offer-badge">Tilbud lige nu</span>
             <div class="lp-offer-price-row">
               <div class="lp-offer-price-main">
-                <span class="lp-offer-price">0.000 kr.</span>
-                <span class="lp-offer-unit">pr. motiv</span>
+                <span class="lp-offer-price">400 kr.</span>
+                <span class="lp-offer-unit">for en lille tatovering</span>
               </div>
               <div class="lp-offer-secondary">
                 <div class="lp-offer-was">
-                  <span class="lp-offer-was-label">Normalpris</span>
-                  <s class="lp-offer-was-price">0.000 kr.</s>
+                  <span class="lp-offer-was-label">Motiver op til</span>
+                  <span class="lp-offer-size">5 &times; 5 cm</span>
                 </div>
-                <span class="lp-offer-save">Spar 00%</span>
+                <span class="lp-offer-save">8 stk. for 2.000 kr.</span>
               </div>
             </div>
           </div>
-               ============================================================ -->
 
           <ul class="lp-hero-checks">
             <li>Vi svarer samme dag</li>
@@ -2039,6 +2173,50 @@ button:focus-visible {
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRISER — hele prisstigen. Besparelserne er regnet ud fra
+       enkeltprisen på 400 kr., så tallene hænger sammen med hinanden. -->
+  <section class="lp-prices">
+    <div class="container">
+      <p class="lp-label reveal">Priser</p>
+      <h2 class="lp-title reveal">Jo flere motiver, jo billigere</h2>
+      <div class="price-grid">
+
+        <article class="price-card reveal">
+          <span class="price-card-what">1 tatovering</span>
+          <span class="price-card-amount">400 kr.</span>
+          <span class="price-card-note">Ét motiv, én person.</span>
+        </article>
+
+        <article class="price-card reveal" style="--i:1">
+          <span class="price-card-what">2 tatoveringer</span>
+          <span class="price-card-amount">600 kr.</span>
+          <span class="price-card-note">To motiver på samme person.</span>
+          <span class="price-card-save">Spar 200 kr.</span>
+        </article>
+
+        <article class="price-card reveal" style="--i:2">
+          <span class="price-card-what">2 venner sammen</span>
+          <span class="price-card-amount">350 kr.</span>
+          <span class="price-card-note">Pr. person, når I kommer samtidig.</span>
+          <span class="price-card-save">Spar 50 kr. hver</span>
+        </article>
+
+        <article class="price-card price-card-best reveal" style="--i:3">
+          <span class="price-card-flag">Bedste pris</span>
+          <span class="price-card-what">8 tatoveringer</span>
+          <span class="price-card-amount">2.000 kr.</span>
+          <span class="price-card-note">Samme person. 250 kr. stykket.</span>
+          <span class="price-card-save">Spar 1.200 kr.</span>
+        </article>
+
+      </div>
+      <p class="price-foot reveal">Priserne gælder motiver op til 5 &times; 5 cm. Skal dit motiv være større, have farver eller flere detaljer, får du en fast pris, før vi går i gang. Send et billede med, så vender vi tilbage med beløbet.</p>
+      <div class="lp-inline-cta reveal">
+        <a href="#tilbud" class="btn btn-primary">Få din pris</a>
       </div>
     </div>
   </section>
@@ -2277,8 +2455,7 @@ button:focus-visible {
             <span>Hvad kommer det til at koste?</span>
             <svg class="lp-faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <!-- PRIS: indsæt beløbet her, når tilbuddet er på plads -->
-          <div class="lp-faq-a"><p>Det afhænger af motivets størrelse og detaljegrad. Send din idé, så får du et konkret beløb, før du booker. Der kommer ingen ekstraregning bagefter.</p></div>
+          <div class="lp-faq-a"><p>400 kr. for én lille tatovering op til 5 &times; 5 cm. To på samme person koster 600 kr., og otte koster 2.000 kr. Kommer I to venner samtidig, er det 350 kr. hver. Er dit motiv større, eller vil du have farver og flere detaljer, får du en fast pris, før vi går i gang. Der kommer ingen ekstraregning bagefter.</p></div>
         </div>
         <div class="lp-faq-item reveal" style="--i:1">
           <button class="lp-faq-q" aria-expanded="false">
@@ -2316,8 +2493,7 @@ button:focus-visible {
   <section class="lp-final">
     <div class="container">
       <h2 class="lp-final-title reveal">Klar til at få den lavet?</h2>
-      <!-- PRIS: nævn tilbuddet her, når det er på plads -->
-      <p class="lp-final-sub reveal">Send din idé. Det tager 2 minutter, og du hører fra os samme dag.</p>
+      <p class="lp-final-sub reveal">Fra <strong>400 kr.</strong> for et lille motiv, og <strong>2.000 kr.</strong> for otte. Send din idé. Det tager 2 minutter, og du hører fra os samme dag.</p>
       <div class="lp-final-actions reveal">
         <a href="#tilbud" class="btn btn-primary lp-final-cta">Få et uforpligtende tilbud</a>
         <a href="tel:+4550168630" class="lp-final-phone">eller ring 50 16 86 30</a>
@@ -2336,7 +2512,7 @@ button:focus-visible {
   </footer>
 
   <!-- STICKY MOBIL-CTA -->
-  <a href="#tilbud" class="lp-mobile-cta" id="lpMobileCta">Få prisen på dit motiv</a>
+  <a href="#tilbud" class="lp-mobile-cta" id="lpMobileCta">Få din pris fra 400 kr.</a>
 
   
 
