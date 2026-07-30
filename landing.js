@@ -39,16 +39,15 @@
        Stort felt i mosaikken: tilføj featured: true
      ========================================================== */
   var INSPIRATION_MEDIA = [
+    { src: 'images/work-rygprojekt.mp4', type: 'video', alt: 'Fuldt rygprojekt i black and grey, syv sessioner', featured: true },
     { src: 'images/work-ksenia-snake.jpg', alt: 'Slange og pæoner i black and grey, rygstykke' },
-    { src: 'images/work-fullsleeve-bali.mp4', type: 'video', alt: 'Græsk full sleeve med Zeus og løve i black and grey', featured: true },
-    { src: 'images/work-clock-roulette.mp4', type: 'video', alt: 'Roulette og lommeur på underarmen, black and grey realism' },
-    { src: 'images/work-oldschool-gangster.jpg', alt: 'Old School Gangster portrætter i black and grey realism' },
+    { src: 'images/work-fullsleeve-bali.mp4', type: 'video', alt: 'Græsk full sleeve med Zeus og løve i black and grey' },
+    { src: 'images/work-oldschool-gangster.jpg', alt: 'Old School Gangster portrætter på benet, black and grey realism', featured: true },
+    { src: 'images/work-disney-ben.mp4', type: 'video', alt: 'Disney-projekt på hele benet, ni sessioner' },
+    { src: 'images/work-pamela-leopard.jpg', alt: 'Leopard og liljer, full sleeve' },
     { src: 'images/work-chicano-sleeve.mp4', type: 'video', alt: 'Chicano sleeve med portræt' },
-    { src: 'images/work-pamela-leopard.jpg', alt: 'Leopard og liljer, fineline sleeve' },
-    { src: 'images/work-rygprojekt.mp4', type: 'video', alt: 'Fuldt rygprojekt i black and grey', featured: true },
-    { src: 'images/work-graesk.mp4', type: 'video', alt: 'Græsk-inspireret tatovering' },
-    { src: 'images/work-disney-ben.mp4', type: 'video', alt: 'Disney-projekt på hele benet' },
-    { src: 'images/work-mini.mp4', type: 'video', alt: 'Mini-tatoveringer med fine detaljer' }
+    { src: 'images/work-clock-roulette.mp4', type: 'video', alt: 'Roulette og lommeur på underarmen, black and grey realism' },
+    { src: 'images/work-graesk.mp4', type: 'video', alt: 'Græsk-inspireret sleeve' }
   ];
 
   /* ==========================================================
@@ -59,8 +58,8 @@
   var INSTAGRAM_PROFILE = 'https://www.instagram.com/tattoo_fashion_roedovre/';
   var INSTAGRAM_ITEMS = [
     { src: 'images/insta-1.jpg', alt: 'Instagram-opslag: matchende script-tatoveringer' },
-    { src: 'images/insta-2.jpg', alt: 'Instagram-opslag: små matchende motiver' },
-    { src: 'images/insta-3.jpg', alt: 'Instagram-opslag: fineline blomster' },
+    { src: 'images/insta-2.jpg', alt: 'Instagram-opslag fra studiet' },
+    { src: 'images/insta-3.jpg', alt: 'Instagram-opslag fra studiet' },
     { src: 'images/insta-4.jpg', alt: 'Instagram-opslag: firkløver-tatoveringer' },
     { src: 'images/insta-5.jpg', alt: 'Instagram-opslag: mor og datter' },
     { src: 'images/insta-6.jpg', alt: 'Instagram-opslag: sommerfugle og elefanter' }

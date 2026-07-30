@@ -289,7 +289,9 @@ button:focus-visible {
 
 .lp-h1 {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2.6rem, 5.5vw, 4.6rem);
+  /* Loftet er sat, så overskriften holder to linjer i den smalle
+     hero-kolonne ved siden af formularen (536px på store skærme) */
+  font-size: clamp(2.6rem, 5.5vw, 3.4rem);
   line-height: 1.05;
   text-transform: uppercase;
   letter-spacing: 0.02em;
@@ -299,17 +301,17 @@ button:focus-visible {
 /* Tilbuds-boksen — kampagnens hovedbudskab */
 .lp-offer {
   position: relative;
-  display: inline-block;
-  padding: 20px 24px 16px;
-  margin: 6px 0 26px;
-  background: linear-gradient(135deg, rgba(201, 165, 92, 0.16), rgba(201, 165, 92, 0.04));
-  border: 1.5px solid var(--accent);
-  border-radius: 12px;
+  display: block;
+  padding: 26px 30px;
+  margin: 10px 0 30px;
+  background: linear-gradient(135deg, rgba(201, 165, 92, 0.22), rgba(201, 165, 92, 0.05));
+  border: 2px solid var(--accent);
+  border-radius: 14px;
   animation: lp-offer-glow 3s ease-in-out infinite;
 }
 @keyframes lp-offer-glow {
-  0%, 100% { box-shadow: 0 10px 40px -12px rgba(201, 165, 92, 0.35); }
-  50% { box-shadow: 0 10px 50px -8px rgba(201, 165, 92, 0.65); }
+  0%, 100% { box-shadow: 0 14px 50px -12px rgba(201, 165, 92, 0.45); }
+  50% { box-shadow: 0 14px 64px -8px rgba(201, 165, 92, 0.8); }
 }
 
 /* Glans-strejf der fejer hen over tilbuddet — som lys over poleret guld.
@@ -362,7 +364,8 @@ button:focus-visible {
 .lp-offer-price-row {
   display: flex;
   align-items: center;
-  gap: 10px 18px;
+  justify-content: space-between;
+  gap: 16px 28px;
   flex-wrap: wrap;
 }
 .lp-offer-price-main {
@@ -370,12 +373,18 @@ button:focus-visible {
   align-items: baseline;
   gap: 10px;
 }
+/* Desktop: normalpris og rabat står side om side med prisen */
+.lp-offer-secondary {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
 .lp-offer-price {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2.4rem, 5vw, 3.4rem);
-  line-height: 1;
+  font-size: clamp(3.2rem, 6.5vw, 4.6rem);
+  line-height: 0.95;
   color: var(--accent);
-  text-shadow: 0 0 30px rgba(201, 165, 92, 0.35);
+  text-shadow: 0 0 40px rgba(201, 165, 92, 0.5);
 }
 .lp-offer-unit {
   font-size: 0.8rem;
@@ -389,7 +398,8 @@ button:focus-visible {
 .lp-offer-was {
   display: flex;
   flex-direction: column;
-  line-height: 1.15;
+  gap: 3px;
+  line-height: 1.35;
 }
 .lp-offer-was-label {
   font-size: 0.68rem;
@@ -400,32 +410,26 @@ button:focus-visible {
 }
 .lp-offer-was-price {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.7rem;
-  color: #e4e4e4;
+  font-size: 1.55rem;
+  line-height: 1.3;
+  color: #ddd7d0;
   text-decoration: line-through;
   text-decoration-color: #e0554e;
-  text-decoration-thickness: 3px;
+  text-decoration-thickness: 2px;
 }
 
 .lp-offer-save {
   align-self: center;
-  padding: 5px 13px;
+  padding: 7px 17px;
   background: var(--accent);
   color: var(--bg-primary);
   border-radius: 100px;
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.05rem;
+  font-size: 1.25rem;
   letter-spacing: 0.06em;
+  box-shadow: 0 4px 16px -4px rgba(201, 165, 92, 0.8);
 }
 
-.lp-offer-note {
-  margin-top: 8px;
-  font-size: 0.88rem;
-  color: var(--text-secondary);
-}
-.lp-offer-note strong {
-  color: var(--accent);
-}
 
 .lp-hero-sub {
   font-size: 1.02rem;
@@ -435,62 +439,17 @@ button:focus-visible {
   margin-bottom: 24px;
 }
 
-/* Trustpilot-rating i hero (skarp SVG) */
-.lp-hero-trustpilot {
-  display: inline-flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px 12px;
-  margin-bottom: 26px;
-}
-.tp-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 1.1rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--text-primary);
-}
-.tp-brand-star {
-  width: 22px;
-  height: 22px;
-  flex-shrink: 0;
-}
-.tp-brand-star path { fill: #00b67a; }
-.tp-rating {
-  display: inline-flex;
-  gap: 4px;
-}
-.tp-tile {
-  width: 27px;
-  height: 27px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #00b67a;
-}
-.tp-tile svg {
-  width: 17px;
-  height: 17px;
-}
-.tp-tile path { fill: #ffffff; }
-.lp-tp-count {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--text-primary);
-}
 
 .lp-hero-checks {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 .lp-hero-checks li {
   position: relative;
-  padding-left: 30px;
-  font-size: 0.95rem;
+  padding-left: 32px;
+  font-size: 1rem;
   font-weight: 500;
 }
 .lp-hero-checks li::before {
@@ -533,65 +492,9 @@ button:focus-visible {
   border-radius: 2px;
 }
 
-.lead-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 7px 14px;
-  background: rgba(201, 165, 92, 0.08);
-  border: 1px solid rgba(201, 165, 92, 0.35);
-  border-radius: 100px;
-  font-size: 0.78rem;
-  font-weight: 600;
-  margin-bottom: 18px;
-}
-.lead-badge-dot {
-  width: 8px;
-  height: 8px;
-  background: var(--success);
-  border-radius: 50%;
-  animation: lp-pulse 2s ease-in-out infinite;
-}
-@keyframes lp-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5); }
-  50% { box-shadow: 0 0 0 7px rgba(74, 222, 128, 0); }
-}
 
-.lead-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  line-height: 1.1;
-  margin-bottom: 8px;
-}
 
-.lead-offer {
-  display: inline-block;
-  padding: 7px 14px;
-  margin-bottom: 12px;
-  background: rgba(201, 165, 92, 0.1);
-  border: 1px solid rgba(201, 165, 92, 0.4);
-  border-radius: 8px;
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-}
-.lead-offer strong {
-  color: var(--accent);
-  font-size: 1.05rem;
-}
-.lead-offer s {
-  color: #c9c9c9;
-  text-decoration-color: #e0554e;
-  text-decoration-thickness: 2px;
-}
 
-.lead-sub {
-  font-size: 0.88rem;
-  line-height: 1.6;
-  color: var(--text-secondary);
-  margin-bottom: 18px;
-}
 
 /* GHL-formularens plads — embed-scriptet styrer selv højden.
    min-height ligger tæt på formularens reelle højde (976px), så
@@ -606,12 +509,6 @@ button:focus-visible {
   min-height: 700px;
 }
 
-.lead-microcopy {
-  margin-top: 14px;
-  text-align: center;
-  font-size: 0.78rem;
-  color: var(--text-muted);
-}
 
 /* --- STATS --- */
 .lp-stats {
@@ -781,7 +678,7 @@ button:focus-visible {
 
 /* --- STØRRELSESGUIDE --- */
 .size-guide {
-  padding: 110px 0;
+  padding: 84px 0;
 }
 
 .size-guide-sub {
@@ -795,8 +692,8 @@ button:focus-visible {
 .size-guide-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-bottom: 48px;
+  gap: 18px;
+  margin-bottom: 36px;
 }
 
 .size-card {
@@ -816,7 +713,7 @@ button:focus-visible {
 
 .size-media {
   position: relative;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 1 / 1;
   background: #1a1512;
   overflow: hidden;
 }
@@ -829,38 +726,38 @@ button:focus-visible {
 }
 
 .size-card-info {
-  padding: 22px 22px 24px;
+  padding: 16px 18px 18px;
 }
 .size-card-head {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
+  gap: 10px;
+  margin-bottom: 9px;
 }
 .size-card-tag {
-  padding: 5px 14px;
+  padding: 4px 12px;
   background: var(--accent);
   color: var(--bg-primary);
   border-radius: 100px;
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1rem;
+  font-size: 0.9rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 .size-card-cm {
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   font-weight: 600;
   color: var(--accent);
   letter-spacing: 0.03em;
 }
 .size-card-info h3 {
-  font-size: 1.05rem;
+  font-size: 0.98rem;
   font-weight: 600;
-  margin-bottom: 6px;
+  margin-bottom: 5px;
 }
 .size-card-info p {
-  font-size: 0.9rem;
-  line-height: 1.65;
+  font-size: 0.85rem;
+  line-height: 1.55;
   color: var(--text-secondary);
 }
 
@@ -1283,15 +1180,17 @@ button:focus-visible {
   color: var(--text-primary);
 }
 
+/* Kortet ligger nu i bunden af den sammenslåede studie-sektion */
 .lp-map-wrap {
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid var(--border);
   background: var(--bg-card);
+  margin-top: 32px;
 }
 .lp-map-wrap iframe {
   width: 100%;
-  height: 420px;
+  height: 320px;
   border: 0;
   display: block;
 }
@@ -1915,11 +1814,46 @@ button:focus-visible {
     padding: 24px 20px 20px;
   }
 
-  /* På mobil fjernes den lange brødtekst (støj) — de korte USP-punkter
-     og Trustpilot-badgen bærer budskabet i stedet */
-  .lp-hero-sub { display: none; }
-  .lp-hero-trustpilot { margin-bottom: 18px; }
-  .lp-hero-checks { margin-bottom: 4px; }
+  /* På mobil trækkes formularen så højt op som muligt:
+     eyebrow'en fjernes (headeren siger allerede brandnavnet), og
+     USP-punkterne flyttes ned UNDER formular-kortet.
+     display: contents gør hero-teksten til direkte flex-børn, så
+     rækkefølgen kan styres med order. */
+  .lp-hero-copy { display: contents; }
+  .lp-hero-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .lp-eyebrow { display: none; }
+  /* Skalerer med skærmbredden, så overskriften altid holder to rene
+     linjer (ellers står "pris" alene på linje tre på smalle telefoner) */
+  .lp-h1 { order: 1; margin-bottom: 0; font-size: min(2.3rem, 9.1vw); }
+  .lp-offer { order: 2; margin: 0; }
+  .lead-card { order: 4; }
+  .lp-hero-checks { order: 5; margin-bottom: 4px; }
+
+  /* Tilbudsboksen ryddes op: prisen står alene øverst, og
+     normalpris + rabat deler en rolig linje nedenunder */
+  .lp-offer { padding: 22px 20px 18px; }
+  .lp-offer-price-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .lp-offer-price { font-size: 2.9rem; }
+  .lp-offer-secondary {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .lp-offer-was {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 7px;
+  }
+  .lp-offer-was-price { font-size: 1.35rem; }
 
   .lp-header-phone span { display: none; }
   .lp-header-actions { gap: 12px; }
