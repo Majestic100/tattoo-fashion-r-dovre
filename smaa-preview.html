@@ -2159,19 +2159,28 @@ button:focus-visible {
 
         <!-- FORMULAR-KORT -->
         <div class="lead-card" id="tilbud">
-          <!-- ============================================================
-               GHL-FORMULAR — INDSÆT EMBED-KODE HER
-               Denne side skal have sin EGEN formular, så leads fra små og
-               store tatoveringer kan skelnes i CRM'et. Hent koden i GHL
-               under Sites → Forms → Integrate → Embed, og erstat hele
-               placeholder-blokken herunder med iframen + form_embed.js.
-               ============================================================ -->
+          <!-- GHL-formular — form_embed.js styrer selv iframens hoejde.
+               Samme formular som på sessions-siden. -->
           <div class="ghl-form-wrap" id="ghlFormMount">
-            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;min-height:700px;border:2px dashed rgba(201,165,92,0.4);border-radius:10px;padding:32px;text-align:center">
-              <strong style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.02em;color:#c9a55c">Formularen kommer her</strong>
-              <span style="color:#a49c93;font-size:0.95rem;max-width:34ch;line-height:1.6">Pladsholder. Indsæt embed-koden til den nye GHL-formular, så fylder den præcis dette felt.</span>
-            </div>
+            <iframe
+              src="https://api.leadconnectorhq.com/widget/form/2uG53EReqRsbSTRrRCnt"
+              style="width:100%;height:100%;border:none;border-radius:10px"
+              id="inline-2uG53EReqRsbSTRrRCnt"
+              data-layout="{'id':'INLINE'}"
+              data-trigger-type="alwaysShow"
+              data-trigger-value=""
+              data-activation-type="alwaysActivated"
+              data-activation-value=""
+              data-deactivation-type="neverDeactivate"
+              data-deactivation-value=""
+              data-form-name="TFR I DKINK I SMALL TATTOOS FORM - DANISH"
+              data-height="982"
+              data-layout-iframe-id="inline-2uG53EReqRsbSTRrRCnt"
+              data-form-id="2uG53EReqRsbSTRrRCnt"
+              title="TFR I DKINK I SMALL TATTOOS FORM - DANISH"
+            ></iframe>
           </div>
+          <script src="https://link.msgsndr.com/js/form_embed.js"></script>
         </div>
       </div>
     </div>
