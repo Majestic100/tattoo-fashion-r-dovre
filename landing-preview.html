@@ -2160,7 +2160,10 @@ button:focus-visible {
 
         <!-- FORMULAR-KORT -->
         <div class="lead-card" id="tilbud">
-          <!-- GHL-formular — form_embed.js styrer selv iframens hoejde -->
+          <!-- GHL-formular — form_embed.js styrer selv iframens hoejde.
+               title er skrevet til besoegende (skaermlaesere laeser den op),
+               ikke GHL's interne navn. data-form-name skal holdes i sync
+               med navnet i GHL, hvis formularen omdoebes. -->
           <div class="ghl-form-wrap" id="ghlFormMount">
             <iframe
               src="https://api.leadconnectorhq.com/widget/form/2uG53EReqRsbSTRrRCnt"
@@ -2177,7 +2180,7 @@ button:focus-visible {
               data-height="982"
               data-layout-iframe-id="inline-2uG53EReqRsbSTRrRCnt"
               data-form-id="2uG53EReqRsbSTRrRCnt"
-              title="TFR I DKINK I SMALL TATTOOS FORM - DANISH"
+              title="Få et uforpligtende tilbud på din tatovering"
             ></iframe>
           </div>
           <script src="https://link.msgsndr.com/js/form_embed.js"></script>
