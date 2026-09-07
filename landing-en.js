@@ -1,5 +1,5 @@
 /* ========================================
-   TATTOO FASHION — LANDING PAGE SCRIPT (EN)
+   LANDING PAGE SCRIPT (EN)
    English mirror of landing.js. Same behaviour, translated
    content. Keep the two in sync when either changes.
    ======================================== */
@@ -20,7 +20,7 @@
   var TP_REVIEWS = [
     { title: 'Professional and reassuring', text: 'Easy to talk to and highly skilled tattooists.', name: 'Naja Holmgaard Pedersen' },
     { title: 'Amazing service', text: 'Amazing service, and a beautiful tattoo. Very precise line work.', name: 'Sophia Hesselberg' },
-    { title: 'Seriously good at what they do', text: 'Rødovre. Seriously good at what they do, I can absolutely recommend them.', name: 'Henrik' },
+    { title: 'Seriously good at what they do', text: 'Seriously good at what they do, I can absolutely recommend them.', name: 'Henrik' },
     { title: 'Ridiculously talented', text: 'Ridiculously talented, kind and funny. I am definitely coming back for more!', name: 'Daniella Steinstø' },
     { title: 'Very friendly people', text: 'Very friendly people, awesome service, always coming back for more!', name: 'Pietro Fatebene' },
     { title: 'Genuinely kind people', text: 'Genuinely kind people. They look after you, even if you start feeling faint.', name: 'Katrine TH' },
@@ -60,6 +60,8 @@
      Same format as above; every cell links to the profile.
      Set url on a single cell to link straight to that post.
      ========================================================== */
+  // The profile URL still carries the studio handle. It is not shown on the
+  // page, but swap it if this page is reused for another studio.
   var INSTAGRAM_PROFILE = 'https://www.instagram.com/tattoo_fashion_roedovre/';
   var INSTAGRAM_ITEMS = [
     { src: 'images/insta-1.jpg', alt: 'Instagram post: matching script tattoos' },
