@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tell us your tattoo idea</title>
-  <meta name="description" content="Send us the tattoo idea you keep coming back to. We reply the same day with the artist we would match to it and what it takes to do it properly.">
+  <title>Tell us your tattoo idea | Tattoo Studio London</title>
+  <meta name="description" content="Fill out the form and get your tattoo offer today. Tell us the idea, and we reply the same day with the artist we would match to it.">
   <!-- English mirror of landing.html, rewritten as a lead-capture page: no
        prices, no discount framing, one ask (send us your idea). noindex so it
        does not compete with the front page or the Danish landing page in
        Google. Remove the line if the page should be indexed. -->
   <meta name="robots" content="noindex, nofollow">
-  <meta property="og:title" content="You have had the idea long enough">
+  <meta property="og:title" content="Fill out the form below, and get your tattoo offer today | Tattoo Studio London">
   <meta property="og:description" content="Half an idea is enough to start. Send it over and we will tell you how it works on skin.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_GB">
@@ -18,6 +18,36 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="landing.css">
+  <style>
+    /* On mobile .lp-hero-copy becomes display:contents, so the hero children
+       are ordered explicitly. .lp-hero-sub is new on this page and would
+       otherwise default to order:0 and jump above the headline. It takes the
+       slot the removed offer box used. Kept here rather than in landing.css
+       so the Danish page is not touched at all. */
+    /* This headline is a full sentence, so it needs a smaller size than the
+       short one the shared stylesheet was tuned for. Sizes picked by
+       measuring line counts in the browser: 3 lines at 1440px, 4 at 1100px
+       and 4 at 390px. Forcing a <br> made every width one line worse. */
+    .lp-h1 { font-size: 2.4rem; }
+    @media (max-width: 768px) {
+      .lp-hero-sub { order: 2; margin-bottom: 0; }
+      .lp-h1 { font-size: min(2.0rem, 7.9vw); }
+      /* The shared stylesheet hides the logo sub-word on mobile. On the Danish
+         page that dropped "Rodovre" and left the real name behind; here it
+         would leave "TATTOO STUDIO" and cut the name in half. Showing it needs
+         room, so the logo and the header button both shrink. Measured: fits
+         with clearance down to 360px. */
+      .lp-logo-sub { display: inline; }
+      .lp-logo { font-size: 0.85rem; letter-spacing: 0.04em; }
+      .lp-header-cta { font-size: 0.68rem; padding: 9px 12px; }
+      .lp-header-inner { gap: 10px; }
+    }
+    /* Below 360px there is no room for both, so fall back to the shared
+       behaviour and let the button keep its tap target. */
+    @media (max-width: 359px) {
+      .lp-logo-sub { display: none; }
+    }
+  </style>
   <!-- TRACKING: add Meta Pixel / GTM here -->
 </head>
 <body>
@@ -25,9 +55,7 @@
   <!-- HEADER — minimal, no navigation (one way out: the form) -->
   <header class="lp-header" id="lpHeader">
     <div class="lp-header-inner">
-      <!-- Studio name removed. The element stays so the header keeps its
-           two-column layout; drop a name or a logo in here. -->
-      <span class="lp-logo">STUDIO NAME</span>
+      <span class="lp-logo">TATTOO STUDIO <span class="lp-logo-sub">London</span></span>
       <div class="lp-header-actions">
         <a href="#quote" class="lp-header-cta">Send your idea</a>
       </div>
@@ -44,7 +72,7 @@
     <div class="container">
       <div class="lp-hero-grid">
         <div class="lp-hero-copy">
-          <h1 class="lp-h1">You have had the idea<br>long enough</h1>
+          <h1 class="lp-h1">Fill out the form below, and get your tattoo offer today</h1>
 
           <!-- Subheadline carries the ask. The form is the whole point of the
                page, so this copy exists to lower the bar for filling it in. -->
@@ -397,10 +425,9 @@
   <!-- FOOTER — minimal -->
   <footer class="lp-footer">
     <div class="container">
-      <!-- Studio name removed here too; put the name or logo back in. -->
-      <div class="lp-footer-logo">STUDIO NAME</div>
+      <div class="lp-footer-logo">TATTOO STUDIO LONDON</div>
       <p>Roskildevej 284, 2610 Rødovre &middot; Monday-Saturday 10:00-18:00</p>
-      <p class="lp-footer-legal">CVR (Danish company reg. no.): 37231756 &middot; &copy; 2026. All rights reserved.</p>
+      <p class="lp-footer-legal">CVR (Danish company reg. no.): 37231756 &middot; &copy; 2026 Tattoo Studio London. All rights reserved.</p>
     </div>
   </footer>
 
