@@ -47,6 +47,149 @@
     @media (max-width: 359px) {
       .lp-logo-sub { display: none; }
     }
+
+    /* --- MOCK FORM ---------------------------------------------------
+       Styles for the demo form that replaced the GHL embed. Uses the
+       shared tokens so it sits inside the existing card without
+       redesigning it. Lives here, not in landing.css, because only this
+       page has the form. */
+    .mock-form-intro {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+    }
+    .mock-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .mock-field { display: block; margin-bottom: 14px; }
+    .mock-field > span {
+      display: block;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+    .mock-field > span em {
+      font-style: normal;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      text-transform: none;
+      color: var(--text-muted);
+    }
+    .mock-field input,
+    .mock-field select,
+    .mock-field textarea {
+      width: 100%;
+      font: inherit;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      background: rgba(0, 0, 0, 0.28);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 11px 13px;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .mock-field textarea { resize: vertical; line-height: 1.5; }
+    .mock-field input::placeholder,
+    .mock-field textarea::placeholder { color: var(--text-muted); }
+    .mock-field input:focus,
+    .mock-field select:focus,
+    .mock-field textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(201, 165, 92, 0.16);
+    }
+    .mock-field select { appearance: none; cursor: pointer; }
+    .mock-field input[type="file"] {
+      padding: 9px 12px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+    .mock-field input[type="file"]::file-selector-button {
+      font: inherit;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: transparent;
+      border: 1px solid rgba(201, 165, 92, 0.4);
+      border-radius: 6px;
+      padding: 5px 11px;
+      margin-right: 11px;
+      cursor: pointer;
+    }
+    .mock-consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 4px 0 18px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+    .mock-consent input {
+      flex-shrink: 0;
+      width: 17px;
+      height: 17px;
+      margin-top: 2px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+    .mock-submit { width: 100%; justify-content: center; }
+    .mock-form-note {
+      margin-top: 11px;
+      text-align: center;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+    }
+
+    /* Confirmation panel */
+    .mock-done { text-align: center; padding: 26px 8px 20px; }
+    .mock-done:focus { outline: none; }
+    .mock-done-mark {
+      display: grid;
+      place-items: center;
+      width: 52px;
+      height: 52px;
+      margin: 0 auto 16px;
+      border-radius: 50%;
+      color: var(--success);
+      background: rgba(74, 222, 128, 0.12);
+      border: 1.5px solid rgba(74, 222, 128, 0.4);
+    }
+    .mock-done h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.9rem;
+      letter-spacing: 0.02em;
+      margin-bottom: 8px;
+    }
+    .mock-done p { font-size: 0.93rem; color: var(--text-secondary); }
+    .mock-done-next {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      font-size: 0.86rem !important;
+    }
+    .mock-reset {
+      margin-top: 18px;
+      font: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: none;
+      border: none;
+      border-bottom: 1px solid rgba(201, 165, 92, 0.4);
+      padding-bottom: 2px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 520px) {
+      .mock-row { grid-template-columns: 1fr; gap: 0; }
+    }
   </style>
   <!-- TRACKING: add Meta Pixel / GTM here -->
 </head>
@@ -87,31 +230,106 @@
 
         <!-- FORM CARD -->
         <div class="lead-card" id="quote">
-          <!-- GHL form — form_embed.js controls the iframe height itself.
-               NOTE: this is still the DANISH form (form id 2uG53EReqRsbSTRrRCnt).
-               An English page needs its own form in GHL — swap src, id,
-               data-form-id, data-layout-iframe-id and data-form-name for the
-               English one before this page is used for anything real. -->
-          <div class="ghl-form-wrap" id="ghlFormMount">
-            <iframe
-              src="https://api.leadconnectorhq.com/widget/form/2uG53EReqRsbSTRrRCnt"
-              style="width:100%;height:100%;border:none;border-radius:10px"
-              id="inline-2uG53EReqRsbSTRrRCnt"
-              data-layout="{'id':'INLINE'}"
-              data-trigger-type="alwaysShow"
-              data-trigger-value=""
-              data-activation-type="alwaysActivated"
-              data-activation-value=""
-              data-deactivation-type="neverDeactivate"
-              data-deactivation-value=""
-              data-form-name="TFR I DKINK I SMALL TATTOOS FORM - DANISH"
-              data-height="982"
-              data-layout-iframe-id="inline-2uG53EReqRsbSTRrRCnt"
-              data-form-id="2uG53EReqRsbSTRrRCnt"
-              title="Tell us about your tattoo idea"
-            ></iframe>
+          <!-- MOCK FORM. The GHL embed was removed; this is a plain HTML form
+               that goes nowhere. It has no action and no endpoint, and the
+               submit handler below only swaps in the confirmation panel, so
+               nothing a visitor types leaves the browser. It exists to show
+               what the filled-in flow looks like. To make it real, put the
+               GHL embed back in place of this whole block. -->
+          <form class="mock-form" id="mockForm" novalidate>
+            <p class="mock-form-intro">Tell us what you are thinking of. Every field except the idea itself is optional.</p>
+
+            <div class="mock-row">
+              <label class="mock-field">
+                <span>Your name</span>
+                <input type="text" name="name" autocomplete="name" placeholder="Jamie Fletcher">
+              </label>
+              <label class="mock-field">
+                <span>Phone</span>
+                <input type="tel" name="phone" autocomplete="tel" placeholder="07700 900123">
+              </label>
+            </div>
+
+            <label class="mock-field">
+              <span>Email</span>
+              <input type="email" name="email" autocomplete="email" placeholder="jamie@example.com">
+            </label>
+
+            <div class="mock-row">
+              <label class="mock-field">
+                <span>Where on the body</span>
+                <input type="text" name="placement" placeholder="Right forearm">
+              </label>
+              <label class="mock-field">
+                <span>Roughly how big</span>
+                <select name="size">
+                  <option value="">Not sure yet</option>
+                  <option>Small, palm-sized or less</option>
+                  <option>Medium, forearm or calf</option>
+                  <option>Large, full sleeve or back</option>
+                </select>
+              </label>
+            </div>
+
+            <label class="mock-field">
+              <span>Your idea <em>required</em></span>
+              <textarea name="idea" rows="4" required placeholder="A few lines is plenty. What is the piece, and what does it mean to you?"></textarea>
+            </label>
+
+            <label class="mock-field">
+              <span>Reference photo <em>optional</em></span>
+              <input type="file" name="reference" accept="image/*">
+            </label>
+
+            <label class="mock-consent">
+              <input type="checkbox" name="consent" required>
+              <span>You can contact me about this idea.</span>
+            </label>
+
+            <button type="submit" class="btn btn-primary mock-submit">Send my idea</button>
+            <p class="mock-form-note">Preview only. Nothing you type here is sent or stored.</p>
+          </form>
+
+          <!-- Confirmation panel. Shown in place of the form on submit. -->
+          <div class="mock-done" id="mockDone" hidden>
+            <div class="mock-done-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <h3>Got it</h3>
+            <p>Thanks <strong id="mockDoneName">— we have your idea</strong>. A real person reads every message, and you will hear back from us today.</p>
+            <p class="mock-done-next">Next: we will ask a couple of questions, then tell you which of our artists we would put on it.</p>
+            <button type="button" class="mock-reset" id="mockReset">Send another idea</button>
           </div>
-          <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+
+          <script>
+            /* Demo only: no network call, no storage. The handler blocks the
+               native submit, so the typed values never leave the page. */
+            (function () {
+              var form = document.getElementById('mockForm');
+              var done = document.getElementById('mockDone');
+              var doneName = document.getElementById('mockDoneName');
+              var reset = document.getElementById('mockReset');
+              if (!form || !done) return;
+
+              form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                if (!form.reportValidity()) return;
+                var name = (form.elements.name.value || '').trim();
+                doneName.textContent = name ? name : '\u2014 we have your idea';
+                form.hidden = true;
+                done.hidden = false;
+                done.setAttribute('tabindex', '-1');
+                done.focus();
+              });
+
+              reset.addEventListener('click', function () {
+                form.reset();
+                done.hidden = true;
+                form.hidden = false;
+                form.querySelector('input, textarea').focus();
+              });
+            })();
+          </script>
         </div>
       </div>
     </div>
