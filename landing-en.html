@@ -64,7 +64,7 @@
       gap: 12px;
     }
     .mock-field { display: block; margin-bottom: 14px; }
-    .mock-field > span {
+    .mock-field > span:not(.mock-file) {
       display: block;
       font-size: 0.76rem;
       font-weight: 600;
@@ -73,7 +73,7 @@
       color: var(--text-secondary);
       margin-bottom: 6px;
     }
-    .mock-field > span em {
+    .mock-field > span:not(.mock-file) em {
       font-style: normal;
       font-weight: 500;
       letter-spacing: 0.02em;
@@ -104,14 +104,42 @@
       box-shadow: 0 0 0 3px rgba(201, 165, 92, 0.16);
     }
     .mock-field select { appearance: none; cursor: pointer; }
-    .mock-field input[type="file"] {
+    /* On phones the hero is a column flex with align-items: center, which
+       sizes the card to its content, so a long filename in the file control
+       stretched the card wider than the screen. The shared stylesheet is not
+       ours to change, so the cap sits here, on this page only. */
+    .lead-card { max-width: 100%; }
+
+    /* The native file input writes its own button and "no file chosen" text,
+       and that text comes from the browser UI language, not from lang="en".
+       On a Danish browser it read "Vaelg fil / Der er ikke valgt nogen fil".
+       So the real input is hidden and we draw the control ourselves; the
+       label wraps it, so a click anywhere here still opens the picker. */
+    .mock-file {
+      display: flex;
+      align-items: center;
+      gap: 11px;
       padding: 9px 12px;
-      font-size: 0.85rem;
-      color: var(--text-secondary);
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
       cursor: pointer;
+      overflow: hidden;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
-    .mock-field input[type="file"]::file-selector-button {
-      font: inherit;
+    .mock-field input[type="file"] {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .mock-file-btn {
+      flex-shrink: 0;
       font-size: 0.8rem;
       font-weight: 600;
       color: var(--accent);
@@ -119,8 +147,30 @@
       border: 1px solid rgba(201, 165, 92, 0.4);
       border-radius: 6px;
       padding: 5px 11px;
-      margin-right: 11px;
-      cursor: pointer;
+    }
+    .mock-file-name {
+      /* Without min-width the flex item refuses to shrink under its own text,
+         so a long filename stretched the whole control past the screen and
+         the ellipsis never kicked in. */
+      min-width: 0;
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: normal;
+      text-transform: none;
+      color: var(--text-muted);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .mock-file-name.is-set { color: var(--text-secondary); }
+    /* The hidden input still takes focus, so mirror the focus ring onto the
+       control we drew, or keyboard users get no visible focus at all. */
+    .mock-field input[type="file"]:focus-visible + .mock-file,
+    .mock-file:hover {
+      border-color: var(--accent);
+    }
+    .mock-field input[type="file"]:focus-visible + .mock-file {
+      box-shadow: 0 0 0 3px rgba(201, 165, 92, 0.16);
     }
     .mock-consent {
       display: flex;
@@ -278,7 +328,11 @@
 
             <label class="mock-field">
               <span>Reference photo <em>optional</em></span>
-              <input type="file" name="reference" accept="image/*">
+              <input type="file" name="reference" accept="image/*" id="mockFile">
+              <span class="mock-file">
+                <span class="mock-file-btn">Choose a file</span>
+                <span class="mock-file-name" id="mockFileName">No file chosen</span>
+              </span>
             </label>
 
             <label class="mock-consent">
@@ -322,8 +376,24 @@
                 done.focus();
               });
 
+              /* Our own filename label, since the native one is hidden. */
+              var file = document.getElementById('mockFile');
+              var fileName = document.getElementById('mockFileName');
+              var fileEmpty = fileName ? fileName.textContent : '';
+              if (file && fileName) {
+                file.addEventListener('change', function () {
+                  var picked = file.files && file.files[0];
+                  fileName.textContent = picked ? picked.name : fileEmpty;
+                  fileName.classList.toggle('is-set', !!picked);
+                });
+              }
+
               reset.addEventListener('click', function () {
                 form.reset();
+                if (fileName) {
+                  fileName.textContent = fileEmpty;
+                  fileName.classList.remove('is-set');
+                }
                 done.hidden = true;
                 form.hidden = false;
                 form.querySelector('input, textarea').focus();
