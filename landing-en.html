@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tell us your tattoo idea | Tattoo Studio London</title>
+  <meta name="description" content="Fill out the form and get your tattoo offer today. Tell us the idea, and we reply the same day with the artist we would match to it.">
+  <!-- English mirror of landing.html, rewritten as a lead-capture page: no
+       prices, no discount framing, one ask (send us your idea). noindex so it
+       does not compete with the front page or the Danish landing page in
+       Google. Remove the line if the page should be indexed. -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta property="og:title" content="Fill out the form below, and get your tattoo offer today | Tattoo Studio London">
+  <meta property="og:description" content="Half an idea is enough to start. Send it over and we will tell you how it works on skin.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_GB">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="landing.css">
+  <style>
+    /* On mobile .lp-hero-copy becomes display:contents, so the hero children
+       are ordered explicitly. .lp-hero-sub is new on this page and would
+       otherwise default to order:0 and jump above the headline. It takes the
+       slot the removed offer box used. Kept here rather than in landing.css
+       so the Danish page is not touched at all. */
+    /* This headline is a full sentence, so it needs a smaller size than the
+       short one the shared stylesheet was tuned for. Sizes picked by
+       measuring line counts in the browser: 3 lines at 1440px, 4 at 1100px
+       and 4 at 390px. Forcing a <br> made every width one line worse. */
+    .lp-h1 { font-size: 2.4rem; }
+    @media (max-width: 768px) {
+      .lp-hero-sub { order: 2; margin-bottom: 0; }
+      .lp-h1 { font-size: min(2.0rem, 7.9vw); }
+      /* The shared stylesheet hides the logo sub-word on mobile. On the Danish
+         page that dropped "Rodovre" and left the real name behind; here it
+         would leave "TATTOO STUDIO" and cut the name in half. Showing it needs
+         room, so the logo and the header button both shrink. Measured: fits
+         with clearance down to 360px. */
+      .lp-logo-sub { display: inline; }
+      .lp-logo { font-size: 0.85rem; letter-spacing: 0.04em; }
+      .lp-header-cta { font-size: 0.68rem; padding: 9px 12px; }
+      .lp-header-inner { gap: 10px; }
+    }
+    /* Below 360px there is no room for both, so fall back to the shared
+       behaviour and let the button keep its tap target. */
+    @media (max-width: 359px) {
+      .lp-logo-sub { display: none; }
+    }
+
+    /* --- MOCK FORM ---------------------------------------------------
+       Styles for the demo form that replaced the GHL embed. Uses the
+       shared tokens so it sits inside the existing card without
+       redesigning it. Lives here, not in landing.css, because only this
+       page has the form. */
+    .mock-form-intro {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+    }
+    .mock-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .mock-field { display: block; margin-bottom: 14px; }
+    .mock-field > span:not(.mock-file) {
+      display: block;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+    .mock-field > span:not(.mock-file) em {
+      font-style: normal;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      text-transform: none;
+      color: var(--text-muted);
+    }
+    .mock-field input,
+    .mock-field select,
+    .mock-field textarea {
+      width: 100%;
+      font: inherit;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      background: rgba(0, 0, 0, 0.28);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 11px 13px;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .mock-field textarea { resize: vertical; line-height: 1.5; }
+    .mock-field input::placeholder,
+    .mock-field textarea::placeholder { color: var(--text-muted); }
+    .mock-field input:focus,
+    .mock-field select:focus,
+    .mock-field textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(201, 165, 92, 0.16);
+    }
+    .mock-field select { appearance: none; cursor: pointer; }
+    /* On phones the hero is a column flex with align-items: center, which
+       sizes the card to its content, so a long filename in the file control
+       stretched the card wider than the screen. The shared stylesheet is not
+       ours to change, so the cap sits here, on this page only. */
+    .lead-card { max-width: 100%; }
+
+    /* The native file input writes its own button and "no file chosen" text,
+       and that text comes from the browser UI language, not from lang="en".
+       On a Danish browser it read "Vaelg fil / Der er ikke valgt nogen fil".
+       So the real input is hidden and we draw the control ourselves; the
+       label wraps it, so a click anywhere here still opens the picker. */
+    .mock-file {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 9px 12px;
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      overflow: hidden;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .mock-field input[type="file"] {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .mock-file-btn {
+      flex-shrink: 0;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: transparent;
+      border: 1px solid rgba(201, 165, 92, 0.4);
+      border-radius: 6px;
+      padding: 5px 11px;
+    }
+    .mock-file-name {
+      /* Without min-width the flex item refuses to shrink under its own text,
+         so a long filename stretched the whole control past the screen and
+         the ellipsis never kicked in. */
+      min-width: 0;
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: normal;
+      text-transform: none;
+      color: var(--text-muted);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .mock-file-name.is-set { color: var(--text-secondary); }
+    /* The hidden input still takes focus, so mirror the focus ring onto the
+       control we drew, or keyboard users get no visible focus at all. */
+    .mock-field input[type="file"]:focus-visible + .mock-file,
+    .mock-file:hover {
+      border-color: var(--accent);
+    }
+    .mock-field input[type="file"]:focus-visible + .mock-file {
+      box-shadow: 0 0 0 3px rgba(201, 165, 92, 0.16);
+    }
+    .mock-consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 4px 0 18px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+    .mock-consent input {
+      flex-shrink: 0;
+      width: 17px;
+      height: 17px;
+      margin-top: 2px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+    .mock-submit { width: 100%; justify-content: center; }
+    .mock-form-note {
+      margin-top: 11px;
+      text-align: center;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+    }
+
+    /* Confirmation panel */
+    .mock-done { text-align: center; padding: 26px 8px 20px; }
+    .mock-done:focus { outline: none; }
+    .mock-done-mark {
+      display: grid;
+      place-items: center;
+      width: 52px;
+      height: 52px;
+      margin: 0 auto 16px;
+      border-radius: 50%;
+      color: var(--success);
+      background: rgba(74, 222, 128, 0.12);
+      border: 1.5px solid rgba(74, 222, 128, 0.4);
+    }
+    .mock-done h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.9rem;
+      letter-spacing: 0.02em;
+      margin-bottom: 8px;
+    }
+    .mock-done p { font-size: 0.93rem; color: var(--text-secondary); }
+    .mock-done-next {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      font-size: 0.86rem !important;
+    }
+    .mock-reset {
+      margin-top: 18px;
+      font: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: none;
+      border: none;
+      border-bottom: 1px solid rgba(201, 165, 92, 0.4);
+      padding-bottom: 2px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 520px) {
+      .mock-row { grid-template-columns: 1fr; gap: 0; }
+    }
+  </style>
+  <!-- TRACKING: add Meta Pixel / GTM here -->
+</head>
+<body>
+
+  <!-- HEADER — minimal, no navigation (one way out: the form) -->
+  <header class="lp-header" id="lpHeader">
+    <div class="lp-header-inner">
+      <span class="lp-logo">TATTOO STUDIO <span class="lp-logo-sub">London</span></span>
+      <div class="lp-header-actions">
+        <a href="#quote" class="lp-header-cta">Send your idea</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO + FORM — the form sits at the top of the page -->
+  <section class="lp-hero">
+    <!-- Lightweight hero: photo with a slow Ken Burns zoom instead of video (load time) -->
+    <div class="lp-hero-bg" aria-hidden="true">
+      <img class="lp-hero-img" src="images/salon 3.webp" alt="">
+    </div>
+    <div class="lp-hero-overlay" aria-hidden="true"></div>
+    <div class="container">
+      <div class="lp-hero-grid">
+        <div class="lp-hero-copy">
+          <h1 class="lp-h1">Fill out the form below, and get your tattoo offer today</h1>
+
+          <!-- Subheadline carries the ask. The form is the whole point of the
+               page, so this copy exists to lower the bar for filling it in. -->
+          <p class="lp-hero-sub">Most people carry a tattoo idea around for years before they say it out loud. Send us yours in the form, with a photo, a screenshot or a rough sketch. Half an idea is enough to start.</p>
+
+          <ul class="lp-hero-checks">
+            <li>A real person replies the same day</li>
+            <li>We tell you which of our artists we would put on it</li>
+            <li>Nothing is booked until you say so</li>
+          </ul>
+        </div>
+
+        <!-- FORM CARD -->
+        <div class="lead-card" id="quote">
+          <!-- MOCK FORM. The GHL embed was removed; this is a plain HTML form
+               that goes nowhere. It has no action and no endpoint, and the
+               submit handler below only swaps in the confirmation panel, so
+               nothing a visitor types leaves the browser. It exists to show
+               what the filled-in flow looks like. To make it real, put the
+               GHL embed back in place of this whole block. -->
+          <form class="mock-form" id="mockForm" novalidate>
+            <p class="mock-form-intro">Tell us what you are thinking of. Every field except the idea itself is optional.</p>
+
+            <div class="mock-row">
+              <label class="mock-field">
+                <span>Your name</span>
+                <input type="text" name="name" autocomplete="name" placeholder="Jamie Fletcher">
+              </label>
+              <label class="mock-field">
+                <span>Phone</span>
+                <input type="tel" name="phone" autocomplete="tel" placeholder="07700 900123">
+              </label>
+            </div>
+
+            <label class="mock-field">
+              <span>Email</span>
+              <input type="email" name="email" autocomplete="email" placeholder="jamie@example.com">
+            </label>
+
+            <div class="mock-row">
+              <label class="mock-field">
+                <span>Where on the body</span>
+                <input type="text" name="placement" placeholder="Right forearm">
+              </label>
+              <label class="mock-field">
+                <span>Roughly how big</span>
+                <select name="size">
+                  <option value="">Not sure yet</option>
+                  <option>Small, palm-sized or less</option>
+                  <option>Medium, forearm or calf</option>
+                  <option>Large, full sleeve or back</option>
+                </select>
+              </label>
+            </div>
+
+            <label class="mock-field">
+              <span>Your idea <em>required</em></span>
+              <textarea name="idea" rows="4" required placeholder="A few lines is plenty. What is the piece, and what does it mean to you?"></textarea>
+            </label>
+
+            <label class="mock-field">
+              <span>Reference photo <em>optional</em></span>
+              <input type="file" name="reference" accept="image/*" id="mockFile">
+              <span class="mock-file">
+                <span class="mock-file-btn">Choose a file</span>
+                <span class="mock-file-name" id="mockFileName">No file chosen</span>
+              </span>
+            </label>
+
+            <label class="mock-consent">
+              <input type="checkbox" name="consent" required>
+              <span>You can contact me about this idea.</span>
+            </label>
+
+            <button type="submit" class="btn btn-primary mock-submit">Send my idea</button>
+            <p class="mock-form-note">Preview only. Nothing you type here is sent or stored.</p>
+          </form>
+
+          <!-- Confirmation panel. Shown in place of the form on submit. -->
+          <div class="mock-done" id="mockDone" hidden>
+            <div class="mock-done-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <h3>Got it</h3>
+            <p>Thanks <strong id="mockDoneName">— we have your idea</strong>. A real person reads every message, and you will hear back from us today.</p>
+            <p class="mock-done-next">Next: we will ask a couple of questions, then tell you which of our artists we would put on it.</p>
+            <button type="button" class="mock-reset" id="mockReset">Send another idea</button>
+          </div>
+
+          <script>
+            /* Demo only: no network call, no storage. The handler blocks the
+               native submit, so the typed values never leave the page. */
+            (function () {
+              var form = document.getElementById('mockForm');
+              var done = document.getElementById('mockDone');
+              var doneName = document.getElementById('mockDoneName');
+              var reset = document.getElementById('mockReset');
+              if (!form || !done) return;
+
+              form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                if (!form.reportValidity()) return;
+                var name = (form.elements.name.value || '').trim();
+                doneName.textContent = name ? name : '\u2014 we have your idea';
+                form.hidden = true;
+                done.hidden = false;
+                done.setAttribute('tabindex', '-1');
+                done.focus();
+              });
+
+              /* Our own filename label, since the native one is hidden. */
+              var file = document.getElementById('mockFile');
+              var fileName = document.getElementById('mockFileName');
+              var fileEmpty = fileName ? fileName.textContent : '';
+              if (file && fileName) {
+                file.addEventListener('change', function () {
+                  var picked = file.files && file.files[0];
+                  fileName.textContent = picked ? picked.name : fileEmpty;
+                  fileName.classList.toggle('is-set', !!picked);
+                });
+              }
+
+              reset.addEventListener('click', function () {
+                form.reset();
+                if (fileName) {
+                  fileName.textContent = fileEmpty;
+                  fileName.classList.remove('is-set');
+                }
+                done.hidden = true;
+                form.hidden = false;
+                form.querySelector('input, textarea').focus();
+              });
+            })();
+          </script>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- SCOPE — what can be done, without promising a fixed number of sessions.
+       The videos lazy-load and only play once the section is in view. -->
+  <section class="size-guide">
+    <div class="container">
+      <p class="lp-label reveal">Scope</p>
+      <h2 class="lp-title reveal">Big or small, it starts the same way</h2>
+      <div class="size-guide-grid">
+
+        <article class="size-card reveal">
+          <div class="size-media">
+            <video data-src="images/work-chicano-sleeve.mp4" poster="images/work-chicano-sleeve-poster.jpg" muted loop playsinline preload="none" aria-label="Chicano sleeve after the first session"></video>
+          </div>
+          <div class="size-card-info">
+            <div class="size-card-head">
+              <span class="size-card-tag">Single piece</span>
+              <span class="size-card-cm">Often in one day</span>
+            </div>
+            <h3>One striking piece</h3>
+            <p>Arm, calf or shoulder. For a lot of people this is the whole thing, and it is done in one go.</p>
+          </div>
+        </article>
+
+        <article class="size-card reveal" style="--i:1">
+          <div class="size-media">
+            <video data-src="images/work-fullsleeve-bali.mp4" poster="images/work-fullsleeve-bali-poster.jpg" muted loop playsinline preload="none" aria-label="Greek full sleeve built over several sessions"></video>
+          </div>
+          <div class="size-card-info">
+            <div class="size-card-head">
+              <span class="size-card-tag">Full sleeve</span>
+              <span class="size-card-cm">Over several visits</span>
+            </div>
+            <h3>The whole arm as one design</h3>
+            <p>We design it as one piece from the start, so it still reads as one piece from every angle.</p>
+          </div>
+        </article>
+
+        <article class="size-card reveal" style="--i:2">
+          <div class="size-media">
+            <video data-src="images/work-rygprojekt.mp4" poster="images/work-rygprojekt-poster.jpg" muted loop playsinline preload="none" aria-label="Full back piece completed over seven sessions"></video>
+          </div>
+          <div class="size-card-info">
+            <div class="size-card-head">
+              <span class="size-card-tag">Back or leg</span>
+              <span class="size-card-cm">A longer project</span>
+            </div>
+            <h3>When you want to go all the way</h3>
+            <p>The biggest format we do. We map out the whole project first, then take it at the pace that suits you.</p>
+          </div>
+        </article>
+
+      </div>
+      <div class="lp-inline-cta reveal">
+        <a href="#quote" class="btn btn-primary">Tell us what you are picturing</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="lp-steps">
+    <div class="container">
+      <p class="lp-label reveal">How it works</p>
+      <h2 class="lp-title reveal">What happens after you hit send</h2>
+      <div class="lp-steps-grid">
+        <div class="lp-step reveal">
+          <div class="lp-step-num">1</div>
+          <h3>You send us the idea</h3>
+          <p>A few lines is plenty. Add a reference photo if you have one. It takes about two minutes, and it commits you to nothing.</p>
+        </div>
+        <div class="lp-step reveal" style="--i:1">
+          <div class="lp-step-num">2</div>
+          <h3>We come back to you the same day</h3>
+          <p>We ask about size, placement and what the piece means to you, until we understand what you are actually after. Then we tell you which artist we would match you with, and why.</p>
+        </div>
+        <div class="lp-step reveal" style="--i:2">
+          <div class="lp-step-num">3</div>
+          <h3>You see the whole plan before you decide</h3>
+          <p>Design, placement, how many sessions and what it costs, all of it up front. The needle only touches skin once you are happy with every detail.</p>
+        </div>
+      </div>
+      <div class="lp-inline-cta reveal">
+        <a href="#quote" class="btn btn-primary">Start with a few lines</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSPIRATION — two auto-scrolling rows of previous work (images AND
+       videos). The media list lives in landing-en.js as INSPIRATION_MEDIA:
+       drop new files in images/ and add a line — the rows fill themselves.
+       featured: true gives a wider cell. Click opens the lightbox; hover
+       pauses the belt. -->
+  <section class="insp-section">
+    <div class="container">
+      <p class="lp-label reveal">Inspiration</p>
+      <h2 class="lp-title reveal">Every one of these started as a message</h2>
+      <p class="insp-sub reveal">Tap a piece to see it up close. Each one began with someone describing a rough idea in a form like the one above.</p>
+    </div>
+    <div class="gal-rows reveal" id="inspGrid"></div>
+    <div class="container">
+      <div class="lp-inline-cta reveal">
+        <a href="#quote" class="btn btn-primary">Send us yours</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE ARTISTS — you get matched -->
+  <section class="lp-artists">
+    <div class="container">
+      <p class="lp-label reveal">The team</p>
+      <h2 class="lp-title reveal">You do not have to pick an artist. Tell us the idea and we will</h2>
+      <div class="lp-artists-row">
+        <div class="lp-artist reveal">
+          <img src="images/Andras-Bali.jpg" alt="Andras Bali, black and grey realism" loading="lazy">
+          <div class="lp-artist-info">
+            <strong>Andras Bali</strong>
+            <span>Black &amp; Grey Realism</span>
+          </div>
+        </div>
+        <div class="lp-artist reveal" style="--i:1">
+          <img src="images/Vito.jpg" alt="Vito, black and white realism" loading="lazy">
+          <div class="lp-artist-info">
+            <strong>Vito</strong>
+            <span>Black &amp; White Realism</span>
+          </div>
+        </div>
+        <div class="lp-artist reveal" style="--i:2">
+          <img src="images/Fernando-Calcaterra.jpg" alt="Fernando Calcaterra, neotraditional and black and grey realism" loading="lazy">
+          <div class="lp-artist-info">
+            <strong>Calcaterra</strong>
+            <span>Neotraditional &amp; Black &amp; Grey</span>
+          </div>
+        </div>
+        <div class="lp-artist reveal" style="--i:3">
+          <img src="images/Avi.webp" alt="Avi, black and grey and cover-ups" loading="lazy">
+          <div class="lp-artist-info">
+            <strong>Avi</strong>
+            <span>Black &amp; Grey &amp; Cover-ups</span>
+          </div>
+        </div>
+        <div class="lp-artist reveal" style="--i:4">
+          <img src="images/Ioana.jpg" alt="Ioana, colour and microrealism" loading="lazy">
+          <div class="lp-artist-info">
+            <strong>Ioana</strong>
+            <span>Colour &amp; Microrealism</span>
+          </div>
+        </div>
+        <div class="lp-artist reveal" style="--i:5">
+          <img src="images/Ksenia.jpg" alt="Ksenia, graphic and engraving" loading="lazy">
+          <div class="lp-artist-info">
+            <strong>Ksenia</strong>
+            <span>Graphic &amp; Engraving</span>
+          </div>
+        </div>
+        <div class="lp-artist reveal" style="--i:6">
+          <img src="images/Yuliia.webp" alt="Yuliia, old school, fineline and script" loading="lazy">
+          <div class="lp-artist-info">
+            <strong>Yuliia</strong>
+            <span>Old School, Fineline &amp; Script</span>
+          </div>
+        </div>
+        <div class="lp-artist reveal" style="--i:7">
+          <img src="images/Emily.jpg" alt="Emily, micro-realism and colour tattoos" loading="lazy">
+          <div class="lp-artist-info">
+            <strong>Emily</strong>
+            <span>Micro-realism &amp; Colour</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE STUDIO + FIND US (merged: video, short trust line, address, map) -->
+  <section class="lp-studio">
+    <div class="container">
+      <div class="lp-studio-grid">
+        <div class="lp-studio-media reveal">
+          <video autoplay muted loop playsinline preload="metadata" poster="images/Salon 1.webp">
+            <source src="images/studio-video.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="lp-studio-info reveal" style="--i:1">
+          <p class="lp-label">The studio</p>
+          <h2 class="lp-title lp-title-left">A place to relax on Roskildevej</h2>
+          <p>Professional equipment, the strictest hygiene standards and an easy atmosphere from the moment you walk in. First tattoo or tenth, nobody here will rush you.</p>
+          <ul class="lp-studio-facts">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Roskildevej 284, 2610 Rødovre, Copenhagen
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Monday-Saturday 10:00-18:00 &middot; By appointment only
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="lp-map-wrap reveal" style="--i:2">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2250.5!2d12.4534!3d55.6712!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTXCsDQwJzE2LjMiTiAxMsKwMjcnMTIuMiJF!5e0!3m2!1sen!2sdk!4v1"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Map showing the studio at Roskildevej 284, 2610 Rødovre"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS — Trustpilot, 2 scrolling rows -->
+  <section class="tp-section">
+    <div class="container">
+      <div class="tp-header">
+        <div class="tp-badge reveal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#00b67a" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.2 5.8 20.9l1.6-7L2 9.2l7.1-.6z"/></svg>
+          <strong>Trustpilot</strong>
+          <span class="tp-badge-stars" aria-hidden="true">
+            <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+          </span>
+        </div>
+        <!-- VERIFY THE NUMBERS: rating and count came from search results — check them against dk.trustpilot.com/review/tattoofashion.dk -->
+        <h2 class="tp-title reveal">Our customers have spoken: <span class="tp-score">4.8 out of 5</span> stars</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- The reviews (real Trustpilot reviews, Danish ones translated) live in
+         landing-en.js as TP_REVIEWS. Both rows render automatically,
+         including the duplicates used for the infinite scroll. -->
+    <div class="tp-rows reveal" id="tpRows"></div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="lp-faq">
+    <div class="container">
+      <p class="lp-label reveal">Questions</p>
+      <h2 class="lp-title reveal">What people ask us most</h2>
+      <div class="lp-faq-list">
+        <div class="lp-faq-item reveal">
+          <button class="lp-faq-q" aria-expanded="false">
+            <span>I do not know exactly what I want yet. Should I still write?</span>
+            <svg class="lp-faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="lp-faq-a"><p>Yes, and most people are exactly there. A theme, a feeling, a photo you saved months ago, that is enough for us to work with. Figuring out the rest is our job, not yours.</p></div>
+        </div>
+        <div class="lp-faq-item reveal" style="--i:1">
+          <button class="lp-faq-q" aria-expanded="false">
+            <span>Is the consultation free?</span>
+            <svg class="lp-faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="lp-faq-a"><p>Yes. We go through design, placement and price together, and it is entirely up to you whether you take it further. Plenty of people come in, think it over and come back months later.</p></div>
+        </div>
+        <div class="lp-faq-item reveal" style="--i:2">
+          <button class="lp-faq-q" aria-expanded="false">
+            <span>How many sessions will I need?</span>
+            <svg class="lp-faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="lp-faq-a"><p>Plenty of pieces are finished in a single session. If yours needs more, we say so as soon as you send it in, so you are never surprised halfway through.</p></div>
+        </div>
+        <div class="lp-faq-item reveal" style="--i:3">
+          <button class="lp-faq-q" aria-expanded="false">
+            <span>Does it hurt?</span>
+            <svg class="lp-faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="lp-faq-a"><p>Most people describe it as discomfort rather than pain. On a full-day session we take breaks along the way, and your artist makes sure you are comfortable throughout.</p></div>
+        </div>
+        <div class="lp-faq-item reveal" style="--i:4">
+          <button class="lp-faq-q" aria-expanded="false">
+            <span>Can you cover an old tattoo?</span>
+            <svg class="lp-faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="lp-faq-a"><p>Yes. Several of our artists specialise in cover-ups. Attach a photo of the existing tattoo in the form and we will tell you honestly what can be done with it, including if the answer is that laser removal comes first.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING CTA -->
+  <section class="lp-final">
+    <div class="container">
+      <h2 class="lp-final-title reveal">So, what is the idea?</h2>
+      <p class="lp-final-sub reveal">Write it down in the form, the way you would explain it to a friend. Two minutes, no obligation, and a real person gets back to you the same day.</p>
+      <div class="lp-final-actions reveal">
+        <a href="#quote" class="btn btn-primary lp-final-cta">Send my idea</a>
+      </div>
+      <p class="lp-final-trust reveal"><span class="lp-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 2,800+ reviews on Google &amp; Trustpilot</p>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM — images/videos linking to the profile.
+       The media list lives in landing-en.js as INSTAGRAM_ITEMS. -->
+  <section class="ig-section">
+    <div class="container">
+      <p class="lp-label reveal">Instagram</p>
+      <h2 class="lp-title reveal">Follow along on Instagram</h2>
+      <div class="ig-grid" id="igGrid"></div>
+      <div class="lp-inline-cta reveal">
+        <a href="https://www.instagram.com/tattoo_fashion_roedovre/" target="_blank" rel="noopener noreferrer" class="btn btn-outline ig-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          Follow us on Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER — minimal -->
+  <footer class="lp-footer">
+    <div class="container">
+      <div class="lp-footer-logo">TATTOO STUDIO LONDON</div>
+      <p>Roskildevej 284, 2610 Rødovre &middot; Monday-Saturday 10:00-18:00</p>
+      <p class="lp-footer-legal">CVR (Danish company reg. no.): 37231756 &middot; &copy; 2026 Tattoo Studio London. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- STICKY MOBILE CTA -->
+  <a href="#quote" class="lp-mobile-cta" id="lpMobileCta">Send your idea &mdash; takes 2 minutes</a>
+
+  <!-- LIGHTBOX for the inspiration gallery -->
+  <div class="insp-lightbox" id="inspLightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
+    <button class="insp-lb-close" id="inspLbClose" aria-label="Close">&times;</button>
+    <button class="insp-lb-nav insp-lb-prev" id="inspLbPrev" aria-label="Previous image">&#8249;</button>
+    <img class="insp-lb-img" id="inspLbImg" src="" alt="">
+    <video class="insp-lb-video" id="inspLbVideo" controls playsinline hidden></video>
+    <button class="insp-lb-nav insp-lb-next" id="inspLbNext" aria-label="Next image">&#8250;</button>
+    <span class="insp-lb-counter" id="inspLbCounter"></span>
+  </div>
+
+  <script src="landing-en.js"></script>
+</body>
+</html>
