@@ -293,8 +293,8 @@
     });
   }
 
-  // --- Størrelsesguide: indlæs + afspil videoerne først når de er i syne ---
-  var sizeVideos = document.querySelectorAll('.size-media video[data-src]');
+  // --- Størrelsesguide + studievideo: indlæs + afspil først når de er i syne ---
+  var sizeVideos = document.querySelectorAll('.size-media video[data-src], .lp-studio-media video[data-src]');
   if (sizeVideos.length && 'IntersectionObserver' in window) {
     var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var sizeObs = new IntersectionObserver(function (entries) {
