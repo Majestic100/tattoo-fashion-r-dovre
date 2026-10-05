@@ -1,4 +1,4 @@
-<!-- VERSION 05.10.2026 kl. 15:30 | fil 3-lang -->
+<!-- VERSION 05.10.2026 kl. 15:48 | fil 3-lang -->
 <!--
   TATTOO FASHION R&#xd8;DOVRE: LANG KAMPAGNESIDE (variant B i split-testen)
   GENERERET af ghl/build.py ud fra landing.html, landing.css og landing.js.

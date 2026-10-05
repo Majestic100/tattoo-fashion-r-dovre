@@ -1,5 +1,5 @@
 <!--
-  FUNNEL TRACKING CODE (HEAD): Meta Pixel + TikTok Pixel
+  FUNNEL TRACKING CODE (HEAD): Meta Pixel + TikTok Pixel + Microsoft Clarity
   GHL: Funnel > Settings > Tracking Code > Head tracking code.
   G&#xe6;lder alle steps i funnelen (kampagnesiderne og takkesiden).
 
@@ -44,11 +44,15 @@
     var f = d.getElementsByTagName('script')[0]; f.parentNode.insertBefore(s, f);
   };
 
+  // --- Microsoft Clarity (yszutz6ii7) ---
+  // K\u00f8-funktionen oprettes nu; selve scriptet hentes i start() nedenfor.
+  w.clarity = w.clarity || function () { (w.clarity.q = w.clarity.q || []).push(arguments); };
+
   function inject(src) {
     var s = d.createElement('script'); s.async = true; s.src = src;
     var f = d.getElementsByTagName('script')[0]; f.parentNode.insertBefore(s, f);
   }
-  // Scripterne (~470 KB) hentes f\u00f8rst efter f\u00f8rste paint, s\u00e5 de ikke
+  // Scripterne (~500 KB inkl. Clarity) hentes f\u00f8rst efter f\u00f8rste paint, s\u00e5 de ikke
   // konkurrerer med siden om b\u00e5ndbredde og main thread. Kaldene ovenfor
   // (init + PageView) ligger i k\u00f8 og sendes, s\u00e5 snart scriptet er hentet.
   // Start ved det, der kommer f\u00f8rst: load-event, f\u00f8rste interaktion, eller
@@ -58,6 +62,7 @@
     if (started) return;
     started = true;
     inject('https://connect.facebook.net/en_US/fbevents.js');
+    inject('https://www.clarity.ms/tag/yszutz6ii7');
     ttq.load('D6B1NK3C77U0SFL8HDF0');
     ttq.page();
   }
