@@ -1719,14 +1719,17 @@ button:focus-visible {
 }
 
 /* --- SCROLL REVEAL --- */
-.reveal {
+/* Skjules kun, når JS kører (klassen "js" sættes på <html> i <head>).
+   Uden JS, eller hvis scriptet fejler, står indholdet bare synligt.
+   Intet over folden har .reveal, så første indhold vises med det samme */
+.js .reveal {
   opacity: 0;
   transform: translateY(26px);
   transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
               transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
   transition-delay: calc(var(--i, 0) * 90ms);
 }
-.reveal.visible {
+.js .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -1965,7 +1968,7 @@ button:focus-visible {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  .reveal {
+  .js .reveal {
     opacity: 1;
     transform: none;
   }
