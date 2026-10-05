@@ -34,17 +34,19 @@
      INSPIRATIONS-SHOWCASE — billeder OG videoer
      Læg nye filer i images/ og tilføj en linje her — mosaikken og
      lightboxen opdaterer sig selv.
-       Billede: { src: 'images/fil.jpg', alt: 'Beskrivelse' }
+       Billede: { src: 'images/fil.webp', alt: 'Beskrivelse' }
+                (valgfrit thumb: 'images/fil-460.webp' = lille version i
+                rækkerne; src bruges i lightboxen)
        Video:   { src: 'images/fil.mp4', type: 'video', alt: 'Beskrivelse' }
        Stort felt i mosaikken: tilføj featured: true
      ========================================================== */
   var INSPIRATION_MEDIA = [
     { src: 'images/work-rygprojekt.mp4', type: 'video', alt: 'Fuldt rygprojekt i black and grey, syv sessioner', featured: true },
-    { src: 'images/work-ksenia-snake.jpg', alt: 'Slange og pæoner i black and grey, rygstykke' },
+    { src: 'images/work-ksenia-snake.webp', thumb: 'images/work-ksenia-snake-460.webp', alt: 'Slange og pæoner i black and grey, rygstykke' },
     { src: 'images/work-fullsleeve-bali.mp4', type: 'video', alt: 'Græsk full sleeve med Zeus og løve i black and grey' },
-    { src: 'images/work-oldschool-gangster.jpg', alt: 'Old School Gangster portrætter på benet, black and grey realism', featured: true },
+    { src: 'images/work-oldschool-gangster.webp', thumb: 'images/work-oldschool-gangster-460.webp', alt: 'Old School Gangster portrætter på benet, black and grey realism', featured: true },
     { src: 'images/work-disney-ben.mp4', type: 'video', alt: 'Disney-projekt på hele benet, ni sessioner' },
-    { src: 'images/work-pamela-leopard.jpg', alt: 'Leopard og liljer, full sleeve' },
+    { src: 'images/work-pamela-leopard.webp', thumb: 'images/work-pamela-leopard-460.webp', alt: 'Leopard og liljer, full sleeve' },
     { src: 'images/work-chicano-sleeve.mp4', type: 'video', alt: 'Chicano sleeve med portræt' },
     { src: 'images/work-clock-roulette.mp4', type: 'video', alt: 'Roulette og lommeur på underarmen, black and grey realism' },
     { src: 'images/work-graesk.mp4', type: 'video', alt: 'Græsk-inspireret sleeve' }
@@ -57,12 +59,12 @@
      ========================================================== */
   var INSTAGRAM_PROFILE = 'https://www.instagram.com/tattoo_fashion_roedovre/';
   var INSTAGRAM_ITEMS = [
-    { src: 'images/insta-1.jpg', alt: 'Instagram-opslag: matchende script-tatoveringer' },
-    { src: 'images/insta-2.jpg', alt: 'Instagram-opslag fra studiet' },
-    { src: 'images/insta-3.jpg', alt: 'Instagram-opslag fra studiet' },
-    { src: 'images/insta-4.jpg', alt: 'Instagram-opslag: firkløver-tatoveringer' },
-    { src: 'images/insta-5.jpg', alt: 'Instagram-opslag: mor og datter' },
-    { src: 'images/insta-6.jpg', alt: 'Instagram-opslag: sommerfugle og elefanter' }
+    { src: 'images/insta-1.webp', alt: 'Instagram-opslag: matchende script-tatoveringer' },
+    { src: 'images/insta-2.webp', alt: 'Instagram-opslag fra studiet' },
+    { src: 'images/insta-3.webp', alt: 'Instagram-opslag fra studiet' },
+    { src: 'images/insta-4.webp', alt: 'Instagram-opslag: firkløver-tatoveringer' },
+    { src: 'images/insta-5.webp', alt: 'Instagram-opslag: mor og datter' },
+    { src: 'images/insta-6.webp', alt: 'Instagram-opslag: sommerfugle og elefanter' }
   ];
 
   function escapeHtml(s) {
@@ -123,13 +125,13 @@
   // og viser et stillbillede indtil da (også på mobil).
   function mediaHtml(item) {
     if (item.type === 'video') {
-      var poster = item.src.replace(/\.mp4$/, '-poster.jpg');
+      var poster = item.src.replace(/\.mp4$/, '-poster.webp');
       return '<video data-src="' + escapeHtml(item.src) + '" poster="' + escapeHtml(poster) + '" muted playsinline loop preload="none" aria-label="' + escapeHtml(item.alt) + '"></video>' +
         '<span class="media-play-badge" aria-hidden="true">' +
         '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>' +
         '</span>';
     }
-    return '<img src="' + escapeHtml(item.src) + '" alt="' + escapeHtml(item.alt) + '" loading="lazy" decoding="async">';
+    return '<img src="' + escapeHtml(item.thumb || item.src) + '" alt="' + escapeHtml(item.alt) + '" loading="lazy" decoding="async">';
   }
 
   // Videoer i grids/marquee afspiller lydløst når de er i syne — også på
