@@ -13,12 +13,46 @@
   intet kolliderer med GHL's globale CSS (.container, .btn osv.).
   Billeder hentes fra GitHub Pages.
 -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="{{ASSETS}}fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ASSETS}}fonts/bebas-neue-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="{{ASSETS}}images/salon-3.webp" imagesrcset="{{ASSETS}}images/salon-3-640.webp 640w, {{ASSETS}}images/salon-3.webp 1030w" imagesizes="100vw" fetchpriority="high">
 
 <style>
+/* --- FONTE: self-hostet (fonts/), latin-subset. Inter er én variabel fil
+   (alle vægte). Fallback-fladerne er Arial justeret til webfontens mål
+   (beregnet fra font-filerne), så skiftet ved swap ikke flytter layoutet --- */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url({{ASSETS}}fonts/inter-latin-var.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Bebas Neue';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url({{ASSETS}}fonts/bebas-neue-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial'), local('ArialMT');
+  size-adjust: 106.91%;
+  ascent-override: 90.62%;
+  descent-override: 22.56%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Bebas Neue Fallback';
+  src: local('Arial'), local('ArialMT');
+  size-adjust: 57.63%;
+  ascent-override: 156.18%;
+  descent-override: 52.06%;
+  line-gap-override: 0%;
+}
 #tf-lp {
   --tf-bg: #151210;
   --tf-bg-2: #1c1814;
@@ -32,7 +66,7 @@
   position: relative;
   background: var(--tf-bg);
   color: var(--tf-text);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', 'Inter Fallback', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.6;
@@ -74,7 +108,7 @@
 }
 
 #tf-lp .tf-title {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Bebas Neue', 'Bebas Neue Fallback', sans-serif;
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -147,7 +181,7 @@
   padding: 0 20px;
 }
 #tf-lp .tf-logo {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Bebas Neue', 'Bebas Neue Fallback', sans-serif;
   font-size: 1.35rem;
   letter-spacing: 0.1em;
   white-space: nowrap;
@@ -228,7 +262,7 @@
   margin-bottom: 14px;
 }
 #tf-lp .tf-h1 {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', 'Inter Fallback', -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 600;
   letter-spacing: -0.02em;
   font-size: clamp(2.2rem, 3.7vw, 3rem);
@@ -447,7 +481,7 @@
 #tf-lp .tf-tp-badge i { width: 18px; height: 18px; font-size: 0.7rem; }
 #tf-lp .tf-tp-stars { display: inline-flex; gap: 2px; }
 #tf-lp .tf-review h3 {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', 'Inter Fallback', sans-serif;
   font-size: 1rem;
   font-weight: 700;
   line-height: 1.4;
@@ -530,7 +564,7 @@
   border-top: 1px solid var(--tf-border);
 }
 #tf-lp .tf-footer-logo {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Bebas Neue', 'Bebas Neue Fallback', sans-serif;
   font-size: 1.3rem;
   letter-spacing: 0.1em;
   margin-bottom: 10px;
