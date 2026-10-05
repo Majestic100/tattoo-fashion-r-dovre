@@ -1,0 +1,53 @@
+<!--
+  FUNNEL TRACKING CODE (HEAD): Meta Pixel + TikTok Pixel
+  GHL: Funnel > Settings > Tracking Code > Head tracking code.
+  Gælder alle steps i funnelen (kampagnesiderne og takkesiden).
+
+  VIGTIGT: Slå GHL's indbyggede Facebook-pixel-integration fra for denne
+  funnel (og fjern evt. gammel pixel-kode), ellers indlæses fbevents.js to
+  gange. Guarden herunder sikrer, at hver pixel kun initialiseres én gang,
+  selv hvis koden skulle ende på siden to gange.
+
+  Lead-eventet fyres på takkesiden (se ghl/tak.html), og Contact-eventet
+  fyres ved klik på telefonnumre (i selve snippet'erne).
+-->
+<script>
+(function (w, d) {
+  if (w.__tfPixels) return;
+  w.__tfPixels = true;
+
+  // --- Meta Pixel (2052229988273826) ---
+  if (!w.fbq) {
+    var n = w.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+    if (!w._fbq) w._fbq = n;
+    n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
+  }
+  w.fbq('init', '2052229988273826');
+  w.fbq('track', 'PageView');
+
+  // --- TikTok Pixel (D6B1NK3C77U0SFL8HDF0) ---
+  w.TiktokAnalyticsObject = 'ttq';
+  var ttq = w.ttq = w.ttq || [];
+  ttq.methods = ['page', 'track', 'identify', 'instances', 'debug', 'on', 'off', 'once', 'ready', 'alias', 'group', 'enableCookie', 'disableCookie', 'holdConsent', 'revokeConsent', 'grantConsent'];
+  ttq.setAndDefer = function (t, e) { t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))); }; };
+  for (var i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(ttq, ttq.methods[i]);
+  ttq.instance = function (t) { for (var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++) ttq.setAndDefer(e, ttq.methods[n]); return e; };
+  ttq.load = function (e, n) {
+    var r = 'https://analytics.tiktok.com/i18n/pixel/events.js';
+    ttq._i = ttq._i || {}; ttq._i[e] = []; ttq._i[e]._u = r;
+    ttq._t = ttq._t || {}; ttq._t[e] = +new Date();
+    ttq._o = ttq._o || {}; ttq._o[e] = n || {};
+    var s = d.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = r + '?sdkid=' + e + '&lib=ttq';
+    var f = d.getElementsByTagName('script')[0]; f.parentNode.insertBefore(s, f);
+  };
+
+  function inject(src) {
+    var s = d.createElement('script'); s.async = true; s.src = src;
+    var f = d.getElementsByTagName('script')[0]; f.parentNode.insertBefore(s, f);
+  }
+  inject('https://connect.facebook.net/en_US/fbevents.js');
+  ttq.load('D6B1NK3C77U0SFL8HDF0');
+  ttq.page();
+})(window, document);
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2052229988273826&ev=PageView&noscript=1"></noscript>
