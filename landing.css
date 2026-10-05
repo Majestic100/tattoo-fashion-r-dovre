@@ -1967,6 +1967,8 @@ button:focus-visible {
 }
 
 @media (max-width: 480px) {
+  /* Stjerner over teksten, centreret, i stedet for spredt ud på én linje */
+  .lp-final-trust { flex-direction: column; gap: 4px; text-align: center; }
   .lp-logo-sub { display: none; }
   .lp-logo { font-size: 1.2rem; }
 }
