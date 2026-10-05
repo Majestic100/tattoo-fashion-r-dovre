@@ -150,7 +150,14 @@ def minify_decls(body, nested=False):
 
 # GHL sætter egne fonte/farver/margener på elementer. Nulstil til arv inde i
 # roden; klasse-regler (#tf-lang .tf-x) har højere specificitet og vinder.
-RESET = (
+# Bryd ud af GHL's række/sektion (padding, max-width), så siden altid går
+# kant til kant. overflow-x: clip på html/body fjerner 100vw-scrollbar-bredden.
+BREAKOUT = (
+    "html,body{{overflow-x:clip}}"
+    "#{r}{{box-sizing:border-box;width:100vw;max-width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}}"
+)
+
+RESET = (BREAKOUT +
     "#{r} :is(h1,h2,h3,h4,p,li,ul,ol,figure,blockquote,strong,em,s,small,span,label)"
     "{{color:inherit;font-family:inherit;font-size:inherit;font-weight:inherit;"
     "line-height:inherit;letter-spacing:inherit;text-transform:inherit;text-align:inherit}}"
@@ -277,6 +284,37 @@ def extract_head_assets(html, base):
     return "".join(absolutize(l, base) + "\n" for l in links)
 
 
+def asciify(html):
+    """Gør filen ren ASCII, så æøå overlever enhver copy-paste/tegnsæt-fejl:
+    i <script> som \\uXXXX, i <style> som CSS-escape, ellers som &#x..;"""
+    def js(s):
+        out = []
+        for c in s:
+            n = ord(c)
+            if n < 128:
+                out.append(c)
+            elif n < 0x10000:
+                out.append("\\u%04x" % n)
+            else:
+                n -= 0x10000
+                out.append("\\u%04x\\u%04x" % (0xD800 + (n >> 10), 0xDC00 + (n & 0x3FF)))
+        return "".join(out)
+    def css(s):
+        return "".join(c if ord(c) < 128 else "\\%x " % ord(c) for c in s)
+    def text(s):
+        return "".join(c if ord(c) < 128 else "&#x%x;" % ord(c) for c in s)
+    out, pos = [], 0
+    for m in re.finditer(r"(<script\b[^>]*>)(.*?)(</script>)|(<style\b[^>]*>)(.*?)(</style>)", html, re.S):
+        out.append(text(html[pos:m.start()]))
+        if m.group(1):
+            out.append(text(m.group(1)) + js(m.group(2)) + m.group(3))
+        else:
+            out.append(text(m.group(4)) + css(m.group(5)) + m.group(6))
+        pos = m.end()
+    out.append(text(html[pos:]))
+    return "".join(out)
+
+
 def build_template(name, base):
     s = read("ghl/src/" + name)
     origin = re.match(r"(https?://[^/]+)", base)
@@ -296,10 +334,10 @@ def main():
     else:
         base = "https://majestic100.github.io/tattoo-fashion-r-dovre/"
     out = a.out
-    write(os.path.join(out, "lang.html"), build_lang(base))
+    write(os.path.join(out, "lang.html"), asciify(build_lang(base)))
     for f in sorted(os.listdir(os.path.join(HERE, "src"))):
         if f.endswith(".html"):
-            write(os.path.join(out, f), build_template(f, base))
+            write(os.path.join(out, f), asciify(build_template(f, base)))
     # Forhåndsvisning: snippet + head-kode i en hel side (som GHL leverer),
     # så den kan åbnes direkte i en browser. Kopiér IKKE disse ind i GHL.
     head = build_template("head-side.html", base)

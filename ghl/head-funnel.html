@@ -1,18 +1,18 @@
 <!--
   FUNNEL TRACKING CODE (HEAD): Meta Pixel + TikTok Pixel
   GHL: Funnel > Settings > Tracking Code > Head tracking code.
-  Gælder alle steps i funnelen (kampagnesiderne og takkesiden).
+  G&#xe6;lder alle steps i funnelen (kampagnesiderne og takkesiden).
 
-  VIGTIGT: Slå GHL's indbyggede Facebook-pixel-integration fra for denne
-  funnel (og fjern evt. gammel pixel-kode), ellers indlæses fbevents.js to
-  gange. Guarden herunder sikrer, at hver pixel kun initialiseres én gang,
-  selv hvis koden skulle ende på siden to gange.
+  VIGTIGT: Sl&#xe5; GHL's indbyggede Facebook-pixel-integration fra for denne
+  funnel (og fjern evt. gammel pixel-kode), ellers indl&#xe6;ses fbevents.js to
+  gange. Guarden herunder sikrer, at hver pixel kun initialiseres &#xe9;n gang,
+  selv hvis koden skulle ende p&#xe5; siden to gange.
 
-  Pixel-scripterne indlæses efter første paint (se nederst). PageView
-  ligger i kø fra første linje og går ikke tabt, medmindre den besøgende
-  lukker siden inden for de første sekunder.
-  Lead-eventet fyres på takkesiden (se ghl/tak.html), som starter pixlerne
-  med det samme. Contact-eventet fyres ved klik på telefonnumre.
+  Pixel-scripterne indl&#xe6;ses efter f&#xf8;rste paint (se nederst). PageView
+  ligger i k&#xf8; fra f&#xf8;rste linje og g&#xe5;r ikke tabt, medmindre den bes&#xf8;gende
+  lukker siden inden for de f&#xf8;rste sekunder.
+  Lead-eventet fyres p&#xe5; takkesiden (se ghl/tak.html), som starter pixlerne
+  med det samme. Contact-eventet fyres ved klik p&#xe5; telefonnumre.
 -->
 <script>
 (function (w, d) {
@@ -48,11 +48,11 @@
     var s = d.createElement('script'); s.async = true; s.src = src;
     var f = d.getElementsByTagName('script')[0]; f.parentNode.insertBefore(s, f);
   }
-  // Scripterne (~470 KB) hentes først efter første paint, så de ikke
-  // konkurrerer med siden om båndbredde og main thread. Kaldene ovenfor
-  // (init + PageView) ligger i kø og sendes, så snart scriptet er hentet.
-  // Start ved det, der kommer først: load-event, første interaktion, eller
-  // senest 3 s efter DOMContentLoaded (load kan trække ud pga. formularen).
+  // Scripterne (~470 KB) hentes f\u00f8rst efter f\u00f8rste paint, s\u00e5 de ikke
+  // konkurrerer med siden om b\u00e5ndbredde og main thread. Kaldene ovenfor
+  // (init + PageView) ligger i k\u00f8 og sendes, s\u00e5 snart scriptet er hentet.
+  // Start ved det, der kommer f\u00f8rst: load-event, f\u00f8rste interaktion, eller
+  // senest 3 s efter DOMContentLoaded (load kan tr\u00e6kke ud pga. formularen).
   var started = false;
   function start() {
     if (started) return;
@@ -61,7 +61,7 @@
     ttq.load('D6B1NK3C77U0SFL8HDF0');
     ttq.page();
   }
-  // Takkesiden kalder denne, så Lead-eventet ikke venter (se ghl/tak.html)
+  // Takkesiden kalder denne, s\u00e5 Lead-eventet ikke venter (se ghl/tak.html)
   w.__tfPixelsNow = start;
   function idle() { (w.requestIdleCallback || function (cb) { return setTimeout(cb, 1); })(start, { timeout: 1500 }); }
   if (d.readyState === 'complete') idle(); else w.addEventListener('load', idle, { once: true });

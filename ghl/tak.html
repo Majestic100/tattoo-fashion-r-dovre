@@ -1,7 +1,7 @@
 <!--
-  TATTOO FASHION RØDOVRE: TAKKESIDE
-  Indsæt HELE filen i ét Custom Code-element på takke-steppet i GHL.
-  Sektion, række og kolonne: fuld bredde og 0 padding. Sidens baggrund: #151210.
+  TATTOO FASHION R&#xd8;DOVRE: TAKKESIDE
+  Inds&#xe6;t HELE filen i &#xe9;t Custom Code-element p&#xe5; takke-steppet i GHL.
+  Sektion, r&#xe6;kke og kolonne: fuld bredde og 0 padding. Sidens baggrund: #151210.
   Alt CSS er scopet under #tf-tak med tf-prefix. Ingen pixel-kode her:
   se kommentaren nederst for den kode, der skal i steppets tracking code.
 -->
@@ -9,9 +9,9 @@
 <link rel="preload" href="https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/fonts/bebas-neue-latin.woff2" as="font" type="font/woff2" crossorigin>
 
 <style>
-/* --- FONTE: self-hostet (fonts/), latin-subset. Inter er én variabel fil
-   (alle vægte). Fallback-fladerne er Arial justeret til webfontens mål
-   (beregnet fra font-filerne), så skiftet ved swap ikke flytter layoutet --- */
+/* --- FONTE: self-hostet (fonts/), latin-subset. Inter er \e9 n variabel fil
+   (alle v\e6 gte). Fallback-fladerne er Arial justeret til webfontens m\e5 l
+   (beregnet fra font-filerne), s\e5  skiftet ved swap ikke flytter layoutet --- */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -44,6 +44,9 @@
   descent-override: 52.06%;
   line-gap-override: 0%;
 }
+/* Bryd ud af GHL's raekke/sektion (padding, max-width), saa siden gaar kant til kant */
+html, body { overflow-x: clip; }
+#tf-tak { box-sizing: border-box; width: 100vw; max-width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); }
 #tf-tak {
   --tf-bg: #151210;
   --tf-text-2: #a49c93;
@@ -65,7 +68,7 @@
   -webkit-text-size-adjust: 100%;
 }
 #tf-tak *, #tf-tak *::before, #tf-tak *::after { box-sizing: border-box; margin: 0; padding: 0; }
-/* GHL sætter egne farver/fonte på h1-h3 og p. Nulstil til arv, så kun
+/* GHL s\e6 tter egne farver/fonte p\e5  h1-h3 og p. Nulstil til arv, s\e5  kun
    vores klasser styrer udseendet (klasse-regler vinder over disse) */
 #tf-tak h1, #tf-tak h2, #tf-tak h3, #tf-tak p, #tf-tak li, #tf-tak figure, #tf-tak strong, #tf-tak s {
   color: inherit;
@@ -162,10 +165,10 @@
     <div class="tf-tak-check" aria-hidden="true">
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
     </div>
-    <p class="tf-tak-logo">Tattoo Fashion Rødovre</p>
-    <h1>Tak, vi har din idé</h1>
-    <p class="tf-tak-text">Du hører fra os samme dag. Vi kigger på dit motiv og matcher dig med den artist, der passer bedst til det.</p>
-    <p class="tf-tak-small">Har du spørgsmål i mellemtiden?</p>
+    <p class="tf-tak-logo">Tattoo Fashion R&#xf8;dovre</p>
+    <h1>Tak, vi har din id&#xe9;</h1>
+    <p class="tf-tak-text">Du h&#xf8;rer fra os samme dag. Vi kigger p&#xe5; dit motiv og matcher dig med den artist, der passer bedst til det.</p>
+    <p class="tf-tak-small">Har du sp&#xf8;rgsm&#xe5;l i mellemtiden?</p>
     <a href="tel:+4550168630" class="tf-tak-phone">Ring 50 16 86 30</a>
   </div>
 </div>
@@ -175,7 +178,7 @@
   'use strict';
   var root = document.getElementById('tf-tak');
   if (!root) return;
-  // Klik på telefonnummeret: Contact-event, hvis pixlerne findes
+  // Klik p\u00e5 telefonnummeret: Contact-event, hvis pixlerne findes
   root.querySelectorAll('a[href^="tel:"]').forEach(function (a) {
     a.addEventListener('click', function () {
       try { if (typeof window.fbq === 'function') window.fbq('track', 'Contact'); } catch (err) {}
@@ -187,10 +190,10 @@
 
 <!--
   =====================================================================
-  TRACKING CODE TIL TAKKE-STEPPET (indsættes IKKE i Custom Code-elementet)
+  TRACKING CODE TIL TAKKE-STEPPET (inds&#xe6;ttes IKKE i Custom Code-elementet)
   GHL: Funnel > takke-steppet > Settings > Tracking Code > Body Tracking Code.
   Basis-pixlerne (Meta 2052229988273826 + TikTok) skal ligge i funnelens
-  fælles tracking code, så fbq og ttq findes, når denne kode kører.
+  f&#xe6;lles tracking code, s&#xe5; fbq og ttq findes, n&#xe5;r denne kode k&#xf8;rer.
 
 <script>
   try { if (typeof window.fbq === 'function') { fbq('track', 'Lead'); } } catch (e) {}

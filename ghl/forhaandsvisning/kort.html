@@ -91,6 +91,9 @@
   descent-override: 52.06%;
   line-gap-override: 0%;
 }
+/* Bryd ud af GHL's raekke/sektion (padding, max-width), saa siden gaar kant til kant */
+html, body { overflow-x: clip; }
+#tf-lp { box-sizing: border-box; width: 100vw; max-width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); }
 #tf-lp {
   --tf-bg: #151210;
   --tf-bg-2: #1c1814;

@@ -1,15 +1,15 @@
 <!--
-  TATTOO FASHION RØDOVRE: KORT KAMPAGNESIDE (variant A i split-testen)
-  Indsæt HELE filen i ét Custom Code-element i GHL-funnelen.
+  TATTOO FASHION R&#xd8;DOVRE: KORT KAMPAGNESIDE (variant A i split-testen)
+  Inds&#xe6;t HELE filen i &#xe9;t Custom Code-element i GHL-funnelen.
 
-  Opsætning i GHL:
-  - Sektion, række og kolonne: fuld bredde og 0 padding/margin.
-  - Sidens baggrundsfarve: #151210 (så der ikke ses hvide kanter).
+  Ops&#xe6;tning i GHL:
+  - Sektion, r&#xe6;kke og kolonne: fuld bredde og 0 padding/margin.
+  - Sidens baggrundsfarve: #151210 (s&#xe5; der ikke ses hvide kanter).
   - Pixel-koden (Meta + TikTok) ligger i funnelens tracking code, IKKE her.
-    Klik på telefonnumre fyrer 'Contact' via window.fbq / window.ttq,
+    Klik p&#xe5; telefonnumre fyrer 'Contact' via window.fbq / window.ttq,
     hvis de findes.
 
-  Alt CSS er scopet under #tf-lp, og alle klasser har tf-prefix, så
+  Alt CSS er scopet under #tf-lp, og alle klasser har tf-prefix, s&#xe5;
   intet kolliderer med GHL's globale CSS (.container, .btn osv.).
   Billeder hentes fra GitHub Pages.
 -->
@@ -19,9 +19,9 @@
 <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/images/salon-3.webp" imagesrcset="https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/images/salon-3-640.webp 640w, https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/images/salon-3.webp 1030w" imagesizes="100vw" fetchpriority="high">
 
 <style>
-/* --- FONTE: self-hostet (fonts/), latin-subset. Inter er én variabel fil
-   (alle vægte). Fallback-fladerne er Arial justeret til webfontens mål
-   (beregnet fra font-filerne), så skiftet ved swap ikke flytter layoutet --- */
+/* --- FONTE: self-hostet (fonts/), latin-subset. Inter er \e9 n variabel fil
+   (alle v\e6 gte). Fallback-fladerne er Arial justeret til webfontens m\e5 l
+   (beregnet fra font-filerne), s\e5  skiftet ved swap ikke flytter layoutet --- */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -54,6 +54,9 @@
   descent-override: 52.06%;
   line-gap-override: 0%;
 }
+/* Bryd ud af GHL's raekke/sektion (padding, max-width), saa siden gaar kant til kant */
+html, body { overflow-x: clip; }
+#tf-lp { box-sizing: border-box; width: 100vw; max-width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); }
 #tf-lp {
   --tf-bg: #151210;
   --tf-bg-2: #1c1814;
@@ -80,7 +83,7 @@
   margin: 0;
   padding: 0;
 }
-/* GHL sætter egne farver/fonte på h1-h3 og p. Nulstil til arv, så kun
+/* GHL s\e6 tter egne farver/fonte p\e5  h1-h3 og p. Nulstil til arv, s\e5  kun
    vores klasser styrer udseendet (klasse-regler vinder over disse) */
 #tf-lp h1, #tf-lp h2, #tf-lp h3, #tf-lp p, #tf-lp li, #tf-lp figure, #tf-lp strong, #tf-lp s {
   color: inherit;
@@ -271,7 +274,7 @@
   color: var(--tf-text);
   margin-bottom: 14px;
 }
-/* Prisen: guld med pulserende glød og glans-strejf over tallet */
+/* Prisen: guld med pulserende gl\f8 d og glans-strejf over tallet */
 #tf-lp .tf-price {
   white-space: nowrap;
   font-weight: 800;
@@ -374,11 +377,11 @@
   background: linear-gradient(90deg, transparent, var(--tf-accent) 50%, transparent);
   border-radius: 2px;
 }
-/* Formularens højde er reserveret på forhånd (målt: 994px ved desktop/
-   tablet-bredde, 1141-1167px på telefoner), så kortet ikke hopper, når
-   iframen loader. Scriptet nederst sætter derefter den præcise højde ud
-   fra formularens [iFrameSizer]-besked. form_embed.js lægger iframen i
-   .ep-iFrameContainer/.ep-wrapper med højde 0, derfor 100% på dem. */
+/* Formularens h\f8 jde er reserveret p\e5  forh\e5 nd (m\e5 lt: 994px ved desktop/
+   tablet-bredde, 1141-1167px p\e5  telefoner), s\e5  kortet ikke hopper, n\e5 r
+   iframen loader. Scriptet nederst s\e6 tter derefter den pr\e6 cise h\f8 jde ud
+   fra formularens [iFrameSizer]-besked. form_embed.js l\e6 gger iframen i
+   .ep-iFrameContainer/.ep-wrapper med h\f8 jde 0, derfor 100% p\e5  dem. */
 #tf-lp .tf-form-wrap { height: 994px; overflow: hidden; border-radius: 8px; }
 #tf-lp .tf-form-wrap .ep-iFrameContainer,
 #tf-lp .tf-form-wrap .ep-wrapper { height: 100%; }
@@ -394,7 +397,7 @@
 }
 /* GHL-formularen flytter sine egne felter, mens den bygger sig op (~0,2 CLS
    inde i iframen). Den holdes usynlig bag en lys flade, til den har lagt
-   sig (scriptet sætter .tf-ready, senest efter 4 s) */
+   sig (scriptet s\e6 tter .tf-ready, senest efter 4 s) */
 .tf-js #tf-lp .tf-form-wrap { background: #f6f5f3; }
 .tf-js #tf-lp .tf-form-wrap:not(.tf-ready) iframe { visibility: hidden; }
 
@@ -609,14 +612,14 @@
 
   #tf-lp .tf-header-phone span { display: none; }
 
-  /* Mobil-rækkefølge: overskrift og pris, så formularen, så checks.
-     display: contents gør teksten til direkte flex-børn, så order virker */
+  /* Mobil-r\e6 kkef\f8 lge: overskrift og pris, s\e5  formularen, s\e5  checks.
+     display: contents g\f8 r teksten til direkte flex-b\f8 rn, s\e5  order virker */
   #tf-lp .tf-hero-copy { display: contents; }
   #tf-lp .tf-hero-grid {
     display: flex;
     flex-direction: column;
     /* stretch (ikke center fra desktop-griddet), ellers krymper
-       formular-kortet, og GHL-formularen lægger sig ud i smal bredde */
+       formular-kortet, og GHL-formularen l\e6 gger sig ud i smal bredde */
     align-items: stretch;
     gap: 22px;
   }
@@ -629,7 +632,7 @@
   #tf-lp .tf-h1 {
     order: 1;
     margin: 0;
-    /* Skalerer med bredden, så "Få en heldagssession" holder én linje */
+    /* Skalerer med bredden, s\e5  "F\e5  en heldagssession" holder \e9 n linje */
     font-size: min(2.5rem, 7.6vw);
     text-align: center;
   }
@@ -647,8 +650,8 @@
   #tf-lp .tf-lead-card { order: 4; width: 100%; padding: 24px 20px 20px; }
   #tf-lp .tf-checks { order: 5; margin-bottom: 4px; }
 
-  /* Arbejde: vandret swipe-række. Lodret scroll over rækken ruller
-     stadig siden, og overscroll-behavior holder swipet inde i rækken */
+  /* Arbejde: vandret swipe-r\e6 kke. Lodret scroll over r\e6 kken ruller
+     stadig siden, og overscroll-behavior holder swipet inde i r\e6 kken */
   #tf-lp .tf-work-grid {
     display: flex;
     gap: 12px;
@@ -717,7 +720,7 @@
 
   <header class="tf-header" id="tf-header">
     <div class="tf-header-inner">
-      <span class="tf-logo">TATTOO FASHION <span class="tf-logo-sub">Rødovre</span></span>
+      <span class="tf-logo">TATTOO FASHION <span class="tf-logo-sub">R&#xf8;dovre</span></span>
       <a href="tel:+4550168630" class="tf-header-phone" aria-label="Ring 50 16 86 30">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
         <span>50 16 86 30</span>
@@ -735,18 +738,18 @@
       <div class="tf-hero-grid">
         <div class="tf-hero-copy">
           <p class="tf-eyebrow">Heldagssession - spar 1.500 kr.</p>
-          <h1 class="tf-h1">Få en heldagssession<br>for kun <span class="tf-price">4.500 kr.</span></h1>
+          <h1 class="tf-h1">F&#xe5; en heldagssession<br>for kun <span class="tf-price">4.500 kr.</span></h1>
           <p class="tf-was">Normalpris <s>6.000 kr.</s> <span class="tf-save">Spar 25%</span></p>
-          <p class="tf-note">Udfyld formularen for at sikre din tid. <strong>Først til mølle.</strong></p>
+          <p class="tf-note">Udfyld formularen for at sikre din tid. <strong>F&#xf8;rst til m&#xf8;lle.</strong></p>
           <ul class="tf-checks">
-            <li>Du hører fra os samme dag</li>
+            <li>Du h&#xf8;rer fra os samme dag</li>
             <li>Vi matcher dig med den rigtige artist</li>
-            <li>Gratis konsultation før vi går i gang</li>
+            <li>Gratis konsultation f&#xf8;r vi g&#xe5;r i gang</li>
           </ul>
         </div>
 
         <!-- GHL-formular: samme iframe og form_embed.js som landing.html.
-             form_embed.js styrer selv iframens højde. -->
+             form_embed.js styrer selv iframens h&#xf8;jde. -->
         <div class="tf-lead-card" id="tilbud">
           <div class="tf-form-wrap" id="tf-form-wrap">
             <iframe
@@ -764,7 +767,7 @@
               data-height="982"
               data-layout-iframe-id="inline-2uG53EReqRsbSTRrRCnt"
               data-form-id="2uG53EReqRsbSTRrRCnt"
-              title="Få et uforpligtende tilbud på din tatovering"
+              title="F&#xe5; et uforpligtende tilbud p&#xe5; din tatovering"
             ></iframe>
           </div>
           <script src="https://link.msgsndr.com/js/form_embed.js" defer></script>
@@ -773,22 +776,22 @@
     </div>
   </section>
 
-  <!-- ARBEJDE: 3x2 på desktop, swipe-række på mobil. Kun stillbilleder -->
+  <!-- ARBEJDE: 3x2 p&#xe5; desktop, swipe-r&#xe6;kke p&#xe5; mobil. Kun stillbilleder -->
   <section class="tf-work">
     <div class="tf-container">
       <h2 class="tf-title">Arbejde fra studiet</h2>
       <div class="tf-work-grid">
         <figure class="tf-work-item"><img src="https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/images/work-rygprojekt-poster.webp" width="460" height="818" loading="lazy" decoding="async" alt="Fuldt rygprojekt i black and grey"></figure>
-        <figure class="tf-work-item"><img src="https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/images/work-fullsleeve-bali-poster.webp" width="460" height="818" loading="lazy" decoding="async" alt="Græsk full sleeve med Zeus i black and grey"></figure>
-        <figure class="tf-work-item"><img src="https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/images/work-ksenia-snake-460.webp" width="460" height="614" loading="lazy" decoding="async" alt="Slange og pæoner i black and grey, rygstykke"></figure>
-        <figure class="tf-work-item"><img src="https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/images/work-oldschool-gangster-460.webp" width="460" height="614" loading="lazy" decoding="async" alt="Old School Gangster portrætter på benet"></figure>
-        <figure class="tf-work-item"><img src="https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/images/work-chicano-sleeve-poster.webp" width="460" height="818" loading="lazy" decoding="async" alt="Chicano sleeve med portræt"></figure>
-        <figure class="tf-work-item"><img src="https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/images/work-clock-roulette-poster.webp" width="460" height="818" loading="lazy" decoding="async" alt="Roulette og lommeur på underarmen, black and grey realism"></figure>
+        <figure class="tf-work-item"><img src="https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/images/work-fullsleeve-bali-poster.webp" width="460" height="818" loading="lazy" decoding="async" alt="Gr&#xe6;sk full sleeve med Zeus i black and grey"></figure>
+        <figure class="tf-work-item"><img src="https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/images/work-ksenia-snake-460.webp" width="460" height="614" loading="lazy" decoding="async" alt="Slange og p&#xe6;oner i black and grey, rygstykke"></figure>
+        <figure class="tf-work-item"><img src="https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/images/work-oldschool-gangster-460.webp" width="460" height="614" loading="lazy" decoding="async" alt="Old School Gangster portr&#xe6;tter p&#xe5; benet"></figure>
+        <figure class="tf-work-item"><img src="https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/images/work-chicano-sleeve-poster.webp" width="460" height="818" loading="lazy" decoding="async" alt="Chicano sleeve med portr&#xe6;t"></figure>
+        <figure class="tf-work-item"><img src="https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/images/work-clock-roulette-poster.webp" width="460" height="818" loading="lazy" decoding="async" alt="Roulette og lommeur p&#xe5; underarmen, black and grey realism"></figure>
       </div>
     </div>
   </section>
 
-  <!-- ANMELDELSER: ægte Trustpilot-anmeldelser (fra TP_REVIEWS i landing.js) -->
+  <!-- ANMELDELSER: &#xe6;gte Trustpilot-anmeldelser (fra TP_REVIEWS i landing.js) -->
   <section class="tf-reviews">
     <div class="tf-container">
       <div class="tf-reviews-head">
@@ -803,7 +806,7 @@
         <article class="tf-review">
           <span class="tf-stars" aria-label="5 ud af 5 stjerner"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span>
           <h3>Top service</h3>
-          <p>Min tatovør forstod virkelig hvad jeg ønskede og tog sig god tid til at tegne den direkte på mig.</p>
+          <p>Min tatov&#xf8;r forstod virkelig hvad jeg &#xf8;nskede og tog sig god tid til at tegne den direkte p&#xe5; mig.</p>
           <div class="tf-review-foot"><span class="tf-avatar" aria-hidden="true">CJ</span><strong>Carina Jessen</strong><span class="tf-verified">Verificeret</span></div>
         </article>
         <article class="tf-review">
@@ -815,7 +818,7 @@
         <article class="tf-review">
           <span class="tf-stars" aria-label="5 ud af 5 stjerner"><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></span>
           <h3>Rart og trygt</h3>
-          <p>Det var min første tatovering, så jeg var meget nervøs, men stedet var rart og roligt. Vil 100% anbefale!</p>
+          <p>Det var min f&#xf8;rste tatovering, s&#xe5; jeg var meget nerv&#xf8;s, men stedet var rart og roligt. Vil 100% anbefale!</p>
           <div class="tf-review-foot"><span class="tf-avatar" aria-hidden="true">CK</span><strong>Christensen Kira</strong><span class="tf-verified">Verificeret</span></div>
         </article>
       </div>
@@ -826,9 +829,9 @@
   <section class="tf-final">
     <div class="tf-container">
       <h2 class="tf-title">Klar til at komme i stolen?</h2>
-      <p class="tf-final-sub">Lige nu får du sessionen til <strong>4.500 kr.</strong> i stedet for 6.000 kr.</p>
+      <p class="tf-final-sub">Lige nu f&#xe5;r du sessionen til <strong>4.500 kr.</strong> i stedet for 6.000 kr.</p>
       <div class="tf-final-actions">
-        <a href="#tilbud" class="tf-btn">Få din pris</a>
+        <a href="#tilbud" class="tf-btn">F&#xe5; din pris</a>
         <a href="tel:+4550168630" class="tf-final-phone">eller ring 50 16 86 30</a>
       </div>
     </div>
@@ -837,13 +840,13 @@
   <footer class="tf-footer">
     <div class="tf-container">
       <div class="tf-footer-logo">TATTOO FASHION</div>
-      <p>Roskildevej 284, 2610 Rødovre &middot; <a href="tel:+4550168630">50 16 86 30</a></p>
-      <p>Mandag-lørdag 10:00-18:00, kun efter aftale</p>
+      <p>Roskildevej 284, 2610 R&#xf8;dovre &middot; <a href="tel:+4550168630">50 16 86 30</a></p>
+      <p>Mandag-l&#xf8;rdag 10:00-18:00, kun efter aftale</p>
       <p class="tf-legal">CVR: 37231756 &middot; &copy; 2026 Tattoo Fashion</p>
     </div>
   </footer>
 
-  <a href="#tilbud" class="tf-mobile-cta" id="tf-mobile-cta">Spar 1.500 kr. på din session</a>
+  <a href="#tilbud" class="tf-mobile-cta" id="tf-mobile-cta">Spar 1.500 kr. p&#xe5; din session</a>
 </div>
 
 <script>
@@ -856,7 +859,7 @@
   var mobileCta = document.getElementById('tf-mobile-cta');
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Headeren får baggrund, så snart toppen af siden er rullet ud af syne
+  // Headeren f\u00e5r baggrund, s\u00e5 snart toppen af siden er rullet ud af syne
   var top = document.getElementById('tf-top');
   if (header && top && 'IntersectionObserver' in window) {
     new IntersectionObserver(function (entries) {
@@ -864,7 +867,7 @@
     }).observe(top);
   }
 
-  // Blød scroll til formularen (GHL-sider har ikke altid scroll-behavior)
+  // Bl\u00f8d scroll til formularen (GHL-sider har ikke altid scroll-behavior)
   root.querySelectorAll('a[href="#tilbud"]').forEach(function (a) {
     a.addEventListener('click', function (e) {
       if (!form) return;
@@ -882,8 +885,8 @@
     }, { threshold: 0.1 }).observe(form);
   }
 
-  // GHL-formularen: præcis højde fra formularens egen besked
-  // ("[iFrameSizer]<iframe-id>:<højde>:<bredde>:<type>"). Kun fra GHL.
+  // GHL-formularen: pr\u00e6cis h\u00f8jde fra formularens egen besked
+  // ("[iFrameSizer]<iframe-id>:<h\u00f8jde>:<bredde>:<type>"). Kun fra GHL.
   var formWrap = document.getElementById('tf-form-wrap');
   if (formWrap) {
     // Vis formularen 400 ms efter dens sidste besked (senest efter 4 s)
@@ -896,8 +899,8 @@
       var parts = e.data.slice(13).split(':');
       var h = parseInt(parts[1], 10);
       if (formWrap.querySelector('iframe[id="' + parts[0] + '"]') && h > 300 && h < 5000) {
-        // +5 px: samme tillæg som form_embed.js selv giver iframen; uden
-        // det får formularen en scrollbar og bliver smallere og højere
+        // +5 px: samme till\u00e6g som form_embed.js selv giver iframen; uden
+        // det f\u00e5r formularen en scrollbar og bliver smallere og h\u00f8jere
         formWrap.style.height = (h + 5) + 'px';
         clearTimeout(formReadyTimer);
         formReadyTimer = setTimeout(showForm, 400);
@@ -905,7 +908,7 @@
     });
   }
 
-  // Klik på telefonnumre: Contact-event til Meta og TikTok, hvis pixlerne findes
+  // Klik p\u00e5 telefonnumre: Contact-event til Meta og TikTok, hvis pixlerne findes
   root.querySelectorAll('a[href^="tel:"]').forEach(function (a) {
     a.addEventListener('click', function () {
       try { if (typeof window.fbq === 'function') window.fbq('track', 'Contact'); } catch (err) {}
