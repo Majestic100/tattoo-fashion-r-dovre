@@ -338,6 +338,12 @@ def main():
     for f in sorted(os.listdir(os.path.join(HERE, "src"))):
         if f.endswith(".html"):
             write(os.path.join(out, f), asciify(build_template(f, base)))
+    # Tekstkopier (.txt) til copy-paste: TextEdit viser .html som en side,
+    # men .txt altid som ren tekst. Nummereret i den rækkefølge, de bruges.
+    for i, f in enumerate(["head-funnel", "head-side", "lang", "kort", "tak"], 1):
+        src = open(os.path.join(REPO, out, f + ".html"), encoding="utf-8").read()
+        write(os.path.join(out, "kopier-herfra", "%d-%s.txt" % (i, f)), src)
+
     # Forhåndsvisning: snippet + head-kode i en hel side (som GHL leverer),
     # så den kan åbnes direkte i en browser. Kopiér IKKE disse ind i GHL.
     head = build_template("head-side.html", base)

@@ -1,0 +1,75 @@
+<!--
+  FUNNEL TRACKING CODE (HEAD): Meta Pixel + TikTok Pixel
+  GHL: Funnel > Settings > Tracking Code > Head tracking code.
+  G&#xe6;lder alle steps i funnelen (kampagnesiderne og takkesiden).
+
+  VIGTIGT: Sl&#xe5; GHL's indbyggede Facebook-pixel-integration fra for denne
+  funnel (og fjern evt. gammel pixel-kode), ellers indl&#xe6;ses fbevents.js to
+  gange. Guarden herunder sikrer, at hver pixel kun initialiseres &#xe9;n gang,
+  selv hvis koden skulle ende p&#xe5; siden to gange.
+
+  Pixel-scripterne indl&#xe6;ses efter f&#xf8;rste paint (se nederst). PageView
+  ligger i k&#xf8; fra f&#xf8;rste linje og g&#xe5;r ikke tabt, medmindre den bes&#xf8;gende
+  lukker siden inden for de f&#xf8;rste sekunder.
+  Lead-eventet fyres p&#xe5; takkesiden (se ghl/tak.html), som starter pixlerne
+  med det samme. Contact-eventet fyres ved klik p&#xe5; telefonnumre.
+-->
+<script>
+(function (w, d) {
+  if (w.__tfPixels) return;
+  w.__tfPixels = true;
+
+  // --- Meta Pixel (2052229988273826) ---
+  if (!w.fbq) {
+    var n = w.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+    if (!w._fbq) w._fbq = n;
+    n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
+  }
+  w.fbq('init', '2052229988273826');
+  w.fbq('track', 'PageView');
+
+  // --- TikTok Pixel (D6B1NK3C77U0SFL8HDF0) ---
+  w.TiktokAnalyticsObject = 'ttq';
+  var ttq = w.ttq = w.ttq || [];
+  ttq.methods = ['page', 'track', 'identify', 'instances', 'debug', 'on', 'off', 'once', 'ready', 'alias', 'group', 'enableCookie', 'disableCookie', 'holdConsent', 'revokeConsent', 'grantConsent'];
+  ttq.setAndDefer = function (t, e) { t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))); }; };
+  for (var i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(ttq, ttq.methods[i]);
+  ttq.instance = function (t) { for (var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++) ttq.setAndDefer(e, ttq.methods[n]); return e; };
+  ttq.load = function (e, n) {
+    var r = 'https://analytics.tiktok.com/i18n/pixel/events.js';
+    ttq._i = ttq._i || {}; ttq._i[e] = []; ttq._i[e]._u = r;
+    ttq._t = ttq._t || {}; ttq._t[e] = +new Date();
+    ttq._o = ttq._o || {}; ttq._o[e] = n || {};
+    var s = d.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = r + '?sdkid=' + e + '&lib=ttq';
+    var f = d.getElementsByTagName('script')[0]; f.parentNode.insertBefore(s, f);
+  };
+
+  function inject(src) {
+    var s = d.createElement('script'); s.async = true; s.src = src;
+    var f = d.getElementsByTagName('script')[0]; f.parentNode.insertBefore(s, f);
+  }
+  // Scripterne (~470 KB) hentes f\u00f8rst efter f\u00f8rste paint, s\u00e5 de ikke
+  // konkurrerer med siden om b\u00e5ndbredde og main thread. Kaldene ovenfor
+  // (init + PageView) ligger i k\u00f8 og sendes, s\u00e5 snart scriptet er hentet.
+  // Start ved det, der kommer f\u00f8rst: load-event, f\u00f8rste interaktion, eller
+  // senest 3 s efter DOMContentLoaded (load kan tr\u00e6kke ud pga. formularen).
+  var started = false;
+  function start() {
+    if (started) return;
+    started = true;
+    inject('https://connect.facebook.net/en_US/fbevents.js');
+    ttq.load('D6B1NK3C77U0SFL8HDF0');
+    ttq.page();
+  }
+  // Takkesiden kalder denne, s\u00e5 Lead-eventet ikke venter (se ghl/tak.html)
+  w.__tfPixelsNow = start;
+  function idle() { (w.requestIdleCallback || function (cb) { return setTimeout(cb, 1); })(start, { timeout: 1500 }); }
+  if (d.readyState === 'complete') idle(); else w.addEventListener('load', idle, { once: true });
+  ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function (t) {
+    w.addEventListener(t, start, { once: true, passive: true });
+  });
+  function cap() { setTimeout(start, 3000); }
+  if (d.readyState === 'loading') d.addEventListener('DOMContentLoaded', cap, { once: true }); else cap();
+})(window, document);
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2052229988273826&ev=PageView&noscript=1"></noscript>
