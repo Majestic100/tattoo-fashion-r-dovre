@@ -309,11 +309,14 @@ html, body { overflow-x: clip; }
   align-items: center;
   gap: 8px 14px;
   font-size: clamp(1.2rem, 1.9vw, 1.45rem);
-  font-weight: 700;
-  color: #f0645c;
+  font-weight: 600;
+  color: #f0827b;
   margin-bottom: 16px;
 }
 #tf-lp .tf-was s {
+  font-size: 1.3em;
+  font-weight: 800;
+  color: #ff5d55;
   text-decoration: line-through;
   text-decoration-color: #ffffff;
   text-decoration-thickness: 3px;
@@ -709,6 +712,11 @@ html, body { overflow-x: clip; }
   #tf-lp .tf-footer { padding-bottom: 90px; }
 }
 
+/* Smalle telefoner: normalpris og rabat holdes p\e5  \e9 n linje */
+@media (max-width: 380px) {
+  #tf-lp .tf-was { gap: 6px 10px; font-size: 1.08rem; }
+  #tf-lp .tf-save { padding: 4px 10px; font-size: 0.7rem; }
+}
 @media (max-width: 480px) {
   #tf-lp .tf-logo-sub { display: none; }
   #tf-lp .tf-logo { font-size: 1.2rem; }
