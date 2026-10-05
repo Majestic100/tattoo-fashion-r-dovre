@@ -2163,7 +2163,7 @@ button:focus-visible {
   letter-spacing: -0.02em;
   font-size: clamp(2.2rem, 3.7vw, 3rem);
   line-height: 1.1;
-  margin-bottom: 14px;
+  margin-bottom: 22px;
 }
 
 /* Prisen: guld med pulserende glød og et glans-strejf, der fejer hen over
@@ -2238,7 +2238,7 @@ button:focus-visible {
   .lp-was {
     order: 2;
     justify-content: center;
-    margin: -8px 0 0;
+    margin: 4px 0 0;
   }
   .lp-hero-note {
     order: 3;

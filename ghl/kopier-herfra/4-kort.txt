@@ -1,4 +1,4 @@
-<!-- VERSION 05.10.2026 kl. 16:16 | fil 4-kort -->
+<!-- VERSION 05.10.2026 kl. 16:17 | fil 4-kort -->
 <!--
   TATTOO FASHION R&#xd8;DOVRE: KORT KAMPAGNESIDE (variant A i split-testen)
   Inds&#xe6;t HELE filen i &#xe9;t Custom Code-element i GHL-funnelen.
@@ -273,7 +273,7 @@ html, body { overflow-x: clip; }
   font-size: clamp(2.2rem, 3.7vw, 3rem);
   line-height: 1.1;
   color: var(--tf-text);
-  margin-bottom: 14px;
+  margin-bottom: 22px;
 }
 /* Prisen: guld med pulserende gl\f8 d og glans-strejf over tallet */
 #tf-lp .tf-price {
@@ -629,7 +629,7 @@ html, body { overflow-x: clip; }
   #tf-lp .tf-was {
     order: 2;
     justify-content: center;
-    margin: -8px 0 0;
+    margin: 4px 0 0;
   }
   #tf-lp .tf-note {
     order: 3;
