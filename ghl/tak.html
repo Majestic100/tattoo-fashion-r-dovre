@@ -195,6 +195,8 @@
 <script>
   try { if (typeof window.fbq === 'function') { fbq('track', 'Lead'); } } catch (e) {}
   try { if (window.ttq && typeof window.ttq.track === 'function') { ttq.track('SubmitForm'); } } catch (e) {}
+  // Hent pixel-scripterne med det samme her (funnel-koden venter ellers til efter load)
+  try { if (typeof window.__tfPixelsNow === 'function') { window.__tfPixelsNow(); } } catch (e) {}
 </script>
   =====================================================================
 -->

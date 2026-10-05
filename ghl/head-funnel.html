@@ -8,8 +8,11 @@
   gange. Guarden herunder sikrer, at hver pixel kun initialiseres én gang,
   selv hvis koden skulle ende på siden to gange.
 
-  Lead-eventet fyres på takkesiden (se ghl/tak.html), og Contact-eventet
-  fyres ved klik på telefonnumre (i selve snippet'erne).
+  Pixel-scripterne indlæses efter første paint (se nederst). PageView
+  ligger i kø fra første linje og går ikke tabt, medmindre den besøgende
+  lukker siden inden for de første sekunder.
+  Lead-eventet fyres på takkesiden (se ghl/tak.html), som starter pixlerne
+  med det samme. Contact-eventet fyres ved klik på telefonnumre.
 -->
 <script>
 (function (w, d) {
@@ -45,9 +48,28 @@
     var s = d.createElement('script'); s.async = true; s.src = src;
     var f = d.getElementsByTagName('script')[0]; f.parentNode.insertBefore(s, f);
   }
-  inject('https://connect.facebook.net/en_US/fbevents.js');
-  ttq.load('D6B1NK3C77U0SFL8HDF0');
-  ttq.page();
+  // Scripterne (~470 KB) hentes først efter første paint, så de ikke
+  // konkurrerer med siden om båndbredde og main thread. Kaldene ovenfor
+  // (init + PageView) ligger i kø og sendes, så snart scriptet er hentet.
+  // Start ved det, der kommer først: load-event, første interaktion, eller
+  // senest 3 s efter DOMContentLoaded (load kan trække ud pga. formularen).
+  var started = false;
+  function start() {
+    if (started) return;
+    started = true;
+    inject('https://connect.facebook.net/en_US/fbevents.js');
+    ttq.load('D6B1NK3C77U0SFL8HDF0');
+    ttq.page();
+  }
+  // Takkesiden kalder denne, så Lead-eventet ikke venter (se ghl/tak.html)
+  w.__tfPixelsNow = start;
+  function idle() { (w.requestIdleCallback || function (cb) { return setTimeout(cb, 1); })(start, { timeout: 1500 }); }
+  if (d.readyState === 'complete') idle(); else w.addEventListener('load', idle, { once: true });
+  ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function (t) {
+    w.addEventListener(t, start, { once: true, passive: true });
+  });
+  function cap() { setTimeout(start, 3000); }
+  if (d.readyState === 'loading') d.addEventListener('DOMContentLoaded', cap, { once: true }); else cap();
 })(window, document);
 </script>
 <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2052229988273826&ev=PageView&noscript=1"></noscript>
