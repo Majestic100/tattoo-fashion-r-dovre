@@ -80,7 +80,7 @@
 
   function tpCardHtml(r) {
     return '<article class="tp-card">' +
-      '<div class="tp-card-top"><span class="tp-stars" aria-label="5 ud af 5 stjerner"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></span><span class="tp-quote" aria-hidden="true">“”</span></div>' +
+      '<div class="tp-card-top"><span class="tp-stars" aria-label="5 ud af 5 stjerner"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></span></div>' +
       '<h3>' + escapeHtml(r.title) + '</h3>' +
       '<p>' + escapeHtml(r.text) + '</p>' +
       '<div class="tp-card-foot">' +

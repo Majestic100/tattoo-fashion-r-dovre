@@ -1430,12 +1430,6 @@ button:focus-visible {
   font-size: 0.75rem;
   line-height: 1;
 }
-.tp-quote {
-  font-family: Georgia, serif;
-  font-size: 1.9rem;
-  line-height: 0.6;
-  color: rgba(201, 165, 92, 0.55);
-}
 
 .tp-card h3 {
   font-family: 'Inter', 'Inter Fallback', sans-serif;
