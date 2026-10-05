@@ -340,9 +340,12 @@ def main():
             write(os.path.join(out, f), asciify(build_template(f, base)))
     # Tekstkopier (.txt) til copy-paste: TextEdit viser .html som en side,
     # men .txt altid som ren tekst. Nummereret i den rækkefølge, de bruges.
+    import datetime
+    stamp = datetime.datetime.now().strftime("%d.%m.%Y kl. %H:%M")
     for i, f in enumerate(["head-funnel", "head-side", "lang", "kort", "tak"], 1):
         src = open(os.path.join(REPO, out, f + ".html"), encoding="utf-8").read()
-        write(os.path.join(out, "kopier-herfra", "%d-%s.txt" % (i, f)), src)
+        head = "<!-- VERSION %s | fil %d-%s -->\n" % (stamp, i, f)
+        write(os.path.join(out, "kopier-herfra", "%d-%s.txt" % (i, f)), head + src)
 
     # Forhåndsvisning: snippet + head-kode i en hel side (som GHL leverer),
     # så den kan åbnes direkte i en browser. Kopiér IKKE disse ind i GHL.

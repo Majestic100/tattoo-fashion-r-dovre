@@ -1,3 +1,4 @@
+<!-- VERSION 05.10.2026 kl. 15:30 | fil 1-head-funnel -->
 <!--
   FUNNEL TRACKING CODE (HEAD): Meta Pixel + TikTok Pixel
   GHL: Funnel > Settings > Tracking Code > Head tracking code.
