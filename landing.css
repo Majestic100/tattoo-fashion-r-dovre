@@ -1116,8 +1116,11 @@ button:focus-visible {
   transform: translateY(-4px);
   box-shadow: 0 15px 40px -18px rgba(201, 165, 92, 0.35);
 }
+/* height: auto er nødvendig: ellers vinder billedets height-attribut over
+   aspect-ratio, og kortene bliver lange i stedet for 1:1 */
 .lp-artist img {
   width: 100%;
+  height: auto;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   object-position: center top;
