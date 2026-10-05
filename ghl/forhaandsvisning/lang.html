@@ -7,27 +7,20 @@
 <style>html,body{margin:0;padding:0;background:#151210}</style>
 <!--
   STEP TRACKING CODE (HEAD) til kampagnesiden
-  GHL: Funnel > kampagne-steppet > Settings > Tracking Code > Head.
-  Brug samme kode på begge varianter (kort/lang), hvis de ligger som
-  split-test på samme step.
+  GHL: sidebyggeren > Settings > Tracking Code > Header Code.
 
-  <title> og meta description sættes IKKE her, men i steppets
-  "SEO Meta Data" i GHL, ellers kommer de på siden to gange:
+  Titel, beskrivelse, author, canonical, sprog og delebillede sættes i GHL's
+  eget panel "SEO & AI search optimization" (ikke her, ellers kommer de på
+  siden to gange):
     Title:       Heldagssession 4.500 kr. i Rødovre | Tattoo Fashion
     Description: Heldagssession hos Tattoo Fashion i Rødovre for kun 4.500 kr. (normalpris 6.000 kr.). Send din idé og hør fra os samme dag. Først til mølle.
-    Social image: https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/images/og-image.jpg
+    Author:      Tattoo Fashion Rødovre
+    Canonical:   https://dkinkcopenhagen.com/tattoos
+    Language:    Danish (da)
+    Image:       https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/images/og-image.jpg
+
+  Denne fil henter kun hero-billedet og fontene tidligt, før GHL's egen kode.
 -->
-<script>document.documentElement.lang = 'da';</script>
-<link rel="canonical" href="https://dkinkcopenhagen.com/tattoos">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://dkinkcopenhagen.com/tattoos">
-<meta property="og:title" content="Heldagssession 4.500 kr. i Rødovre | Tattoo Fashion">
-<meta property="og:description" content="Heldagssession hos Tattoo Fashion i Rødovre for kun 4.500 kr. (normalpris 6.000 kr.). Send din idé og hør fra os samme dag. Først til mølle.">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/images/og-image.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:locale" content="da_DK">
-<!-- Hero (LCP-kandidat) og fonte hentes før GHL's egen kode -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/images/salon-3.webp" imagesrcset="https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/images/salon-3-640.webp 640w, https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/images/salon-3.webp 1030w" imagesizes="100vw" fetchpriority="high">
 <link rel="preload" href="https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
