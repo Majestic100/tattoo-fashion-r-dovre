@@ -13,7 +13,7 @@
   intet kolliderer med GHL's globale CSS (.container, .btn osv.).
   Billeder hentes fra GitHub Pages.
 -->
-<script>document.documentElement.lang = 'da';</script>
+<script>document.documentElement.lang = 'da'; document.documentElement.classList.add('tf-js');</script>
 <link rel="preload" href="https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/fonts/bebas-neue-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/images/salon-3.webp" imagesrcset="https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/images/salon-3-640.webp 640w, https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/images/salon-3.webp 1030w" imagesizes="100vw" fetchpriority="high">
@@ -392,6 +392,11 @@
 @media (max-width: 560px) {
   #tf-lp .tf-form-wrap { height: 1150px; }
 }
+/* GHL-formularen flytter sine egne felter, mens den bygger sig op (~0,2 CLS
+   inde i iframen). Den holdes usynlig bag en lys flade, til den har lagt
+   sig (scriptet sætter .tf-ready, senest efter 4 s) */
+.tf-js #tf-lp .tf-form-wrap { background: #f6f5f3; }
+.tf-js #tf-lp .tf-form-wrap:not(.tf-ready) iframe { visibility: hidden; }
 
 /* --- ARBEJDE --- */
 #tf-lp .tf-work { padding: 96px 0; }
@@ -881,6 +886,10 @@
   // ("[iFrameSizer]<iframe-id>:<højde>:<bredde>:<type>"). Kun fra GHL.
   var formWrap = document.getElementById('tf-form-wrap');
   if (formWrap) {
+    // Vis formularen 400 ms efter dens sidste besked (senest efter 4 s)
+    var formReadyTimer;
+    var showForm = function () { formWrap.classList.add('tf-ready'); };
+    setTimeout(showForm, 4000);
     window.addEventListener('message', function (e) {
       if (typeof e.data !== 'string' || e.data.indexOf('[iFrameSizer]') !== 0) return;
       if (!/(^|\.)(leadconnectorhq\.com|msgsndr\.com)$/.test(e.origin.replace(/^https:\/\//, ''))) return;
@@ -888,6 +897,8 @@
       var h = parseInt(parts[1], 10);
       if (formWrap.querySelector('iframe[id="' + parts[0] + '"]') && h > 300 && h < 5000) {
         formWrap.style.height = h + 'px';
+        clearTimeout(formReadyTimer);
+        formReadyTimer = setTimeout(showForm, 400);
       }
     });
   }

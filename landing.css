@@ -557,6 +557,16 @@ button:focus-visible {
 @media (max-width: 560px) {
   .ghl-form-wrap { height: 1150px; }
 }
+/* GHL-formularen flytter sine egne felter, mens den bygger sig op (målt:
+   ~0,2 CLS inde i iframen, ~600 ms efter start). Den holdes derfor usynlig
+   bag en lys flade, til den har lagt sig, og vises så på én gang.
+   landing.js sætter .is-ready (senest efter 4 s). Uden JS vises den straks */
+.js .ghl-form-wrap {
+  background: #f6f5f3;
+}
+.js .ghl-form-wrap:not(.is-ready) iframe {
+  visibility: hidden;
+}
 
 
 /* --- STATS --- */

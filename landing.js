@@ -365,8 +365,13 @@
   // --- GHL-formularen: sæt præcis højde fra formularens egen besked ---
   // form_embed.js sender "[iFrameSizer]<iframe-id>:<højde>:<bredde>:<type>",
   // men lader iframen stå i den reserverede højde. Kun beskeder fra GHL.
+  // Formularen vises først, når dens beskeder er stilnet af (400 ms efter
+  // den sidste), så dens egne layoutskift sker, mens den er skjult.
   var formWrap = document.getElementById('ghlFormMount');
   if (formWrap) {
+    var formReadyTimer;
+    var showForm = function () { formWrap.classList.add('is-ready'); };
+    setTimeout(showForm, 4000); // sikkerhedsnet: vis altid formularen
     window.addEventListener('message', function (e) {
       if (typeof e.data !== 'string' || e.data.indexOf('[iFrameSizer]') !== 0) return;
       if (!/(^|\.)(leadconnectorhq\.com|msgsndr\.com)$/.test(e.origin.replace(/^https:\/\//, ''))) return;
@@ -374,6 +379,8 @@
       var h = parseInt(parts[1], 10);
       if (formWrap.querySelector('iframe[id="' + parts[0] + '"]') && h > 300 && h < 5000) {
         formWrap.style.height = h + 'px';
+        clearTimeout(formReadyTimer);
+        formReadyTimer = setTimeout(showForm, 400);
       }
     });
   }
