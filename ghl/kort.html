@@ -276,32 +276,9 @@ html, body { overflow-x: clip; }
 }
 /* Prisen: guld med pulserende gl\f8 d og glans-strejf over tallet */
 #tf-lp .tf-price {
-  /* Gl\f8 d + puls kun med opacity p\e5  et lag ovenp\e5  (GPU-komponeret).
-     Tidligere animerede background-position og filter, som tvang
-     browseren til at gentegne overskriften i hvert billede (m\e5 lt ~15 s
-     main-thread-arbejde og sen LCP i Lighthouse) */
-  position: relative;
-  display: inline-block;
   white-space: nowrap;
   font-weight: 800;
   color: var(--tf-accent);
-  text-shadow: 0 0 22px rgba(201, 165, 92, 0.35);
-}
-#tf-lp .tf-price::after {
-  content: attr(data-text);
-  content: attr(data-text) / "";
-  position: absolute;
-  inset: 0;
-  color: #f6e3b4;
-  text-shadow: 0 0 26px rgba(201, 165, 92, 0.85);
-  opacity: 0;
-  pointer-events: none;
-  will-change: opacity;
-  animation: tf-price-pulse 3s ease-in-out infinite;
-}
-@keyframes tf-price-pulse {
-  0%, 100% { opacity: 0; }
-  50% { opacity: 0.55; }
 }
 #tf-lp .tf-was {
   display: flex;
@@ -318,8 +295,9 @@ html, body { overflow-x: clip; }
   font-weight: 800;
   color: #ff5d55;
   text-decoration: line-through;
-  text-decoration-color: #ffffff;
-  text-decoration-thickness: 3px;
+  /* Tynd overstregning, s\e5  tallet stadig kan l\e6 ses tydeligt */
+  text-decoration-color: rgba(255, 255, 255, 0.85);
+  text-decoration-thickness: 1.5px;
 }
 #tf-lp .tf-save {
   padding: 5px 14px;
@@ -754,7 +732,7 @@ html, body { overflow-x: clip; }
       <div class="tf-hero-grid">
         <div class="tf-hero-copy">
           <p class="tf-eyebrow">Heldagssession - spar 1.500 kr.</p>
-          <h1 class="tf-h1">F&#xe5; en heldagssession<br>for kun <span class="tf-price" data-text="4.500 kr.">4.500 kr.</span></h1>
+          <h1 class="tf-h1">F&#xe5; en heldagssession<br>for kun <span class="tf-price">4.500 kr.</span></h1>
           <p class="tf-was">Normalpris <s>6.000 kr.</s> <span class="tf-save">Spar 25%</span></p>
           <p class="tf-note">Udfyld formularen for at sikre din tid. <strong>F&#xf8;rst til m&#xf8;lle.</strong></p>
           <ul class="tf-checks">

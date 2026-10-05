@@ -2169,32 +2169,9 @@ button:focus-visible {
 /* Prisen: guld med pulserende glød og et glans-strejf, der fejer hen over
    tallet. Samme animation som den tidligere tilbudsboks */
 .lp-price-glow {
-  /* Glød + puls kun med opacity på et lag ovenpå (GPU-komponeret).
-     Tidligere animerede background-position og filter, som tvang
-     browseren til at gentegne overskriften i hvert billede (målt ~15 s
-     main-thread-arbejde og sen LCP i Lighthouse) */
-  position: relative;
-  display: inline-block;
   white-space: nowrap;
   font-weight: 800;
   color: var(--accent);
-  text-shadow: 0 0 22px rgba(201, 165, 92, 0.35);
-}
-.lp-price-glow::after {
-  content: attr(data-text);
-  content: attr(data-text) / "";
-  position: absolute;
-  inset: 0;
-  color: #f6e3b4;
-  text-shadow: 0 0 26px rgba(201, 165, 92, 0.85);
-  opacity: 0;
-  pointer-events: none;
-  will-change: opacity;
-  animation: lp-price-pulse 3s ease-in-out infinite;
-}
-@keyframes lp-price-pulse {
-  0%, 100% { opacity: 0; }
-  50% { opacity: 0.55; }
 }
 
 .lp-was {
@@ -2208,13 +2185,14 @@ button:focus-visible {
   margin-bottom: 16px;
 }
 /* Den gamle pris fremhæves: større og federe end "Normalpris", så øjet
-   går til tallet, med en tydelig hvid overstregning */
+   går til tallet, med en tynd overstregning der ikke skjuler cifrene */
 .lp-was s {
   font-size: 1.3em;
   font-weight: 800;
   color: #ff5d55;
-  text-decoration-color: #ffffff;
-  text-decoration-thickness: 3px;
+  /* Tynd overstregning, så tallet stadig kan læses tydeligt */
+  text-decoration-color: rgba(255, 255, 255, 0.85);
+  text-decoration-thickness: 1.5px;
 }
 .lp-save-pill {
   padding: 5px 14px;

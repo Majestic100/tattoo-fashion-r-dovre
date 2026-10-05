@@ -1,4 +1,4 @@
-<!-- VERSION 05.10.2026 kl. 16:14 | fil 2-head-side -->
+<!-- VERSION 05.10.2026 kl. 16:16 | fil 2-head-side -->
 <!--
   STEP TRACKING CODE (HEAD) til kampagnesiden
   GHL: sidebyggeren > Settings > Tracking Code > Header Code.
