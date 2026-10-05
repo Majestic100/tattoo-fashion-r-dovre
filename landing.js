@@ -360,6 +360,22 @@
     });
   });
 
+  // --- GHL-formularen: sæt præcis højde fra formularens egen besked ---
+  // form_embed.js sender "[iFrameSizer]<iframe-id>:<højde>:<bredde>:<type>",
+  // men lader iframen stå i den reserverede højde. Kun beskeder fra GHL.
+  var formWrap = document.getElementById('ghlFormMount');
+  if (formWrap) {
+    window.addEventListener('message', function (e) {
+      if (typeof e.data !== 'string' || e.data.indexOf('[iFrameSizer]') !== 0) return;
+      if (!/(^|\.)(leadconnectorhq\.com|msgsndr\.com)$/.test(e.origin.replace(/^https:\/\//, ''))) return;
+      var parts = e.data.slice(13).split(':');
+      var h = parseInt(parts[1], 10);
+      if (formWrap.querySelector('iframe[id="' + parts[0] + '"]') && h > 300 && h < 5000) {
+        formWrap.style.height = h + 'px';
+      }
+    });
+  }
+
   // --- Sticky mobil-CTA: vis efter hero, skjul mens formularen er synlig ---
   var mobileCta = document.getElementById('lpMobileCta');
   var leadCard = document.getElementById('tilbud');

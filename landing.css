@@ -496,17 +496,30 @@ button:focus-visible {
 
 
 
-/* GHL-formularens plads — embed-scriptet styrer selv højden.
-   min-height ligger tæt på formularens reelle højde (976px), så
-   siden ikke hopper, mens scriptet loader */
+/* GHL-formularens plads. Højden er reserveret på forhånd (målt: 994px ved
+   desktop/tablet-bredde, 1141-1167px på telefoner), så kortet ikke hopper,
+   når iframen loader (det var sidens CLS). landing.js sætter derefter den
+   præcise højde ud fra formularens egen [iFrameSizer]-besked, så hele
+   formularen ses uden scroll inde i iframen. form_embed.js lægger iframen
+   i .ep-iFrameContainer/.ep-wrapper med højde 0, derfor 100% på dem. */
 .ghl-form-wrap {
-  min-height: 700px;
+  height: 994px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+.ghl-form-wrap .ep-iFrameContainer,
+.ghl-form-wrap .ep-wrapper {
+  height: 100%;
 }
 .ghl-form-wrap iframe {
+  display: block;
   width: 100%;
+  height: 100% !important;
   border: none;
   border-radius: 8px;
-  min-height: 700px;
+}
+@media (max-width: 560px) {
+  .ghl-form-wrap { height: 1150px; }
 }
 
 

@@ -75,6 +75,11 @@ def parse_blocks(css):
 CLASS_RE = re.compile(r"\.(-?[_a-zA-Z][\w-]*)")
 
 
+def is_external(c):
+    """Klasser som GHL's form_embed.js selv indsætter (ep-*): må ikke omdøbes."""
+    return c.startswith("ep-")
+
+
 def css_classes(css):
     names = set()
     for prelude, body in parse_blocks(strip_css_comments(css)):
@@ -90,14 +95,14 @@ def scope_selector(sel, used, rename):
     if not sel:
         return None
     classes = CLASS_RE.findall(sel)
-    if any(c not in used for c in classes if c != "js"):
+    if any(c not in used for c in classes if c != "js" and not is_external(c)):
         return None  # reglen bruges ikke af siden
     if sel.startswith("html"):
         return sel  # fx scroll-behavior på hele siden
     js = False
     if sel.startswith(".js "):
         js, sel = True, sel[4:]
-    sel = CLASS_RE.sub(lambda m: "." + rename(m.group(1)), sel)
+    sel = CLASS_RE.sub(lambda m: "." + (m.group(1) if is_external(m.group(1)) else rename(m.group(1))), sel)
     root_tok = re.match(r"(:root|body)(?![\w-])", sel)
     if root_tok:
         sel = "#" + ROOT_ID + sel[root_tok.end():]
@@ -217,8 +222,6 @@ def build_lang(base):
     body = re.sub(r'\s*<script src="landing\.js"></script>', "", body)
     body = re.sub(r"<!--(?!\s*\[).*?-->", "", body, flags=re.S)  # HTML-kommentarer ud
     # form_embed.js må vente til markup er parset
-    body = body.replace('<script src="https://link.msgsndr.com/js/form_embed.js"></script>',
-                        '<script src="https://link.msgsndr.com/js/form_embed.js" defer></script>')
 
     css_names = css_classes(css)
     html_names = set()
