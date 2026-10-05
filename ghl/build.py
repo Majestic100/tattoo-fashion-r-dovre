@@ -30,7 +30,7 @@ PREFIX = "tf-"
 
 # jsDelivr med et FULDT commit-hash giver "max-age=31536000, immutable".
 # Opdatér hashet, når der er pushet nye billeder/fonte/videoer.
-ASSET_COMMIT = "REPLACE_WITH_COMMIT_HASH"
+ASSET_COMMIT = "a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4"
 REPO_SLUG = "Majestic100/tattoo-fashion-r-dovre"
 
 
