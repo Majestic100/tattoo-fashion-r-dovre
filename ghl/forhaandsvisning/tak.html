@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forhåndsvisning: tak</title>
+<style>html,body{margin:0;padding:0;background:#151210}</style>
+<!-- Pixel-koden er udeladt i forhåndsvisningen -->
+</head>
+<body>
+<!--
+  TATTOO FASHION RØDOVRE: TAKKESIDE
+  Indsæt HELE filen i ét Custom Code-element på takke-steppet i GHL.
+  Sektion, række og kolonne: fuld bredde og 0 padding. Sidens baggrund: #151210.
+  Alt CSS er scopet under #tf-tak med tf-prefix. Ingen pixel-kode her:
+  se kommentaren nederst for den kode, der skal i steppets tracking code.
+-->
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/fonts/bebas-neue-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+<style>
+/* --- FONTE: self-hostet (fonts/), latin-subset. Inter er én variabel fil
+   (alle vægte). Fallback-fladerne er Arial justeret til webfontens mål
+   (beregnet fra font-filerne), så skiftet ved swap ikke flytter layoutet --- */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/fonts/inter-latin-var.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Bebas Neue';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/fonts/bebas-neue-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial'), local('ArialMT');
+  size-adjust: 106.91%;
+  ascent-override: 90.62%;
+  descent-override: 22.56%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Bebas Neue Fallback';
+  src: local('Arial'), local('ArialMT');
+  size-adjust: 57.63%;
+  ascent-override: 156.18%;
+  descent-override: 52.06%;
+  line-gap-override: 0%;
+}
+#tf-tak {
+  --tf-bg: #151210;
+  --tf-text-2: #a49c93;
+  --tf-accent: #c9a55c;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 48px 20px;
+  overflow: hidden;
+  background: var(--tf-bg);
+  color: #ffffff;
+  font-family: 'Inter', 'Inter Fallback', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: center;
+  -webkit-text-size-adjust: 100%;
+}
+#tf-tak *, #tf-tak *::before, #tf-tak *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* GHL sætter egne farver/fonte på h1-h3 og p. Nulstil til arv, så kun
+   vores klasser styrer udseendet (klasse-regler vinder over disse) */
+#tf-tak h1, #tf-tak h2, #tf-tak h3, #tf-tak p, #tf-tak li, #tf-tak figure, #tf-tak strong, #tf-tak s {
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+}
+#tf-tak strong { font-weight: 700; }
+#tf-tak a { color: inherit; text-decoration: none; }
+#tf-tak a:focus-visible { outline: 2px solid var(--tf-accent); outline-offset: 3px; border-radius: 4px; }
+
+#tf-tak .tf-tak-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  opacity: 0.35;
+  pointer-events: none;
+}
+#tf-tak .tf-tak-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(21, 18, 16, 0.55) 0%, rgba(21, 18, 16, 0.95) 75%);
+}
+#tf-tak .tf-tak-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 560px;
+  padding: 44px 32px 36px;
+  background: linear-gradient(180deg, #262019 0%, #1a1613 100%);
+  border: 1.5px solid rgba(201, 165, 92, 0.35);
+  border-radius: 16px;
+  box-shadow: 0 25px 60px -20px rgba(0, 0, 0, 0.7);
+}
+#tf-tak .tf-tak-check {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--tf-accent);
+  color: var(--tf-bg);
+  box-shadow: 0 0 40px rgba(201, 165, 92, 0.45);
+}
+#tf-tak .tf-tak-logo {
+  font-family: 'Bebas Neue', 'Bebas Neue Fallback', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.14em;
+  color: var(--tf-accent);
+  margin-bottom: 10px;
+}
+#tf-tak h1 {
+  font-family: 'Bebas Neue', 'Bebas Neue Fallback', sans-serif;
+  font-weight: 400;
+  font-size: clamp(2.2rem, 7vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+#tf-tak .tf-tak-text {
+  font-size: 1rem;
+  color: #d9d2c9;
+  margin-bottom: 26px;
+}
+#tf-tak .tf-tak-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  color: var(--tf-accent);
+  transition: color 0.3s;
+}
+#tf-tak .tf-tak-phone:hover { color: #dbb978; }
+#tf-tak .tf-tak-small {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: var(--tf-text-2);
+}
+</style>
+
+<div id="tf-tak">
+  <img class="tf-tak-bg" src="https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/images/salon-3.webp" width="1030" height="773" alt="">
+  <div class="tf-tak-overlay" aria-hidden="true"></div>
+  <div class="tf-tak-card">
+    <div class="tf-tak-check" aria-hidden="true">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <p class="tf-tak-logo">Tattoo Fashion Rødovre</p>
+    <h1>Tak, vi har din idé</h1>
+    <p class="tf-tak-text">Du hører fra os samme dag. Vi kigger på dit motiv og matcher dig med den artist, der passer bedst til det.</p>
+    <p class="tf-tak-small">Har du spørgsmål i mellemtiden?</p>
+    <a href="tel:+4550168630" class="tf-tak-phone">Ring 50 16 86 30</a>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var root = document.getElementById('tf-tak');
+  if (!root) return;
+  // Klik på telefonnummeret: Contact-event, hvis pixlerne findes
+  root.querySelectorAll('a[href^="tel:"]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      try { if (typeof window.fbq === 'function') window.fbq('track', 'Contact'); } catch (err) {}
+      try { if (window.ttq && typeof window.ttq.track === 'function') window.ttq.track('Contact'); } catch (err) {}
+    });
+  });
+})();
+</script>
+
+<!--
+  =====================================================================
+  TRACKING CODE TIL TAKKE-STEPPET (indsættes IKKE i Custom Code-elementet)
+  GHL: Funnel > takke-steppet > Settings > Tracking Code > Body Tracking Code.
+  Basis-pixlerne (Meta 2052229988273826 + TikTok) skal ligge i funnelens
+  fælles tracking code, så fbq og ttq findes, når denne kode kører.
+
+<script>
+  try { if (typeof window.fbq === 'function') { fbq('track', 'Lead'); } } catch (e) {}
+  try { if (window.ttq && typeof window.ttq.track === 'function') { ttq.track('SubmitForm'); } } catch (e) {}
+  // Hent pixel-scripterne med det samme her (funnel-koden venter ellers til efter load)
+  try { if (typeof window.__tfPixelsNow === 'function') { window.__tfPixelsNow(); } } catch (e) {}
+</script>
+  =====================================================================
+-->
+
+</body>
+</html>

@@ -300,6 +300,20 @@ def main():
     for f in sorted(os.listdir(os.path.join(HERE, "src"))):
         if f.endswith(".html"):
             write(os.path.join(out, f), build_template(f, base))
+    # Forhåndsvisning: snippet + head-kode i en hel side (som GHL leverer),
+    # så den kan åbnes direkte i en browser. Kopiér IKKE disse ind i GHL.
+    head = build_template("head-side.html", base)
+    pixels_note = "<!-- Pixel-koden er udeladt i forhåndsvisningen -->"
+    for name, snippet in (("kort", build_template("kort.html", base)),
+                          ("lang", build_lang(base)),
+                          ("tak", build_template("tak.html", base))):
+        page = ("<!DOCTYPE html>\n<html lang=\"da\">\n<head>\n<meta charset=\"UTF-8\">\n"
+                "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
+                "<title>Forhåndsvisning: " + name + "</title>\n"
+                "<style>html,body{margin:0;padding:0;background:#151210}</style>\n"
+                + (head if name != "tak" else "") + pixels_note +
+                "\n</head>\n<body>\n" + snippet + "\n</body>\n</html>\n")
+        write(os.path.join(out, "forhaandsvisning", name + ".html"), page)
     print("Bygget til", out, "med assets fra", base)
 
 

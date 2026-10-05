@@ -896,7 +896,9 @@
       var parts = e.data.slice(13).split(':');
       var h = parseInt(parts[1], 10);
       if (formWrap.querySelector('iframe[id="' + parts[0] + '"]') && h > 300 && h < 5000) {
-        formWrap.style.height = h + 'px';
+        // +5 px: samme tillæg som form_embed.js selv giver iframen; uden
+        // det får formularen en scrollbar og bliver smallere og højere
+        formWrap.style.height = (h + 5) + 'px';
         clearTimeout(formReadyTimer);
         formReadyTimer = setTimeout(showForm, 400);
       }

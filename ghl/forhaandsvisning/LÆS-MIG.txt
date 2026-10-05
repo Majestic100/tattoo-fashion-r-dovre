@@ -1,0 +1,5 @@
+Disse filer er KUN til at se, hvordan siderne ser ud. Dobbeltklik for at
+åbne dem i browseren. De skal IKKE kopieres ind i GHL.
+
+Det, der skal ind i GHL, ligger én mappe op (ghl/):
+head-funnel.html, head-side.html, kort.html, lang.html, tak.html
