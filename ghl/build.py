@@ -279,6 +279,8 @@ def extract_head_assets(html, base):
 
 def build_template(name, base):
     s = read("ghl/src/" + name)
+    origin = re.match(r"(https?://[^/]+)", base)
+    s = s.replace("{{ASSETS_ORIGIN}}", origin.group(1) if origin else "")
     return s.replace("{{ASSETS}}", base)
 
 

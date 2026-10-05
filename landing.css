@@ -1701,10 +1701,16 @@ button:focus-visible {
   color: var(--text-secondary);
   margin-bottom: 6px;
 }
-.lp-footer a { color: var(--accent); }
+/* Links i brødtekst understreges, så de ikke kun skelnes på farve (a11y) */
+.lp-footer a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+/* #8f877d giver ca. 5:1 kontrast mod baggrunden (var 3,3:1) */
 .lp-footer-legal {
   font-size: 0.75rem !important;
-  color: var(--text-muted) !important;
+  color: #8f877d !important;
 }
 
 /* --- FLYDENDE ELEMENTER --- */
