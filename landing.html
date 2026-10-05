@@ -13,6 +13,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- LCP: hero-billedet hentes med høj prioritet, før CSS'en er parset -->
+  <link rel="preload" as="image" href="images/salon-3.webp" imagesrcset="images/salon-3-640.webp 640w, images/salon-3.webp 1030w" imagesizes="100vw" fetchpriority="high">
   <link rel="stylesheet" href="landing.css">
   <!-- TRACKING: Indsæt Meta Pixel / GTM her -->
 </head>
@@ -36,7 +38,7 @@
   <section class="lp-hero">
     <!-- Letvaegts-hero: foto med langsom Ken Burns-zoom i stedet for video (loadtid) -->
     <div class="lp-hero-bg" aria-hidden="true">
-      <img class="lp-hero-img" src="images/salon-3.webp" width="1030" height="773" fetchpriority="high" alt="">
+      <img class="lp-hero-img" src="images/salon-3.webp" srcset="images/salon-3-640.webp 640w, images/salon-3.webp 1030w" sizes="100vw" width="1030" height="773" fetchpriority="high" decoding="async" alt="">
     </div>
     <div class="lp-hero-overlay" aria-hidden="true"></div>
     <div class="container">
