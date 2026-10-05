@@ -65,7 +65,10 @@
   w.__tfPixelsNow = start;
   function idle() { (w.requestIdleCallback || function (cb) { return setTimeout(cb, 1); })(start, { timeout: 1500 }); }
   if (d.readyState === 'complete') idle(); else w.addEventListener('load', idle, { once: true });
-  ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function (t) {
+  // Ikke 'scroll': GHL udløser selv en scroll-hændelse under indlæsning,
+  // som ellers startede pixlerne efter ~0,5 s. Rigtige brugere rammer
+  // touchstart/pointerdown, før de scroller.
+  ['pointerdown', 'keydown', 'touchstart'].forEach(function (t) {
     w.addEventListener(t, start, { once: true, passive: true });
   });
   function cap() { setTimeout(start, 3000); }
