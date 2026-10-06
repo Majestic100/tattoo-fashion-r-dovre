@@ -1,4 +1,4 @@
-<!-- VERSION 06.10.2026 kl. 14:45 | fil 4-kort -->
+<!-- VERSION 06.10.2026 kl. 14:46 | fil 4-kort -->
 <!--
   TATTOO FASHION R&#xd8;DOVRE: KORT KAMPAGNESIDE (variant A i split-testen)
   Inds&#xe6;t HELE filen i &#xe9;t Custom Code-element i GHL-funnelen.
@@ -405,6 +405,36 @@ html, body { overflow-x: clip; }
    sig (scriptet s\e6 tter .tf-ready, senest efter 4 s) */
 .tf-js #tf-lp .tf-form-wrap { background: #f6f5f3; }
 .tf-js #tf-lp .tf-form-wrap:not(.tf-ready) iframe { visibility: hidden; }
+
+/* PRISBRIK: normalpris-linjen f\e5 r sin egen m\f8 rke, halvgennemsigtige ramme,
+   s\e5  den ikke drukner i baggrundsbilledet. Gammel pris i hvidt med r\f8 d
+   overstregning (l\e6 sbart + tydeligt "f\f8 r-pris") */
+#tf-lp .tf-hero-grid .tf-was {
+  align-self: center;
+  display: inline-flex;
+  gap: 12px;
+  padding: 7px 7px 7px 20px;
+  background: rgba(14, 11, 9, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 100px;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  color: rgba(255, 255, 255, 0.72);
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  font-weight: 500;
+}
+#tf-lp .tf-hero-grid .tf-was s {
+  font-size: 1.45em;
+  font-weight: 800;
+  color: #ffffff;
+  text-decoration-color: #ff4d4d;
+  text-decoration-thickness: 2px;
+}
+#tf-lp .tf-hero-grid .tf-was .tf-save { padding: 8px 14px; font-size: 0.8rem; }
+@media (max-width: 380px) {
+  #tf-lp .tf-hero-grid .tf-was { gap: 8px; padding: 6px 6px 6px 14px; font-size: 0.92rem; }
+  #tf-lp .tf-hero-grid .tf-was .tf-save { padding: 6px 10px; font-size: 0.7rem; }
+}
 
 /* --- ARBEJDE --- */
 #tf-lp .tf-work { padding: 96px 0; }
