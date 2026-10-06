@@ -1,4 +1,4 @@
-<!-- VERSION 05.10.2026 kl. 16:17 | fil 4-kort -->
+<!-- VERSION 06.10.2026 kl. 11:51 | fil 4-kort -->
 <!--
   TATTOO FASHION R&#xd8;DOVRE: KORT KAMPAGNESIDE (variant A i split-testen)
   Inds&#xe6;t HELE filen i &#xe9;t Custom Code-element i GHL-funnelen.

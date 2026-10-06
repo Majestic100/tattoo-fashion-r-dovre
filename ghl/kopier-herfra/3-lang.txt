@@ -1,4 +1,4 @@
-<!-- VERSION 05.10.2026 kl. 16:17 | fil 3-lang -->
+<!-- VERSION 06.10.2026 kl. 11:51 | fil 3-lang -->
 <!--
   TATTOO FASHION R&#xd8;DOVRE: LANG KAMPAGNESIDE (variant B i split-testen)
   GENERERET af ghl/build.py ud fra landing.html, landing.css og landing.js.
@@ -187,13 +187,6 @@
           <div class="tf-lp-artist-info">
             <strong>Andras Bali</strong>
             <span>Black &amp; Grey Realism</span>
-          </div>
-        </div>
-        <div class="tf-lp-artist tf-reveal" style="--i:1">
-          <img src="https://cdn.jsdelivr.net/gh/Majestic100/tattoo-fashion-r-dovre@a1b8edc0b867f6fa3d1452e8c59f7c33ac4d31a4/images/Vito.webp" width="600" height="600" alt="Vito, Black & White Realism" loading="lazy">
-          <div class="tf-lp-artist-info">
-            <strong>Vito</strong>
-            <span>Black &amp; White Realism</span>
           </div>
         </div>
         <div class="tf-lp-artist tf-reveal" style="--i:2">
