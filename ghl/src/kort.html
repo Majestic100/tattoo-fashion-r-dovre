@@ -435,6 +435,31 @@ html, body { overflow-x: clip; }
   #tf-lp .tf-hero-grid .tf-was .tf-save { padding: 6px 10px; font-size: 0.7rem; }
 }
 
+/* Desktop: de tre punkter som én aflang bjælke under formularen,
+   samme mørke "brik"-stil som prislinjen. Mobil beholder listen */
+@media (min-width: 769px) {
+  #tf-lp .tf-hero-grid .tf-checks {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 30px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0;
+    padding: 14px 26px;
+    background: rgba(14, 11, 9, 0.62);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+  #tf-lp .tf-hero-grid .tf-checks li { font-size: 0.92rem; white-space: nowrap; }
+}
+/* Brede skærme: alle tre punkter på én linje, som en pille */
+@media (min-width: 1100px) {
+  #tf-lp .tf-hero-grid .tf-checks { flex-wrap: nowrap; border-radius: 100px; }
+}
+
 /* --- ARBEJDE --- */
 #tf-lp .tf-work { padding: 96px 0; }
 #tf-lp .tf-work-grid {

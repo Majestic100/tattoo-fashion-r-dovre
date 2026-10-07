@@ -1,4 +1,4 @@
-<!-- VERSION 06.10.2026 kl. 14:46 | fil 4-kort -->
+<!-- VERSION 07.10.2026 kl. 12:39 | fil 4-kort -->
 <!--
   TATTOO FASHION R&#xd8;DOVRE: KORT KAMPAGNESIDE (variant A i split-testen)
   Inds&#xe6;t HELE filen i &#xe9;t Custom Code-element i GHL-funnelen.
@@ -434,6 +434,31 @@ html, body { overflow-x: clip; }
 @media (max-width: 380px) {
   #tf-lp .tf-hero-grid .tf-was { gap: 8px; padding: 6px 6px 6px 14px; font-size: 0.92rem; }
   #tf-lp .tf-hero-grid .tf-was .tf-save { padding: 6px 10px; font-size: 0.7rem; }
+}
+
+/* Desktop: de tre punkter som \e9 n aflang bj\e6 lke under formularen,
+   samme m\f8 rke "brik"-stil som prislinjen. Mobil beholder listen */
+@media (min-width: 769px) {
+  #tf-lp .tf-hero-grid .tf-checks {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 30px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0;
+    padding: 14px 26px;
+    background: rgba(14, 11, 9, 0.62);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+  #tf-lp .tf-hero-grid .tf-checks li { font-size: 0.92rem; white-space: nowrap; }
+}
+/* Brede sk\e6 rme: alle tre punkter p\e5  \e9 n linje, som en pille */
+@media (min-width: 1100px) {
+  #tf-lp .tf-hero-grid .tf-checks { flex-wrap: nowrap; border-radius: 100px; }
 }
 
 /* --- ARBEJDE --- */
