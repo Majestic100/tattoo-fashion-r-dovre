@@ -1,4 +1,4 @@
-<!-- VERSION 07.10.2026 kl. 12:39 | fil 4-kort -->
+<!-- VERSION 15.10.2026 kl. 14:30 | fil 4-kort -->
 <!--
   TATTOO FASHION R&#xd8;DOVRE: KORT KAMPAGNESIDE (variant A i split-testen)
   Inds&#xe6;t HELE filen i &#xe9;t Custom Code-element i GHL-funnelen.
@@ -461,6 +461,15 @@ html, body { overflow-x: clip; }
   #tf-lp .tf-hero-grid .tf-checks { flex-wrap: nowrap; border-radius: 100px; }
 }
 
+/* Mindre luft omkring punkterne og i bunden af heroen */
+#tf-lp section.tf-hero { padding-bottom: 48px; }
+@media (max-width: 768px) {
+  #tf-lp section.tf-hero { padding-bottom: 28px; }
+  #tf-lp .tf-hero-grid { gap: 18px; }
+  #tf-lp .tf-hero-grid .tf-checks { gap: 8px; margin: -4px 0 0; }
+  #tf-lp .tf-hero-grid .tf-checks li { font-size: 0.95rem; }
+}
+
 /* --- ARBEJDE --- */
 #tf-lp .tf-work { padding: 96px 0; }
 #tf-lp .tf-work-grid {
@@ -753,7 +762,7 @@ html, body { overflow-x: clip; }
     transition: transform 0.4s ease;
   }
   #tf-lp .tf-mobile-cta.tf-visible { transform: translateY(0); }
-  #tf-lp .tf-footer { padding-bottom: 90px; }
+  #tf-lp .tf-footer { padding-bottom: 44px; }
 }
 
 /* Smalle telefoner: normalpris og rabat holdes p\e5  \e9 n linje */
@@ -905,8 +914,6 @@ html, body { overflow-x: clip; }
       <p class="tf-legal">CVR: 37231756 &middot; &copy; 2026 Tattoo Fashion</p>
     </div>
   </footer>
-
-  <a href="#tilbud" class="tf-mobile-cta" id="tf-mobile-cta">Spar 1.500 kr. p&#xe5; din session</a>
 </div>
 
 <script>

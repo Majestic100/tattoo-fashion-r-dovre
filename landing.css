@@ -1959,7 +1959,7 @@ button:focus-visible {
   }
 
   .lp-footer {
-    padding-bottom: 90px;
+    padding-bottom: 48px;
   }
 }
 
@@ -2352,3 +2352,15 @@ button:focus-visible {
 @media (min-width: 1100px) {
   .lp-hero-stack .lp-hero-checks { flex-wrap: nowrap; border-radius: 100px; }
 }
+
+/* Mindre luft omkring punkterne og i bunden af heroen */
+.lp-hero:has(.lp-hero-stack) { padding-bottom: 48px; }
+@media (max-width: 768px) {
+  .lp-hero:has(.lp-hero-stack) { padding-bottom: 28px; }
+  .lp-hero-stack { gap: 18px; }
+  .lp-hero-stack .lp-hero-checks { gap: 8px; margin: -4px 0 0; }
+  .lp-hero-stack .lp-hero-checks li { font-size: 0.95rem; }
+}
+
+/* Studiesektion uden video (landing.html): kun tekst + fakta */
+.lp-studio-solo { grid-template-columns: 1fr; max-width: 760px; }
