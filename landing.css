@@ -2383,3 +2383,23 @@ button:focus-visible {
 @media (max-width: 768px) {
   .lp-eyebrow-offer { align-self: center; margin: 0 0 -6px; font-size: 0.7rem; padding: 6px 13px; letter-spacing: 0.1em; }
 }
+
+/* Normalpris: lille label, stort beløb */
+.lp-was { padding: 8px 8px 8px 22px; gap: 14px; }
+.lp-was s { font-size: 1.75em; letter-spacing: -0.01em; }
+@media (max-width: 380px) {
+  .lp-was s { font-size: 1.55em; }
+}
+.lp-was-label {
+  font-size: 0.72em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.6);
+}
+@media (max-width: 430px) {
+  .lp-was { gap: 9px; padding: 6px 6px 6px 16px; }
+  .lp-was s { font-size: 1.42em; }
+  .lp-was-label { font-size: 0.66em; letter-spacing: 0.08em; }
+  .lp-was .lp-save-pill { padding: 6px 10px; font-size: 0.68rem; }
+}

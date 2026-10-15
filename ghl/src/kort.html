@@ -487,6 +487,27 @@ html, body { overflow-x: clip; }
   #tf-lp .tf-hero-grid .tf-eyebrow { font-size: 0.7rem; padding: 6px 13px; letter-spacing: 0.1em; }
 }
 
+/* Normalpris: lille label, stort beløb */
+#tf-lp .tf-hero-grid .tf-was { padding: 8px 8px 8px 22px; gap: 14px; }
+#tf-lp .tf-hero-grid .tf-was s { font-size: 1.75em; letter-spacing: -0.01em; }
+#tf-lp .tf-was-label {
+  font-size: 0.72em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.6);
+}
+@media (max-width: 380px) {
+  #tf-lp .tf-hero-grid .tf-was s { font-size: 1.55em; }
+}
+
+@media (max-width: 430px) {
+  #tf-lp .tf-hero-grid .tf-was { gap: 9px; padding: 6px 6px 6px 16px; }
+  #tf-lp .tf-hero-grid .tf-was s { font-size: 1.42em; }
+  #tf-lp .tf-was-label { font-size: 0.66em; letter-spacing: 0.08em; }
+  #tf-lp .tf-hero-grid .tf-was .tf-save { padding: 6px 10px; font-size: 0.68rem; }
+}
+
 /* --- ARBEJDE --- */
 #tf-lp .tf-work { padding: 96px 0; }
 #tf-lp .tf-work-grid {
@@ -820,8 +841,8 @@ html, body { overflow-x: clip; }
       <div class="tf-hero-grid">
         <div class="tf-hero-copy">
           <p class="tf-eyebrow">Spar 1.500 kr. på din session</p>
-          <h1 class="tf-h1">Få en heldagssession<br>for kun <span class="tf-price">4.500 kr.</span></h1>
-          <p class="tf-was">Normalpris <s>6.000 kr.</s> <span class="tf-save">Spar 25%</span></p>
+          <h1 class="tf-h1">Få en heldagssession <br>for kun <span class="tf-price">4.500 kr.</span></h1>
+          <p class="tf-was"><span class="tf-was-label">Normalpris</span> <s>6.000 kr.</s> <span class="tf-save">Spar 25%</span></p>
           <p class="tf-note">Udfyld formularen, så kontakter vi dig.</p>
           <ul class="tf-checks">
             <li>Du hører fra os samme dag</li>
