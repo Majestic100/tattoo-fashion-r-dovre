@@ -2364,3 +2364,22 @@ button:focus-visible {
 
 /* Studiesektion uden video (landing.html): kun tekst + fakta */
 .lp-studio-solo { grid-template-columns: 1fr; max-width: 760px; }
+
+/* Eyebrow som guld-badge over overskriften */
+.lp-eyebrow-offer {
+  align-self: center;
+  display: inline-block;
+  padding: 7px 16px;
+  margin-bottom: 18px;
+  color: var(--accent-hover);
+  background: rgba(201, 165, 92, 0.14);
+  border: 1px solid rgba(201, 165, 92, 0.55);
+  border-radius: 100px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+.lp-hero-stack .lp-eyebrow-offer { align-self: center; margin: 0 0 -6px; }
+@media (max-width: 768px) {
+  .lp-eyebrow-offer { align-self: center; margin: 0 0 -6px; font-size: 0.7rem; padding: 6px 13px; letter-spacing: 0.1em; }
+}

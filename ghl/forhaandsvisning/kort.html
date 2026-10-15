@@ -499,6 +499,24 @@ html, body { overflow-x: clip; }
   #tf-lp .tf-hero-grid .tf-checks li { font-size: 0.95rem; }
 }
 
+/* Eyebrow som guld-badge over overskriften */
+#tf-lp .tf-hero-grid .tf-eyebrow {
+  align-self: center;
+  display: inline-block;
+  padding: 7px 16px;
+  margin: 0 0 -6px;
+  color: var(--tf-accent-hover);
+  background: rgba(201, 165, 92, 0.14);
+  border: 1px solid rgba(201, 165, 92, 0.55);
+  border-radius: 100px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+@media (max-width: 768px) {
+  #tf-lp .tf-hero-grid .tf-eyebrow { font-size: 0.7rem; padding: 6px 13px; letter-spacing: 0.1em; }
+}
+
 /* --- ARBEJDE --- */
 #tf-lp .tf-work { padding: 96px 0; }
 #tf-lp .tf-work-grid {
@@ -831,7 +849,7 @@ html, body { overflow-x: clip; }
     <div class="tf-container">
       <div class="tf-hero-grid">
         <div class="tf-hero-copy">
-          <p class="tf-eyebrow">Spar 1.500 kr.</p>
+          <p class="tf-eyebrow">Spar 1.500 kr. på din session</p>
           <h1 class="tf-h1">Få en heldagssession<br>for kun <span class="tf-price">4.500 kr.</span></h1>
           <p class="tf-was">Normalpris <s>6.000 kr.</s> <span class="tf-save">Spar 25%</span></p>
           <p class="tf-note">Udfyld formularen for at sikre din tid. <strong>Først til mølle.</strong></p>
