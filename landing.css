@@ -2403,3 +2403,21 @@ button:focus-visible {
   .lp-was-label { font-size: 0.66em; letter-spacing: 0.08em; }
   .lp-was .lp-save-pill { padding: 6px 10px; font-size: 0.68rem; }
 }
+
+/* Desktop: prisbrikken skaleres op, så den fylder næsten som overskriften
+   (men med mindre tekst). Alt i em, så label, beløb og badge følger med */
+@media (min-width: 769px) {
+  .lp-hero-stack .lp-was {
+    font-size: clamp(1.15rem, 1.75vw, 1.55rem);
+    gap: 0.75em;
+    padding: 0.4em 0.4em 0.4em 1.1em;
+  }
+  .lp-hero-stack .lp-was .lp-save-pill {
+    font-size: 0.6em;
+    padding: 0.7em 1.15em;
+  }
+}
+/* Brede skærme: brikken strækkes, så den fylder cirka som overskriften */
+@media (min-width: 1100px) {
+  .lp-hero-stack .lp-was { min-width: min(100%, 780px); justify-content: center; gap: 1.1em; }
+}
