@@ -1,4 +1,4 @@
-<!-- VERSION 15.10.2026 kl. 14:30 | fil 4-kort -->
+<!-- VERSION 15.10.2026 kl. 14:36 | fil 4-kort -->
 <!--
   TATTOO FASHION R&#xd8;DOVRE: KORT KAMPAGNESIDE (variant A i split-testen)
   Inds&#xe6;t HELE filen i &#xe9;t Custom Code-element i GHL-funnelen.
@@ -806,7 +806,7 @@ html, body { overflow-x: clip; }
     <div class="tf-container">
       <div class="tf-hero-grid">
         <div class="tf-hero-copy">
-          <p class="tf-eyebrow">Heldagssession - spar 1.500 kr.</p>
+          <p class="tf-eyebrow">Spar 1.500 kr.</p>
           <h1 class="tf-h1">F&#xe5; en heldagssession<br>for kun <span class="tf-price">4.500 kr.</span></h1>
           <p class="tf-was">Normalpris <s>6.000 kr.</s> <span class="tf-save">Spar 25%</span></p>
           <p class="tf-note">Udfyld formularen for at sikre din tid. <strong>F&#xf8;rst til m&#xf8;lle.</strong></p>

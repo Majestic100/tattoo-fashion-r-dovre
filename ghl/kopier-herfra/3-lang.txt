@@ -1,4 +1,4 @@
-<!-- VERSION 15.10.2026 kl. 14:30 | fil 3-lang -->
+<!-- VERSION 15.10.2026 kl. 14:36 | fil 3-lang -->
 <!--
   TATTOO FASHION R&#xd8;DOVRE: LANG KAMPAGNESIDE (variant B i split-testen)
   GENERERET af ghl/build.py ud fra landing.html, landing.css og landing.js.
@@ -34,7 +34,7 @@
       <div class="tf-lp-hero-grid tf-lp-hero-stack">
         <div class="tf-lp-hero-copy">
           
-          <p class="tf-lp-eyebrow tf-lp-eyebrow-offer">Heldagssession - spar 1.500 kr.</p>
+          <p class="tf-lp-eyebrow tf-lp-eyebrow-offer">Spar 1.500 kr.</p>
           <h1 class="tf-lp-h1 tf-lp-h1-offer">F&#xe5; en heldagssession<br>for kun <span class="tf-lp-price-glow">4.500 kr.</span></h1>
           <p class="tf-lp-was">Normalpris <s>6.000 kr.</s> <span class="tf-lp-save-pill">Spar 25%</span></p>
           <p class="tf-lp-hero-note">Udfyld formularen for at sikre din tid. <strong>F&#xf8;rst til m&#xf8;lle.</strong></p>
